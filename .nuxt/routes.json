@@ -1,8 +1,26 @@
 [
   {
+    "name": "about",
+    "path": "/about",
+    "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Internship\\\\PE-HR-App\\\\pages\\\\about.vue",
+    "chunkName": "pages/about"
+  },
+  {
+    "name": "inspire",
+    "path": "/inspire",
+    "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Internship\\\\PE-HR-App\\\\pages\\\\inspire.vue",
+    "chunkName": "pages/inspire"
+  },
+  {
+    "name": "news",
+    "path": "/news",
+    "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Internship\\\\PE-HR-App\\\\pages\\\\news.vue",
+    "chunkName": "pages/news"
+  },
+  {
     "name": "index",
     "path": "/",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/index.vue",
+    "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Internship\\\\PE-HR-App\\\\pages\\\\index.vue",
     "chunkName": "pages/index"
   }
 ]

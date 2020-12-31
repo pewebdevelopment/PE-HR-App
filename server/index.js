@@ -1,21 +1,22 @@
-const express = require('express');  
+const express = require("express");
 const app = express();
-const port = 8000; 
-require('dotenv').config();
+var request = require('request');
 
+app.get("/get", (req, res) => {
+    var options = {
+        'method': 'GET',
+        'url': 'http://newsapi.org/v2/everything?q=bitcoin&from=2020-11-30&sortBy=publishedAt&apiKey=9bd313e14c144e888df672a34a0b29a0',
+      };
+      request(options, function (error, response) {
+        if (error) throw new Error(error);
+        res.send(response.body);
+      });
+});
 
-const db =require('./config/mongoose');
-
-
-app.get('/',function(req,res){
-    res.send("Hello-World");
-})
-
-
-
-app.listen(port,function(err){
-    if(err){
-        console.log(`Error in running the server : ${err}`);
+app.listen(3005, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(`Listening open PORT 3005`);
     }
-    console.log(`server is running on the port : ${port}`);
-})
+  });
