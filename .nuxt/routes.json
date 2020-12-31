@@ -3,24 +3,28 @@
     "name": "about",
     "path": "/about",
     "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Internship\\\\PE-HR-App\\\\pages\\\\about.vue",
-    "chunkName": "pages/about"
+    "chunkName": "pages/about",
+    "_name": "_4d6228d4"
   },
   {
     "name": "inspire",
     "path": "/inspire",
     "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Internship\\\\PE-HR-App\\\\pages\\\\inspire.vue",
-    "chunkName": "pages/inspire"
+    "chunkName": "pages/inspire",
+    "_name": "_529a9423"
   },
   {
     "name": "news",
     "path": "/news",
     "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Internship\\\\PE-HR-App\\\\pages\\\\news.vue",
-    "chunkName": "pages/news"
+    "chunkName": "pages/news",
+    "_name": "_2de7944c"
   },
   {
     "name": "index",
     "path": "/",
     "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Internship\\\\PE-HR-App\\\\pages\\\\index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_0df2734a"
   }
 ]
