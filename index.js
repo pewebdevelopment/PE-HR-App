@@ -5,6 +5,7 @@ mongoconnect()
 const schema = require('./graphSchema/schema');
 const cors = require('cors');
 const {graphqlHTTP} = require('express-graphql');
+const config = require('./config/env')
 
 
 app.use(cors());
@@ -14,4 +15,4 @@ app.use('/graphql', graphqlHTTP({
     graphiql:true,
 }))
 
-app.listen(5000,()=>{console.log("Server is Running")});
+app.listen(process.env.PORT || config.PORT ,()=>{console.log("Server is Running")});
