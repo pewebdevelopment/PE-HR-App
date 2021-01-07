@@ -1,0 +1,24 @@
+~~~~~~~~~ For single candidate
+query{
+  candidate(candidateId:"5ff54bcaea1bad58c8cfb116"){
+		phoneNo
+  }
+}
+~~~~~~~  query for  multiple candidate ~~~~
+query{
+  candidates{
+		phoneNo
+  }
+}
+
+
+
+~~~~~~~   for addCandidate ~~~~~~~~~
+mutation{
+  addCandidate(candidateName:"name",
+  email:"sfsfsf.com",
+  phoneNo:"224242424",
+  address:"eewrw"){
+    candidateName
+  }
+}
