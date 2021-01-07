@@ -20,6 +20,7 @@ const VacancyType = new GraphQLObjectType({
     name: 'Vacancy',
     description: 'This represents a Vacancy',
     fields: () => ({
+      id: {type : GraphQLID},
       vacancyPost: { type: GraphQLNonNull(GraphQLString) },
       noOfOpenings: { type: GraphQLNonNull(GraphQLInt) },
       stipend: { type: GraphQLNonNull(GraphQLInt) },
@@ -37,6 +38,7 @@ const CandidateType = new GraphQLObjectType({
   name: 'Candidate',
   description: 'This represents a Candidate',
   fields: () => ({
+      id: {type : GraphQLID},
       candidateName:{ type: GraphQLNonNull(GraphQLString) },
       email:{ type: GraphQLNonNull(GraphQLString) },
       phoneNo:{ type: GraphQLNonNull(GraphQLString) },
