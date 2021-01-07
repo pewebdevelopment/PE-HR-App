@@ -1,0 +1,30 @@
+mutation{
+  addVacancy(vacancyPost:"webdev",applicants:8,noOfOpenings:10,stipend:1000,perks:["letter","certificate"],duration:3,startingDate:10000,aboutPost:"dd",skillsRequired:["sd","dd"],whoCanApply:[",,,","kmm"],status:false){
+    vacancyPost
+  }
+}
+
+//All vacancies
+query{
+  vacancies{
+    vacancyPost
+  }
+}
+//single Vacancy
+query{
+  vacancy(vacancyId:"5ff2784d71f2ab64d8245b8c"){
+    whoCanApply
+  }
+}
+
+mutation{
+  vacancyUpdate(vacancyId:"5ff2784d71f2ab64d8245b8c",vacancyPost:"web dev",applicants:1,noOfOpenings:10,stipend:1000,perks:["letter","certificate"],duration:3,startingDate:10000,aboutPost:"dd",skillsRequired:["sd","dd"],whoCanApply:[",,,","kmm"],status:false){
+    vacancyPost
+  }
+}
+
+mutation{
+  vacancyDelete(vacancyId:"5ff283f6cf00d90e10ac83e9"){
+    vacancyPost
+  }
+}
