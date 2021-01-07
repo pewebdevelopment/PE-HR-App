@@ -215,10 +215,42 @@ const RootMutationType = new GraphQLObjectType({
           address:{ type: GraphQLNonNull(GraphQLString) },
         },
         resolve: (parent, args) => {
-          var newCandidate=new Candidates({candidateName:args.candidateName,email:args.email,phoneNo:args.phoneNo,address:args.address})
-          newCandidate.save({},(err,docs)=>{
-            console.log(err)
-          });
+          Candidates.find({email:args.email},(err,docs)=>{
+            if(docs.length==0){
+              var newCandidate=new Candidates({candidateName:args.candidateName,email:args.email,phoneNo:args.phoneNo,address:args.address})
+              newCandidate.save({},(err,docs)=>{
+                console.log(err)
+              });
+            }
+          })
+        }
+      },
+      deleteCandidate:{
+        type:CandidateType,
+        description:'Delete a Candidate',
+        args:{
+          candidateId:{type:GraphQLNonNull(GraphQLID)},
+        },
+        resolve: (parent, args) => {
+          Candidates.deleteOne({_id:args.candidateId},(err,docs)=>{
+            return docs;
+          })
+        }
+      },
+      updateCandidate: {
+        type: CandidateType,
+        description: 'Update a candidate',
+        args: {
+          candidateId:{type:GraphQLNonNull(GraphQLID)},
+          candidateName:{ type: GraphQLNonNull(GraphQLString) },
+          email:{ type: GraphQLNonNull(GraphQLString) },
+          phoneNo:{ type: GraphQLNonNull(GraphQLString) },
+          address:{ type: GraphQLNonNull(GraphQLString) },
+        },
+        resolve: (parent, args) => {
+          Candidates.updateOne({_id:args.candidateId},{candidateName:args.candidateName,email:args.email,phoneNo:args.phoneNo,address:args.address},(err,docs)=>{
+            console.log(err,docs)
+          })
         }
       },
       addHse: {
@@ -357,7 +389,7 @@ const RootMutationType = new GraphQLObjectType({
           }
         }
       },
-      
+    
       addInternship: {
         type: CandidateType,
         description: 'Add an Internship',
