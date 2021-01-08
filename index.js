@@ -18,6 +18,7 @@ const {GraphQLSchema,
     GraphQLInputObjectType,
     GraphQLFloat
 }=require('graphql');
+const { json } = require('express');
 
 const VacancyType = new GraphQLObjectType({
     name: 'Vacancy',
@@ -160,7 +161,34 @@ const RootQueryType = new GraphQLObjectType({
             }
         })
       },
-
+      candidateResponses: {
+        type: new GraphQLList(ResponseType),
+        description: 'All Responses of a Candidate',
+        args: {
+          candidateId: { type: GraphQLNonNull(GraphQLID )}
+        },
+        resolve: (parent, args) =>
+        Response.find({candidateId:args.candidateId},(err,docs)=>{
+          if(err){
+            console.log(err)
+          }
+        })
+      },
+      vacancyResponses: {
+        type:new GraphQLList(ResponseType),
+        description: 'All Responses to a Vacancy',
+        args: {
+          vacancyId: { type: GraphQLNonNull(GraphQLID )}
+        },
+        resolve: (parent, args) =>
+          Response.find({vacancyId:args.vacancyId},(err,docs)=>{
+            if(err){
+              console.log(err)
+            }
+            
+        })
+      
+      },
       responses: {
         type: new GraphQLList(ResponseType),
         description: 'List of All Responses',
@@ -578,9 +606,12 @@ const RootMutationType = new GraphQLObjectType({
                   githubId:args.githubId,
                   status:args.status
                 })
-             
-                newResponse.save();
-                return newResponse
+                Response.find({candidateId:args.candidateId,vacancyId:args.vacancyId},(err,docs)=>{
+                  if(docs.lenght==0){
+                    newResponse.save();
+                    return newResponse
+                  }
+                })   
             }catch(e){
               console.log(e)
             }

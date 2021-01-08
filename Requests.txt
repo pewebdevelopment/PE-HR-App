@@ -167,3 +167,15 @@ mutation{
     projectsLinks
   }
 }
+//get all candidates response
+query{
+  candidateResponses(candidateId:"5ff54bcaea1bad58c8cfb116"){
+    vacancyId
+  }
+}
+//get all responses for vacancies
+query{
+  vacancyResponses(vacancyId:"5ff5eba3d071b439c8dfc8b2"){
+    vacancyId
+  }
+}
