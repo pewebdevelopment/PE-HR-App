@@ -8,16 +8,19 @@
         <th>Name</th>
         <th>Email</th>
         <th>Contact Number</th>
+        <th>Response</th>
       </tr>
       </thead>
       <tbody>
         <tr class="candidate-items" v-for="candidate in candidates" :key="candidate.id">
-            <div@click="$router.push({id:'candidate.id',params:{[candidate.id]}}})">
-            <td>{{candidate.candidateName}}</td>
-            </div>
+            
+            <td>{{candidate.candidateName}}
+            </td>
             <td>{{candidate.email}}</td>
             <td>{{candidate.phoneNo}}</td>
-
+            <td>
+              <NuxtLink :to="'/candidateResponse/'+candidate.id" ><button>Response</button></NuxtLink>
+            </td>
         </tr>
       </tbody>
 
@@ -39,6 +42,7 @@ export default {
     candidates : gql `
       query getCandidates{
           candidates{
+              id
               candidateName
               email
               phoneNo
