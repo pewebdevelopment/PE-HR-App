@@ -26,11 +26,9 @@ const VacancyType = new GraphQLObjectType({
       stipend: { type: GraphQLNonNull(GraphQLInt) },
       perks: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
       duration: { type: GraphQLNonNull(GraphQLInt) },
-      startingDate: { type: GraphQLNonNull(GraphQLInt) },
       aboutPost: { type: GraphQLNonNull(GraphQLString) },
       skillsRequired: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
-      whoCanApply: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
-      Status: { type: GraphQLNonNull(GraphQLBoolean)},
+      status: { type: GraphQLNonNull(GraphQLBoolean)},
     })
 })
 
@@ -186,19 +184,15 @@ const RootMutationType = new GraphQLObjectType({
             stipend: { type: GraphQLNonNull(GraphQLInt) },
             perks: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
             duration: { type: GraphQLNonNull(GraphQLInt) },
-            startingDate: { type: GraphQLNonNull(GraphQLInt) },
             aboutPost: { type: GraphQLNonNull(GraphQLString) },
             skillsRequired: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
-            whoCanApply: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
             status: { type: GraphQLNonNull(GraphQLBoolean) },
-            assessment: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
         },
         resolve: (parent, args) => {
             Vacancies.find({vacancyPost:args.vacancyPost},(err,docs)=>{
               if(docs.length==0){
                 var newVacancy=new Vacancies({vacancyPost:args.vacancyPost,noOfOpenings:args.noOfOpenings,stipend:args.stipend,perks:args.perks,
-                    duration:args.duration,startingDate:args.startingDate,aboutPost:args.aboutPost,skillsRequired:args.skillsRequired,whoCanApply:args.whoCanApply,
-                    status:args.status,assessment:args.assessment
+                    duration:args.duration,aboutPost:args.aboutPost,skillsRequired:args.skillsRequired,status:args.status
                 }) 
                 newVacancy.save();
                 return newVacancy
