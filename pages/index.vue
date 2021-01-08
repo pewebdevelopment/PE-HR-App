@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1>Vacancies</h1>
+    <div class="header">
+    <h1>Vacancies</h1> <button class="add-vacancy"><NuxtLink to="/addVacancy">Add Vacancy</NuxtLink></button>
+    </div>
   <div class = "vacancies-list">
     <ul>
       
@@ -21,18 +23,14 @@
             <div class = "aboutVacancy">
             Duration : {{vac.duration}}
             </div>
-            <div class = "aboutVacancy">
-            Starting Date : {{vac.startingDate}}
-            </div>
+            
             <div class = "aboutVacancy">
             About : {{vac.aboutPost}}
             </div>
             <div class = "aboutVacancy">
             Skills : {{vac.skillsRequired}}
             </div>
-            <div class = "aboutVacancy">
-            Who can Apply : {{vac.whoCanApply}}
-            </div>
+          
 
           </div>
         </li>
@@ -60,10 +58,8 @@ export default {
             stipend,
             perks,
             duration,
-            startingDate,
             aboutPost,
             skillsRequired,
-            whoCanApply,
         }
       }
     `
@@ -75,6 +71,15 @@ export default {
 </script>
 
 <style>
+
+.header{
+  text-align: center;
+}
+
+.header h1{
+  
+  display: inline-block;
+}
 
 .vacancies-list ul{
   list-style-type:none;
@@ -92,6 +97,13 @@ export default {
   font-size: 18px;
   line-height: 1.33333333;
   font-weight: 600;
+}
+
+.add-vacancy{
+  position: relative;
+  float:right;
+  right: 20px;
+  top:10px;
 }
 
 

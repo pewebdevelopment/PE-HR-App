@@ -12,8 +12,9 @@
       </thead>
       <tbody>
         <tr class="candidate-items" v-for="candidate in candidates" :key="candidate.id">
-
+            <div@click="$router.push({id:'candidate.id',params:{[candidate.id]}}})">
             <td>{{candidate.candidateName}}</td>
+            </div>
             <td>{{candidate.email}}</td>
             <td>{{candidate.phoneNo}}</td>
 

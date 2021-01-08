@@ -12,7 +12,7 @@
         />
         <FormulateInput
         label="Total Openings"
-        name="noOfOpening"
+        name="noOfOpenings"
         type="text"
         validation="number|required"
         />
@@ -43,14 +43,15 @@
         />
         <FormulateInput
         type="group"
-        name="skills"
+        name="skillsRequired"
         :repeatable="true"
         label="Skills Required"
         add-label="+ Add Skill"
         validation="required"
       >
-        <div class="attendee">
+        <div class="skills">
           <FormulateInput
+            name="sk"
             type ="text"
             validation="required"
           />
@@ -60,6 +61,7 @@
         type="submit"
         label="Submit"
         />
+        
        
     </FormulateForm>
 
@@ -80,7 +82,7 @@ export default {
                 duration:undefined,
                 aboutPost:"",
                 skillsRequired:[],
-                status:Boolean
+                status:true
 
             }
         }
@@ -96,45 +98,55 @@ export default {
                 $vacancyPost:String!,
                 $noOfOpenings:Int!,
                 $stipend:Int!,
-                $perks:String!,
+                $perks:[String]!,
                 $duration:Int!,
                 $aboutPost:String!,
-                $skillsRequired:String!
+                $skillsRequired:[String]!
+                $status:Boolean!
             )
-                mutation{
+                {
                     addVacancy(vacancyPost:$vacancyPost,
                                 noOfOpenings:$noOfOpenings,
                                 stipend:$stipend,
                                 perks:$perks,
                                 duration:$duration,
-                                startingDate:$startingDate,
                                 aboutPost:$aboutPost,
                                 skillsRequired:$skillsRequired,
-                                whoCanApply:[",,,","kmm"]
-                                status:false,
-                                assessment:["hello","exz"]){
-                            vacancyPost
-                    }
-                }
+                                status:$status){
+                                aboutPost
+                                }
+                               
+                   }
+                
+                `,
+              variables:{
+                  vacancyPost:this.formValues.vacancyPost,
+                  noOfOpenings:parseInt(this.formValues.noOfOpenings),
+                  stipend:parseInt(this.formValues.stipend),
+                  perks:this.formValues.perks,
+                  duration:parseInt(this.formValues.duration),
+                  aboutPost:this.formValues.aboutPost,
+                  skillsRequired:this.formValues.skillsRequired.map(a=>a.sk),
+                  status:this.formValues.status
+              }
 
-          }
-        `,
-        variables:{
-            vacancyPost:this.formValues.vacancyPost,
-            noOfOpenings:this.formValues.noOfOpenings,
-            stipend:this.formValues.stipend,
-            perks:this.formValues.perks,
-            duration:this.formValues.duration,
-            aboutPost:this.formValues.aboutPost,
-            skillsRequired:this.formValues.skillsRequired,
+          })
+          this.$router.push("/");
+          
         }
-        
+ 
+    },
 
-      })
-        }
+
+
+
     }
 
-}
+    
+        
+
+
+
 </script>
 
 <style>
