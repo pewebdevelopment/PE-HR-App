@@ -21,10 +21,7 @@ var vacanciesSchema = mongoose.Schema({
         type:Number,
         required:true
     },
-    startingDate:{
-        type:Number,
-        required:true
-    },
+    
     aboutPost:{
         type:String,
         required:true
@@ -33,18 +30,12 @@ var vacanciesSchema = mongoose.Schema({
         type:String,
         required:true
     }],
-    whoCanApply:[{
-        type:String,
-        required:true
-    }],
+    
     status:{
         type:Boolean,
         required:true
     },
-    assessment:[{
-        type:String,
-        required:true
-    }]
+   
 })
 
 module.exports = mongoose.model('vacancies', vacanciesSchema);
