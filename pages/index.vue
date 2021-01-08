@@ -1,73 +1,98 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        pe-web-dev
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div>
+    <h1>Vacancies</h1>
+  <div class = "vacancies-list">
+    <ul>
+      
+        <li v-for="vac in vacancies" :key="vac.id">
+          <div class = "vacancy">
+            <div class ="vacancy-header">
+              {{vac.vacancyPost}}
+            </div>
+            <div class = "aboutVacancy">
+              Post : {{vac.noOfOpenings}}
+            </div>
+            <div class = "aboutVacancy">
+            Stipend : {{vac.stipend}}
+            </div>
+            <div class = "aboutVacancy">
+            Perks : {{vac.perks}}
+            </div>
+            <div class = "aboutVacancy">
+            Duration : {{vac.duration}}
+            </div>
+            <div class = "aboutVacancy">
+            Starting Date : {{vac.startingDate}}
+            </div>
+            <div class = "aboutVacancy">
+            About : {{vac.aboutPost}}
+            </div>
+            <div class = "aboutVacancy">
+            Skills : {{vac.skillsRequired}}
+            </div>
+            <div class = "aboutVacancy">
+            Who can Apply : {{vac.whoCanApply}}
+            </div>
+
+          </div>
+        </li>
+      
+    </ul>
+  </div>
+
+
   </div>
 </template>
 
 <script>
-export default {}
+import gql from 'graphql-tag'
+
+export default {
+  name:"candidates",
+
+  apollo:{
+    vacancies : gql `
+      query getVacancies{
+          vacancies{
+            id,
+            vacancyPost,
+            noOfOpenings,
+            stipend,
+            perks,
+            duration,
+            startingDate,
+            aboutPost,
+            skillsRequired,
+            whoCanApply,
+        }
+      }
+    `
+  }
+
+
+
+}
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+
+.vacancies-list ul{
+  list-style-type:none;
 }
 
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.vacancy{
+    padding: 23px;
+    margin-bottom: 24px;
+    border: 1px solid rgb(126, 114, 232);
+    box-shadow: 0 1px 2px rgba(0,0,0,.08);
+    border-radius: 6px;
+}
+.vacancy-header{
+  margin-bottom: 8px;
+  font-size: 18px;
+  line-height: 1.33333333;
+  font-weight: 600;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
 
-.links {
-  padding-top: 15px;
-}
 </style>

@@ -25,7 +25,8 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    `~/plugins/dashboard-plugin.js`
+    `~/plugins/dashboard-plugin.js`,
+    '~/plugins/vue-formulate'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -37,8 +38,16 @@ export default {
 
   modules: [
     '@nuxtjs/pwa',
+    '@nuxtjs/apollo',
     'nuxt-i18n'
   ],
+  apollo:{
+    clientConfigs:{
+      default:{
+        httpEndpoint:'https://nodejs-express-server-dev-q2jjx.ondigitalocean.app/graphql/'
+      }
+    }
+  },
   i18n: {
     locales: [
       {

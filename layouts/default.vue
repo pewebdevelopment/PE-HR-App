@@ -25,9 +25,9 @@
         </sidebar-item>
         <sidebar-item
           :link="{
-            name: $t('sidebar.maps'),
+            name: $t('sidebar.candidates'),
             icon: 'tim-icons icon-pin',
-            path: '/google'
+            path: '/candidates'
           }"
         >
         </sidebar-item>

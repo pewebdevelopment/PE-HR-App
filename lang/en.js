@@ -30,7 +30,7 @@ module.exports = {
     "regularTables": "Regular Tables",
     "extendedTables": "Extended Tables",
     "paginatedTables": "Paginated Tables",
-    "maps": "Maps",
+    "candidates": "Candidates",
     "googleMaps": "Google Maps",
     "fullScreenMaps": "Full Screen Map",
     "vectorMaps": "Vector Maps",
