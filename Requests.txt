@@ -179,3 +179,18 @@ query{
     vacancyId
   }
 }
+//Updated ADD Query for candidate
+mutation{
+	addCandidate(candidateName:"stephen",email:"stephen@gmail.com",phoneNo:"9988899087",address:"ste",sslcSchool:"new",sslcBoard:"state",sslcFrom:2015,sslcTo:2017,sslcPercentage:89.7,
+  hseSchool:"srd",hseSpecialization:"cs",hseBoard:"state",hseFrom:2017,hseTo:2018,hsePercentage:90,ugCollege:"new",ugSpecialization:"CSE",ugFrom:2019,ugTo:2018,ugPercentage:90,skills:["pyhton","new"]){
+    hseTo
+  }
+}
+
+//updated UPDATE query for candidate
+mutation{
+	updateCandidate(candidateId:"5ff88985b186ff76446f5b1a",candidateName:"stephen",email:"stephen@gmail.com",phoneNo:"9988899087",address:"ste",sslcSchool:"new",sslcBoard:"state",sslcFrom:2015,sslcTo:2017,sslcPercentage:89.7,
+  hseSchool:"sr",hseSpecialization:"cse",hseBoard:"state",hseFrom:2017,hseTo:2018,hsePercentage:90,ugCollege:"new",ugSpecialization:"CSE",ugFrom:2019,ugTo:2018,ugPercentage:90,skills:["pyhton","new"]){
+    hseTo
+  }
+}
