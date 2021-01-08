@@ -150,10 +150,10 @@ const RootQueryType = new GraphQLObjectType({
         type: ResponseType,
         description: 'A Single Response',
         args: {
-          responseId: { type: GraphQLNonNull(GraphQLID )}
+          candidateId: { type: GraphQLNonNull(GraphQLID )}
         },
         resolve: (parent, args) =>
-          Response.findOne({_id:args.responseId},(err,docs)=>{
+          Response.findOne({candidateId:args.candidateId},(err,docs)=>{
             if(err){
               console.log(err)
             }
