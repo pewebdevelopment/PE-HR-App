@@ -67,26 +67,6 @@ const CandidateType = new GraphQLObjectType({
         hseTo:{type:GraphQLInt},
         hsePercentage:{type:GraphQLFloat},
         skills:{type:new GraphQLList(GraphQLString)},
-        skillLevel:{type:new GraphQLList(GraphQLString)},
-        internProfile:{type:new GraphQLList(GraphQLString)},
-        internOrganization:{type:new GraphQLList(GraphQLString)},
-        internLocation:{type:new GraphQLList(GraphQLString)},
-        internStartingDate:{type:new GraphQLList(GraphQLInt)},
-        internEndingDate:{type:new GraphQLList(GraphQLInt)},
-        internDescription:{type:new GraphQLList(GraphQLString)},
-        internWFH:{type:new GraphQLList(GraphQLBoolean)},
-        jobProfile:{type:new GraphQLList(GraphQLString)},
-        jobOrganization:{type:new GraphQLList(GraphQLString)},
-        jobLocation:{type:new GraphQLList(GraphQLString)},
-        jobStartingDate:{type:new GraphQLList(GraphQLInt)},
-        jobEndingDate:{type:new GraphQLList(GraphQLInt)},
-        jobDescription:{type:new GraphQLList(GraphQLString)},
-        jobWFH:{type:new GraphQLList(GraphQLBoolean)},
-        projectTitle:{type:new GraphQLList(GraphQLString)},
-        projectStartingDate:{type:new GraphQLList(GraphQLInt)},
-        projectEndingDate:{type:new GraphQLList(GraphQLInt)},
-        projectDescription:{type:new GraphQLList(GraphQLString)},
-        projectLink:{type:new GraphQLList(GraphQLString)}
   })
 })
 const ResponseType = new GraphQLObjectType({
