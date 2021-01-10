@@ -25,10 +25,8 @@ const VacancyType = new GraphQLObjectType({
       stipend: { type: GraphQLNonNull(GraphQLInt) },
       perks: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
       duration: { type: GraphQLNonNull(GraphQLInt) },
-      startingDate: { type: GraphQLNonNull(GraphQLInt) },
       aboutPost: { type: GraphQLNonNull(GraphQLString) },
       skillsRequired: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
-      whoCanApply: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
       Status: { type: GraphQLNonNull(GraphQLBoolean)},
     })
 })
@@ -187,17 +185,15 @@ const RootMutationType = new GraphQLObjectType({
             stipend: { type: GraphQLNonNull(GraphQLInt) },
             perks: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
             duration: { type: GraphQLNonNull(GraphQLInt) },
-            startingDate: { type: GraphQLNonNull(GraphQLInt) },
             aboutPost: { type: GraphQLNonNull(GraphQLString) },
             skillsRequired: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
-            whoCanApply: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
             status: { type: GraphQLNonNull(GraphQLBoolean) },
         },
         resolve: (parent, args) => {
             Vacancies.find({vacancyPost:args.vacancyPost},(err,docs)=>{
               if(docs!=undefined&&docs.length==0){
                 var newVacancy=new Vacancies({vacancyPost:args.vacancyPost,noOfOpenings:args.noOfOpenings,stipend:args.stipend,perks:args.perks,
-                    duration:args.duration,startingDate:args.startingDate,aboutPost:args.aboutPost,skillsRequired:args.skillsRequired,whoCanApply:args.whoCanApply,
+                    duration:args.duration,aboutPost:args.aboutPost,skillsRequired:args.skillsRequired,
                     status:args.status
                 })
                 newVacancy.vacancyId=newVacancy._id 
@@ -217,15 +213,13 @@ const RootMutationType = new GraphQLObjectType({
             stipend: { type: GraphQLNonNull(GraphQLInt) },
             perks: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
             duration: { type: GraphQLNonNull(GraphQLInt) },
-            startingDate: { type: GraphQLNonNull(GraphQLInt) },
             aboutPost: { type: GraphQLNonNull(GraphQLString) },
             skillsRequired: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
-            whoCanApply: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
             status: { type: GraphQLNonNull(GraphQLBoolean) },
         },
         resolve: (parent, args) => {
             const vacancy = {vacancyPost:args.vacancyPost,noOfOpenings:args.noOfOpenings,stipend:args.stipend,perks:args.perks,
-              duration:args.duration,startingDate:args.startingDate,aboutPost:args.aboutPost,skillsRequired:args.skillsRequired,whoCanApply:args.whoCanApply,
+              duration:args.duration,aboutPost:args.aboutPost,skillsRequired:args.skillsRequired,
               status:args.status
             }
             Vacancies.updateOne({_id:args.vacancyId},{$set:vacancy},(err,docs)=>{
