@@ -14,9 +14,7 @@ var responseSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, ref: 'candidate',
         required:true
     },
-    assessmentAns:[{
-        type:String
-    }],
+
     projectsLinks:[{
         type:String
     }],
