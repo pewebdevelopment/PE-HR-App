@@ -27,7 +27,7 @@ const VacancyType = new GraphQLObjectType({
       duration: { type: GraphQLNonNull(GraphQLInt) },
       aboutPost: { type: GraphQLNonNull(GraphQLString) },
       skillsRequired: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
-      Status: { type: GraphQLNonNull(GraphQLBoolean)},
+      status: { type: GraphQLNonNull(GraphQLBoolean)},
     })
 })
 
