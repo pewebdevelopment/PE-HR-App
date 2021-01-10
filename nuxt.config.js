@@ -116,7 +116,9 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
-    },
+    }
+
+  },
    server:{
     port:8080,
     host: '0.0.0.0'
@@ -135,4 +137,4 @@ export default {
     }
   }
 
-}
+
