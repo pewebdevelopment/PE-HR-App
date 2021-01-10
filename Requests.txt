@@ -139,18 +139,24 @@ mutation{
 
 //addResponse
 mutation{
-  addResponse(candidateId:"5ff54bcaea1bad58c8cfb116",vacancyId:"5ff5eba3d071b439c8dfc8b2",assessmentAns:["ste","new"],projectsLinks:[],githubId:"new",status:"pending"){
-    projectsLinks
+  addResponse(vacancyId:"5ffaf9babeafa10011497b94",candidateId:"5ffb02dfbeafa10011497b95",githubId:"new",projectsLinks:["ste","ste2"]){
+    githubId
   }
 }
 //updateResponse
 mutation{
-  responseUpdate(responseId:"5ff604d76da2b667246063c6",candidateId:"5ff54bcaea1bad58c8cfb116",vacancyId:"5ff5eba3d071b439c8dfc8b2",assessmentAns:["ste","w"],projectsLinks:[],githubId:"new",status:"pending"){
-    projectsLinks
+  responseUpdate(responseId:"5ffb4a87ca89d40011bac29a",vacancyId:"5ffaf9babeafa10011497b94",candidateId:"5ffb02dfbeafa10011497b95",githubId:"new",projectsLinks:["ste","ste2"]){
+    githubId
+  }
+}
+//delete response
+mutation{
+  responseDelete(ResponseId:"5ffb4a87ca89d40011bac29a"){
+    githubId
   }
 }
 //A single response
-query{
+mutation{
   response(responseId:"5ff604d76da2b667246063c6"){
   	githubId
 	}
@@ -161,12 +167,7 @@ query{
   	githubId
 	}
 }
-//delete response
-mutation{
-  responseDelete(ResponseId:"5ff604d76da2b667246063c6"){
-    projectsLinks
-  }
-}
+
 //get all candidates response
 query{
   candidateResponses(candidateId:"5ff54bcaea1bad58c8cfb116"){
