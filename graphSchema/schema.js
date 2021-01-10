@@ -66,7 +66,6 @@ const ResponseType = new GraphQLObjectType({
     responseId:{ type: GraphQLNonNull(GraphQLID) },
     vacancyId: { type: GraphQLNonNull(GraphQLString) },
     candidateId: { type:  GraphQLNonNull(GraphQLString) },
-    assessmentAns: { type:  GraphQLNonNull(new GraphQLList((GraphQLString)))},
     projectsLinks: { type: new GraphQLList(GraphQLString) },
     githubId: { type: GraphQLNonNull(GraphQLString)},
     status: { type: GraphQLNonNull(GraphQLString)},
@@ -342,7 +341,6 @@ const RootMutationType = new GraphQLObjectType({
         args: {
           vacancyId: { type: GraphQLNonNull(GraphQLID) },
           candidateId: { type:  GraphQLNonNull(GraphQLID) },
-          assessmentAns: { type:  GraphQLNonNull(new GraphQLList((GraphQLString)))},
           projectsLinks: { type: new GraphQLList(GraphQLString) },
           githubId: { type: GraphQLNonNull(GraphQLString)},
           status: { type: GraphQLNonNull(GraphQLString)},
@@ -352,7 +350,6 @@ const RootMutationType = new GraphQLObjectType({
                 var newResponse=new Response({
                   vacancyId:args.vacancyId,
                   candidateId:args.candidateId,
-                  assessmentAns:args.assessmentAns,
                   projectsLinks:args.projectsLinks,
                   githubId:args.githubId,
                   status:args.status
@@ -376,7 +373,6 @@ const RootMutationType = new GraphQLObjectType({
           responseId:{type: GraphQLNonNull(GraphQLID)},
           vacancyId: { type: GraphQLNonNull(GraphQLID) },
           candidateId: { type:  GraphQLNonNull(GraphQLID) },
-          assessmentAns: { type:  GraphQLNonNull(new GraphQLList((GraphQLString)))},
           projectsLinks: { type: new GraphQLList(GraphQLString) },
           githubId: { type: GraphQLNonNull(GraphQLString)},
           status: { type: GraphQLNonNull(GraphQLString)}
@@ -385,7 +381,6 @@ const RootMutationType = new GraphQLObjectType({
             const updateResponse = {
                   vacancyId:args.vacancyId,
                   candidateId:args.candidateId,
-                  assessmentAns:args.assessmentAns,
                   projectsLinks:args.projectsLinks,
                   githubId:args.githubId,
                   status:args.status
