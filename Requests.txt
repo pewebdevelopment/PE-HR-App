@@ -4,7 +4,19 @@ mutation{
     vacancyPost
   }
 }
+//update vacancy
+mutation{
+  vacancyUpdate(vacancyId:"5ff5eba3d071b439c8dfc8b2",vacancyPost:"web dev",noOfOpenings:10,stipend:1000,perks:["letter","certificate"],duration:3,startingDate:10000,aboutPost:"dd",skillsRequired:["sd","dd"],whoCanApply:[",,,","kmm"],status:false,assessment:["set","dfe"]){
+    vacancyPost
+  }
+}
 
+//vacancy delete
+mutation{
+  vacancyDelete(vacancyId:"5ff719d84a6ae90228e28230"){
+    vacancyPost
+  }
+}
 //get All vacancies
 query{
   vacancies{
@@ -30,19 +42,7 @@ query{
 		phoneNo
   }
 }
-//update vacancy
-mutation{
-  vacancyUpdate(vacancyId:"5ff5eba3d071b439c8dfc8b2",vacancyPost:"web dev",noOfOpenings:10,stipend:1000,perks:["letter","certificate"],duration:3,startingDate:10000,aboutPost:"dd",skillsRequired:["sd","dd"],whoCanApply:[",,,","kmm"],status:false,assessment:["set","dfe"]){
-    vacancyPost
-  }
-}
 
-//vacancy delete
-mutation{
-  vacancyDelete(vacancyId:"5ff283f6cf00d90e10ac83e9"){
-    vacancyPost
-  }
-}
 
 //addCandidate
 mutation{
@@ -50,9 +50,21 @@ mutation{
     candidateName
   }
 }
+//candidate update
+mutation{
+  updateCandidate(candidateId:"5ff54bcaea1bad58c8cfb116",candidateName:"stephenraj",email:"ste",phoneNo:"994499559955",address:"dfdf"){
+    candidateName
+  }
+}
+//candidate deletion
+mutation{
+  deleteCandidate(candidateId:"5ff71dd44a6ae90228e28231"){
+    candidateName
+  }
+}
 //addJob
 mutation{
-  addJob(candidateId:"5ff496c23f424c1e3c7b79af",profile:"ste",organization:"ss",location:"gg",startingDate:1,endingDate:3,description:"ss",isWFH:true) {
+  addJob(candidateId:"5ff54bcaea1bad58c8cfb116",profile:"ste",organization:"ss",location:"gg",startingDate:1,endingDate:3,description:"ss",isWFH:true) {
     jobProfile
   }
 }
@@ -153,5 +165,17 @@ query{
 mutation{
   responseDelete(ResponseId:"5ff604d76da2b667246063c6"){
     projectsLinks
+  }
+}
+//get all candidates response
+query{
+  candidateResponses(candidateId:"5ff54bcaea1bad58c8cfb116"){
+    vacancyId
+  }
+}
+//get all responses for vacancies
+query{
+  vacancyResponses(vacancyId:"5ff5eba3d071b439c8dfc8b2"){
+    vacancyId
   }
 }

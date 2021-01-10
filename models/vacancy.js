@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 var vacanciesSchema = mongoose.Schema({
+    vacancyId:{  
+        type: mongoose.Schema.Types.ObjectId,
+        required:true
+    },
     vacancyPost:{
         type:String,
         required:true
