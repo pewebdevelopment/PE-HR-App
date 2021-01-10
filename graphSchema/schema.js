@@ -66,7 +66,6 @@ const ResponseType = new GraphQLObjectType({
     responseId:{ type: GraphQLNonNull(GraphQLID) },
     vacancyId: { type: GraphQLNonNull(GraphQLString) },
     candidateId: { type:  GraphQLNonNull(GraphQLString) },
-    assessmentAns: { type:  GraphQLNonNull(new GraphQLList((GraphQLString)))},
     projectsLinks: { type: new GraphQLList(GraphQLString) },
     githubId: { type: GraphQLNonNull(GraphQLString)},
     status: { type: GraphQLNonNull(GraphQLString)},
@@ -87,18 +86,7 @@ const RootQueryType = new GraphQLObjectType({
                 return 'No Documents Fetched'
         })
       },
-      candidate: {
-        type:CandidateType,
-        description: 'A Single Vacancy',
-        args: {
-          candidateId: { type: GraphQLID }
-        },
-        resolve: (parent, args) =>
-          Candidates.findOne({_id:args.candidateId},(err,docs)=>{
-            
-              return docs;
-        })
-      },
+    
       candidates: {
         type: new GraphQLList(CandidateType),
         description: 'List of All Vacancies',
@@ -107,19 +95,6 @@ const RootQueryType = new GraphQLObjectType({
                 return docs;
             else
                 return 'No Documents Fetched'
-        })
-      },
-      response: {
-        type: ResponseType,
-        description: 'A Single Response',
-        args: {
-          responseId: { type: GraphQLNonNull(GraphQLID )}
-        },
-        resolve: (parent, args) =>
-          Response.findOne({_id:args.responseId},(err,docs)=>{
-            if(err){
-              console.log(err)
-            }
         })
       },
       candidateResponses: {
@@ -174,6 +149,31 @@ const RootMutationType = new GraphQLObjectType({
         resolve: (parent, args) =>
           Vacancies.findOne({_id:args.vacancyId},(err,docs)=>{
               return docs;
+        })
+      },
+      candidate: {
+        type:CandidateType,
+        description: 'A Single Vacancy',
+        args: {
+          candidateId: { type: GraphQLID }
+        },
+        resolve: (parent, args) =>
+          Candidates.findOne({_id:args.candidateId},(err,docs)=>{
+            
+              return docs;
+        })
+      },
+     response: {
+        type: ResponseType,
+        description: 'A Single Response',
+        args: {
+          responseId: { type: GraphQLNonNull(GraphQLID )}
+        },
+        resolve: (parent, args) =>
+          Response.findOne({_id:args.responseId},(err,docs)=>{
+            if(err){
+              console.log(err)
+            }
         })
       },
       addVacancy: {
@@ -341,24 +341,21 @@ const RootMutationType = new GraphQLObjectType({
         args: {
           vacancyId: { type: GraphQLNonNull(GraphQLID) },
           candidateId: { type:  GraphQLNonNull(GraphQLID) },
-          assessmentAns: { type:  GraphQLNonNull(new GraphQLList((GraphQLString)))},
           projectsLinks: { type: new GraphQLList(GraphQLString) },
           githubId: { type: GraphQLNonNull(GraphQLString)},
-          status: { type: GraphQLNonNull(GraphQLString)},
         },
         resolve: (parent, args) => {
             try{
                 var newResponse=new Response({
                   vacancyId:args.vacancyId,
                   candidateId:args.candidateId,
-                  assessmentAns:args.assessmentAns,
                   projectsLinks:args.projectsLinks,
                   githubId:args.githubId,
-                  status:args.status
                 })
                 Response.find({candidateId:args.candidateId,vacancyId:args.vacancyId},(err,docs)=>{
                   if(docs!=undefined && docs.length==0){
                     newResponse.responseId=newResponse._id
+                    newResponse.status='Pending'
                     newResponse.save();
                     return newResponse
                   }
@@ -375,19 +372,15 @@ const RootMutationType = new GraphQLObjectType({
           responseId:{type: GraphQLNonNull(GraphQLID)},
           vacancyId: { type: GraphQLNonNull(GraphQLID) },
           candidateId: { type:  GraphQLNonNull(GraphQLID) },
-          assessmentAns: { type:  GraphQLNonNull(new GraphQLList((GraphQLString)))},
           projectsLinks: { type: new GraphQLList(GraphQLString) },
           githubId: { type: GraphQLNonNull(GraphQLString)},
-          status: { type: GraphQLNonNull(GraphQLString)}
         },
         resolve: (parent, args) => {
             const updateResponse = {
                   vacancyId:args.vacancyId,
                   candidateId:args.candidateId,
-                  assessmentAns:args.assessmentAns,
                   projectsLinks:args.projectsLinks,
                   githubId:args.githubId,
-                  status:args.status
             }
             Response.updateOne({_id:args.responseId},{$set:updateResponse},(err,docs)=>{
               if(docs!=undefined && docs.length>0)
