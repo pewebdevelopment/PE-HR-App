@@ -81,7 +81,7 @@ const RootQueryType = new GraphQLObjectType({
         type: new GraphQLList(VacancyType),
         description: 'List of All Vacancies',
         resolve: () => Vacancies.find({},(err,docs)=>{
-            if(docs.length>0)
+            if(docs!=undefined && docs.length>0)
                 return docs;
             else
                 return 'No Documents Fetched'
@@ -103,7 +103,7 @@ const RootQueryType = new GraphQLObjectType({
         type: new GraphQLList(CandidateType),
         description: 'List of All Vacancies',
         resolve: () => Candidates.find({},(err,docs)=>{
-            if(docs.length>0)
+            if(docs!=undefined&&docs.length>0)
                 return docs;
             else
                 return 'No Documents Fetched'
@@ -191,7 +191,7 @@ const RootMutationType = new GraphQLObjectType({
         },
         resolve: (parent, args) => {
             Vacancies.find({vacancyPost:args.vacancyPost},(err,docs)=>{
-              if(docs!=undefined&&docs.length==0){
+              if(docs!=undefined && docs.length==0){
                 var newVacancy=new Vacancies({vacancyPost:args.vacancyPost,noOfOpenings:args.noOfOpenings,stipend:args.stipend,perks:args.perks,
                     duration:args.duration,aboutPost:args.aboutPost,skillsRequired:args.skillsRequired,
                     status:args.status
@@ -223,7 +223,7 @@ const RootMutationType = new GraphQLObjectType({
               status:args.status
             }
             Vacancies.updateOne({_id:args.vacancyId},{$set:vacancy},(err,docs)=>{
-              if(docs.length>0)
+              if(docs!=undefined && docs.length>0)
                   return docs;
               else
                   return 'No Documents Updated'
@@ -271,7 +271,7 @@ const RootMutationType = new GraphQLObjectType({
         },
         resolve: (parent, args) => {
           Candidates.find({email:args.email},(err,docs)=>{
-            if(docs.length==0){
+            if(docs!=undefined && docs.length==0){
               var newCandidate=new Candidates({candidateName:args.candidateName,email:args.email,phoneNo:args.phoneNo,address:args.address,
                 hseSchool:args.hseSchool,hseBoard:args.hseBoard,hseSpecialization:args.hseSpecialization,hseFrom:args.hseFrom,hseTo:args.hseTo,hsePercentage:args.hsePercentage,
                 sslcSchool:args.sslcSchool,sslcBoard:args.sslcBoard,sslcFrom:args.sslcFrom,sslcTo:args.sslcTo,sslcPercentage:args.sslcPercentage,ugCollege:args.ugCollege,ugSpecialization:args.ugSpecialization,
@@ -357,7 +357,7 @@ const RootMutationType = new GraphQLObjectType({
                   status:args.status
                 })
                 Response.find({candidateId:args.candidateId,vacancyId:args.vacancyId},(err,docs)=>{
-                  if(docs.length==0){
+                  if(docs!=undefined && docs.length==0){
                     newResponse.responseId=newResponse._id
                     newResponse.save();
                     return newResponse
@@ -390,7 +390,7 @@ const RootMutationType = new GraphQLObjectType({
                   status:args.status
             }
             Response.updateOne({_id:args.responseId},{$set:updateResponse},(err,docs)=>{
-              if(docs.length>0)
+              if(docs!=undefined && docs.length>0)
                   return docs;
               else
                   return 'No Documents Updated'
