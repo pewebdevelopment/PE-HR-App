@@ -17,11 +17,7 @@ const candidateSchema=mongoose.Schema({
             type:String,
             required:true
         },
-        pgCollege:{type:String},
-        pgSpecialization:{type:String},
-        pgFrom:{type:Number},
-        pgTo:{type:Number},
-        pgPercentage:{type:Number},
+       
         ugCollege:{type:String},
         ugSpecialization:{type:String},
         ugFrom:{type:Number},
@@ -39,25 +35,6 @@ const candidateSchema=mongoose.Schema({
         hseTo:{type:Number},
         hsePercentage:{type:Number},
         skills:[{type:String}],
-        skillLevel:[{type:String}],
-        internProfile:[{type:String}],
-        internOrganization:[{type:String}],
-        internLocation:[{type:String}],
-        internStartingDate:[{type:Number}],
-        internEndingDate:[{type:Number}],
-        internDescription:[{type:String}],
-        internWFH:[{type:Boolean}],
-        jobProfile:[{type:String}],
-        jobOrganization:[{type:String}],
-        jobLocation:[{type:String}],
-        jobStartingDate:[{type:Number}],
-        jobEndingDate:[{type:Number}],
-        jobDescription:[{type:String}],
-        jobWFH:[{type:Boolean}],
-        projectTitle:[{type:String}],
-        projectStartingDate:[{type:Number}],
-        projectEndingDate:[{type:Number}],
-        projectDescription:[{type:String}],
-        projectLink:[{type:String}]
+       
 })
 module.exports =mongoose.model('candidates', candidateSchema);
