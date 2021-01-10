@@ -192,14 +192,13 @@ const RootMutationType = new GraphQLObjectType({
             skillsRequired: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
             whoCanApply: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
             status: { type: GraphQLNonNull(GraphQLBoolean) },
-            assessment: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
         },
         resolve: (parent, args) => {
             Vacancies.find({vacancyPost:args.vacancyPost},(err,docs)=>{
               if(docs!=undefined&&docs.length==0){
                 var newVacancy=new Vacancies({vacancyPost:args.vacancyPost,noOfOpenings:args.noOfOpenings,stipend:args.stipend,perks:args.perks,
                     duration:args.duration,startingDate:args.startingDate,aboutPost:args.aboutPost,skillsRequired:args.skillsRequired,whoCanApply:args.whoCanApply,
-                    status:args.status,assessment:args.assessment
+                    status:args.status
                 })
                 newVacancy.vacancyId=newVacancy._id 
                 newVacancy.save();
@@ -223,12 +222,11 @@ const RootMutationType = new GraphQLObjectType({
             skillsRequired: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
             whoCanApply: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
             status: { type: GraphQLNonNull(GraphQLBoolean) },
-            assessment: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
         },
         resolve: (parent, args) => {
             const vacancy = {vacancyPost:args.vacancyPost,noOfOpenings:args.noOfOpenings,stipend:args.stipend,perks:args.perks,
               duration:args.duration,startingDate:args.startingDate,aboutPost:args.aboutPost,skillsRequired:args.skillsRequired,whoCanApply:args.whoCanApply,
-              status:args.status,assessment:args.assessment
+              status:args.status
             }
             Vacancies.updateOne({_id:args.vacancyId},{$set:vacancy},(err,docs)=>{
               if(docs.length>0)
