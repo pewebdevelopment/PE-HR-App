@@ -1,0 +1,110 @@
+[
+  {
+    "name": "addVancany___en",
+    "path": "/addVancany",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\addVancany.vue",
+    "chunkName": "pages/addVancany"
+  },
+  {
+    "name": "index___ar",
+    "path": "/ar",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\index.vue",
+    "chunkName": "pages/index"
+  },
+  {
+    "name": "candidate___en",
+    "path": "/candidate",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\candidate.vue",
+    "chunkName": "pages/candidate"
+  },
+  {
+    "name": "candidateresponse___en",
+    "path": "/candidateresponse",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\candidateresponse.vue",
+    "chunkName": "pages/candidateresponse"
+  },
+  {
+    "name": "candidatevacancy___en",
+    "path": "/candidatevacancy",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\candidatevacancy.vue",
+    "chunkName": "pages/candidatevacancy"
+  },
+  {
+    "name": "notifications___en",
+    "path": "/notifications",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\notifications.vue",
+    "chunkName": "pages/notifications"
+  },
+  {
+    "name": "user___en",
+    "path": "/user",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\user.vue",
+    "chunkName": "pages/user"
+  },
+  {
+    "name": "Vacancies___en",
+    "path": "/Vacancies",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\Vacancies.vue",
+    "chunkName": "pages/Vacancies"
+  },
+  {
+    "name": "addVancany___ar",
+    "path": "/ar/addVancany",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\addVancany.vue",
+    "chunkName": "pages/addVancany"
+  },
+  {
+    "name": "candidate___ar",
+    "path": "/ar/candidate",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\candidate.vue",
+    "chunkName": "pages/candidate"
+  },
+  {
+    "name": "candidateresponse___ar",
+    "path": "/ar/candidateresponse",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\candidateresponse.vue",
+    "chunkName": "pages/candidateresponse"
+  },
+  {
+    "name": "candidatevacancy___ar",
+    "path": "/ar/candidatevacancy",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\candidatevacancy.vue",
+    "chunkName": "pages/candidatevacancy"
+  },
+  {
+    "name": "notifications___ar",
+    "path": "/ar/notifications",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\notifications.vue",
+    "chunkName": "pages/notifications"
+  },
+  {
+    "name": "user___ar",
+    "path": "/ar/user",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\user.vue",
+    "chunkName": "pages/user"
+  },
+  {
+    "name": "Vacancies___ar",
+    "path": "/ar/Vacancies",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\Vacancies.vue",
+    "chunkName": "pages/Vacancies"
+  },
+  {
+    "name": "GeneralViews-NotFoundPage___en",
+    "path": "/GeneralViews/NotFoundPage",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\GeneralViews\\\\NotFoundPage.vue",
+    "chunkName": "pages/GeneralViews/NotFoundPage"
+  },
+  {
+    "name": "GeneralViews-NotFoundPage___ar",
+    "path": "/ar/GeneralViews/NotFoundPage",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\GeneralViews\\\\NotFoundPage.vue",
+    "chunkName": "pages/GeneralViews/NotFoundPage"
+  },
+  {
+    "name": "index___en",
+    "path": "/",
+    "component": "C:\\\\Users\\\\Anichougule\\\\Practice\\\\pages\\\\index.vue",
+    "chunkName": "pages/index"
+  }
+]
