@@ -352,11 +352,11 @@ const RootMutationType = new GraphQLObjectType({
                   candidateId:args.candidateId,
                   projectsLinks:args.projectsLinks,
                   githubId:args.githubId,
-                  status:args.status
                 })
                 Response.find({candidateId:args.candidateId,vacancyId:args.vacancyId},(err,docs)=>{
                   if(docs!=undefined && docs.length==0){
                     newResponse.responseId=newResponse._id
+                    newResponse.status=true
                     newResponse.save();
                     return newResponse
                   }
@@ -375,7 +375,6 @@ const RootMutationType = new GraphQLObjectType({
           candidateId: { type:  GraphQLNonNull(GraphQLID) },
           projectsLinks: { type: new GraphQLList(GraphQLString) },
           githubId: { type: GraphQLNonNull(GraphQLString)},
-          status: { type: GraphQLNonNull(GraphQLString)}
         },
         resolve: (parent, args) => {
             const updateResponse = {
@@ -383,7 +382,6 @@ const RootMutationType = new GraphQLObjectType({
                   candidateId:args.candidateId,
                   projectsLinks:args.projectsLinks,
                   githubId:args.githubId,
-                  status:args.status
             }
             Response.updateOne({_id:args.responseId},{$set:updateResponse},(err,docs)=>{
               if(docs!=undefined && docs.length>0)
