@@ -1,6 +1,6 @@
-const Response = require('./models/response');
-const Vacancies = require('./models/vacancy');
-const Candidates = require('./models/candidate');
+const Response = require('../models/response');
+const Vacancies = require('../models/vacancy');
+const Candidates = require('../models/candidate');
 const expressGraphQL=require('express-graphql').graphqlHTTP;
 const {GraphQLSchema,
     GraphQLObjectType,
