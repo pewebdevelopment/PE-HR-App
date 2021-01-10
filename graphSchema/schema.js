@@ -395,10 +395,10 @@ const RootMutationType = new GraphQLObjectType({
         type:ResponseType,
         description:'Delete a Response',
         args:{
-          ResponseId:{type:GraphQLNonNull(GraphQLID)},
+          responseId:{type:GraphQLNonNull(GraphQLID)},
         },
         resolve: (parent, args) => {
-          Response.deleteOne({_id:args.ResponseId},(err,docs)=>{
+          Response.deleteOne({_id:args.responseId},(err,docs)=>{
             return docs;
           })
         }
