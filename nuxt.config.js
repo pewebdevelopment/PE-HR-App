@@ -78,9 +78,9 @@ export default {
   modules: [
     '@nuxtjs/pwa',
     'nuxt-i18n',
-     'bootstrap-vue/nuxt',
-     '@nuxtjs/apollo',
-     '@nuxtjs/axios'
+    '@nuxtjs/bootstrap-vue',
+    '@nuxtjs/apollo',
+    '@nuxtjs/axios'
   ],
   apollo: {
     clientConfigs: {
@@ -133,5 +133,6 @@ export default {
         ]
       ]
     }
+  }
 
 }

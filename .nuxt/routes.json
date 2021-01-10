@@ -1,8 +1,114 @@
 [
   {
-    "name": "index",
+    "name": "addVancany___en",
+    "path": "/addVancany",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/addVancany.vue",
+    "chunkName": "pages/addVancany",
+    "_name": "_1b67c8b9"
+  },
+  {
+    "name": "index___ar",
+    "path": "/ar",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_06ad8574"
+  },
+  {
+    "name": "candidate___en",
+    "path": "/candidate",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/candidate.vue",
+    "chunkName": "pages/candidate",
+    "_name": "_034f9ca5"
+  },
+  {
+    "name": "candidateresponse___en",
+    "path": "/candidateresponse",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/candidateresponse.vue",
+    "chunkName": "pages/candidateresponse",
+    "_name": "_943f6934"
+  },
+  {
+    "name": "notifications___en",
+    "path": "/notifications",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/notifications.vue",
+    "chunkName": "pages/notifications",
+    "_name": "_3bc24c8a"
+  },
+  {
+    "name": "user___en",
+    "path": "/user",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/user.vue",
+    "chunkName": "pages/user",
+    "_name": "_656ed499"
+  },
+  {
+    "name": "Vacancies___en",
+    "path": "/Vacancies",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/Vacancies.vue",
+    "chunkName": "pages/Vacancies",
+    "_name": "_a068934a"
+  },
+  {
+    "name": "addVancany___ar",
+    "path": "/ar/addVancany",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/addVancany.vue",
+    "chunkName": "pages/addVancany",
+    "_name": "_1b67c8b9"
+  },
+  {
+    "name": "candidate___ar",
+    "path": "/ar/candidate",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/candidate.vue",
+    "chunkName": "pages/candidate",
+    "_name": "_034f9ca5"
+  },
+  {
+    "name": "candidateresponse___ar",
+    "path": "/ar/candidateresponse",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/candidateresponse.vue",
+    "chunkName": "pages/candidateresponse",
+    "_name": "_943f6934"
+  },
+  {
+    "name": "notifications___ar",
+    "path": "/ar/notifications",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/notifications.vue",
+    "chunkName": "pages/notifications",
+    "_name": "_3bc24c8a"
+  },
+  {
+    "name": "user___ar",
+    "path": "/ar/user",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/user.vue",
+    "chunkName": "pages/user",
+    "_name": "_656ed499"
+  },
+  {
+    "name": "Vacancies___ar",
+    "path": "/ar/Vacancies",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/Vacancies.vue",
+    "chunkName": "pages/Vacancies",
+    "_name": "_a068934a"
+  },
+  {
+    "name": "GeneralViews-NotFoundPage___en",
+    "path": "/GeneralViews/NotFoundPage",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/GeneralViews/NotFoundPage.vue",
+    "chunkName": "pages/GeneralViews/NotFoundPage",
+    "_name": "_583459c9"
+  },
+  {
+    "name": "GeneralViews-NotFoundPage___ar",
+    "path": "/ar/GeneralViews/NotFoundPage",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/GeneralViews/NotFoundPage.vue",
+    "chunkName": "pages/GeneralViews/NotFoundPage",
+    "_name": "_583459c9"
+  },
+  {
+    "name": "index___en",
     "path": "/",
     "component": "/Users/anurag/Desktop/PE-HR-App/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_06ad8574"
   }
 ]
