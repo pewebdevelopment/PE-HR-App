@@ -169,8 +169,8 @@ query{
 }
 
 //get all candidates response
-query{
-  candidateResponses(candidateId:"5ff54bcaea1bad58c8cfb116"){
+mutation{
+  candidateResponses(candidateId:"5ffaafa8d978022ca01c277d"){
     vacancyId
   }
 }

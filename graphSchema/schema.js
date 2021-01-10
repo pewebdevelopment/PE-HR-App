@@ -403,7 +403,7 @@ const RootMutationType = new GraphQLObjectType({
           })
         }
       },
-      candidateResponses:{
+     candidateResponses:{
         type:new GraphQLList(ResponseType),
         args:{
           candidateId:{type:GraphQLNonNull(GraphQLID)}
