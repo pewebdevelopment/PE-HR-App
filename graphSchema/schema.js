@@ -193,7 +193,7 @@ const RootMutationType = new GraphQLObjectType({
         },
         resolve: (parent, args) => {
             Vacancies.find({vacancyPost:args.vacancyPost},(err,docs)=>{
-              if(docs.length==0){
+              if(docs!=undefined&&docs.length==0){
                 var newVacancy=new Vacancies({vacancyPost:args.vacancyPost,noOfOpenings:args.noOfOpenings,stipend:args.stipend,perks:args.perks,
                     duration:args.duration,startingDate:args.startingDate,aboutPost:args.aboutPost,skillsRequired:args.skillsRequired,whoCanApply:args.whoCanApply,
                     status:args.status,assessment:args.assessment
@@ -360,7 +360,7 @@ const RootMutationType = new GraphQLObjectType({
                   status:args.status
                 })
                 Response.find({candidateId:args.candidateId,vacancyId:args.vacancyId},(err,docs)=>{
-                  if(docs.lenght==0){
+                  if(docs.length==0){
                     newResponse.save();
                     return newResponse
                   }
