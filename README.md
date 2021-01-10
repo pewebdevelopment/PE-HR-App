@@ -1,20 +1,6 @@
-# client
+# PAGES
 
-## Build Setup
+This directory contains your Application Views and Routes.
+The framework reads all the `*.vue` files inside this directory and creates the router of your application.
 
-```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+More information about the usage of this directory in [the documentation](https://nuxtjs.org/guide/routing).
