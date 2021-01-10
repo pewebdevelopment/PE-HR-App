@@ -21,7 +21,6 @@ const candidateSchema=mongoose.Schema({
             type:String,
             required:true
         },
-       
         ugCollege:{type:String},
         ugSpecialization:{type:String},
         ugFrom:{type:Number},

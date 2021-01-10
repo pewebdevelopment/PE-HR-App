@@ -279,7 +279,7 @@ const RootMutationType = new GraphQLObjectType({
         },
         resolve: (parent, args) => {
           Candidates.find({email:args.email},(err,docs)=>{
-            if(docs.length==0){
+            if(docs!=undefined&&docs.length==0){
               var newCandidate=new Candidates({candidateName:args.candidateName,email:args.email,phoneNo:args.phoneNo,address:args.address,
                 hseSchool:args.hseSchool,hseBoard:args.hseBoard,hseSpecialization:args.hseSpecialization,hseFrom:args.hseFrom,hseTo:args.hseTo,hsePercentage:args.hsePercentage,
                 sslcSchool:args.sslcSchool,sslcBoard:args.sslcBoard,sslcFrom:args.sslcFrom,sslcTo:args.sslcTo,sslcPercentage:args.sslcPercentage,ugCollege:args.ugCollege,ugSpecialization:args.ugSpecialization,
@@ -365,7 +365,7 @@ const RootMutationType = new GraphQLObjectType({
                   status:args.status
                 })
                 Response.find({candidateId:args.candidateId,vacancyId:args.vacancyId},(err,docs)=>{
-                  if(docs.length==0){
+                  if(docs!=undefined&&docs.length==0){
                     newResponse.responseId=newResponse._id
                     newResponse.save();
                     return newResponse
