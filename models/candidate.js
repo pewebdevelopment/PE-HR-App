@@ -17,11 +17,7 @@ const candidateSchema=mongoose.Schema({
             type:String,
             required:true
         },
-        pgCollege:{type:String},
-        pgSpecialization:{type:String},
-        pgFrom:{type:Number},
-        pgTo:{type:Number},
-        pgPercentage:{type:Number},
+       
         ugCollege:{type:String},
         ugSpecialization:{type:String},
         ugFrom:{type:Number},
