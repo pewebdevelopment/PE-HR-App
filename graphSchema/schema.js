@@ -404,24 +404,16 @@ const RootMutationType = new GraphQLObjectType({
         }
       },
       candidateResponses:{
-        type:GraphQLString,
+        type:new GraphQLList(ResponseType),
         args:{
           candidateId:{type:GraphQLNonNull(GraphQLID)}
         },
-        resolve:async (parent,args)=>{
-          var val=await runQuery(args.candidateId);
-          console.log(val)
-          
-        }
+        resolve:(parent,args)=>
+          Response.find({candidateId:args.candidateId})
       }
     })
   })
-async function runQuery(a){
-  Response.find({candidateId:a},(err,docs)=>{
-    console.log(docs)
-    return docs.candidateName
-  })
-}
+
  module.exports = new GraphQLSchema({
     query:RootQueryType,
     mutation: RootMutationType
