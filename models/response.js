@@ -2,12 +2,16 @@
 const mongoose = require('mongoose');
 
 var responseSchema = mongoose.Schema({
+    responseId:{
+        type: mongoose.Schema.Types.ObjectId,
+        required:true
+    },
     vacancyId:{
-        type:String,
+        type: mongoose.Schema.Types.ObjectId, ref: 'vacancy',
         required:true
     },
     candidateId:{
-        type:String,
+        type: mongoose.Schema.Types.ObjectId, ref: 'candidate',
         required:true
     },
     assessmentAns:[{
