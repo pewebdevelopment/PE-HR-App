@@ -1,6 +1,6 @@
-const Response = require('./models/response');
-const Vacancies = require('./models/vacancy');
-const Candidates = require('./models/candidate');
+const Response = require('../models/response');
+const Vacancies = require('../models/vacancy');
+const Candidates = require('../models/candidate');
 const expressGraphQL=require('express-graphql').graphqlHTTP;
 const {GraphQLSchema,
     GraphQLObjectType,
@@ -75,17 +75,7 @@ const RootQueryType = new GraphQLObjectType({
     name: 'Query',
     description: 'Root Query',
     fields: () => ({
-      vacancy: {
-        type: VacancyType,
-        description: 'A Single Vacancy',
-        args: {
-          vacancyId: { type: GraphQLID }
-        },
-        resolve: (parent, args) =>
-          Vacancies.findOne({_id:args.vacancyId},(err,docs)=>{
-              return docs;
-        })
-      },
+     
       vacancies: {
         type: new GraphQLList(VacancyType),
         description: 'List of All Vacancies',
@@ -174,6 +164,17 @@ const RootMutationType = new GraphQLObjectType({
     name: 'Mutation',
     description: 'Root Mutation',
     fields: () => ({
+         vacancy: {
+        type: VacancyType,
+        description: 'A Single Vacancy',
+        args: {
+          vacancyId: { type: GraphQLID }
+        },
+        resolve: (parent, args) =>
+          Vacancies.findOne({_id:args.vacancyId},(err,docs)=>{
+              return docs;
+        })
+      },
       addVacancy: {
         type: VacancyType,
         description: 'Add a vacancy',
