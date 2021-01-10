@@ -122,6 +122,7 @@ export default {
     host: '0.0.0.0'
   },
     babel: {
+      compact: true,
       plugins: [
         [
           'component',
