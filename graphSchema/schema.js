@@ -19,6 +19,7 @@ const VacancyType = new GraphQLObjectType({
     name: 'Vacancy',
     description: 'This represents a Vacancy',
     fields: () => ({
+      vacancyId:{ type: GraphQLNonNull(GraphQLID) },
       vacancyPost: { type: GraphQLNonNull(GraphQLString) },
       noOfOpenings: { type: GraphQLNonNull(GraphQLInt) },
       stipend: { type: GraphQLNonNull(GraphQLInt) },
@@ -36,6 +37,7 @@ const CandidateType = new GraphQLObjectType({
   name: 'Candidate',
   description: 'This represents a Candidate',
   fields: () => ({
+      candidateId:{ type: GraphQLNonNull(GraphQLID) },
       candidateName:{ type: GraphQLNonNull(GraphQLString) },
       email:{ type: GraphQLNonNull(GraphQLString) },
       phoneNo:{ type: GraphQLNonNull(GraphQLString) },
@@ -63,6 +65,7 @@ const ResponseType = new GraphQLObjectType({
   name: 'Response',
   description: 'Responses of Candidates',
   fields: () => ({
+    responseId:{ type: GraphQLNonNull(GraphQLID) },
     vacancyId: { type: GraphQLNonNull(GraphQLString) },
     candidateId: { type:  GraphQLNonNull(GraphQLString) },
     assessmentAns: { type:  GraphQLNonNull(new GraphQLList((GraphQLString)))},
@@ -415,10 +418,25 @@ const RootMutationType = new GraphQLObjectType({
           })
         }
       },
-      
+      candidateResponses:{
+        type:GraphQLString,
+        args:{
+          candidateId:{type:GraphQLNonNull(GraphQLID)}
+        },
+        resolve:async (parent,args)=>{
+          var val=await runQuery(args.candidateId);
+          console.log(val)
+          
+        }
+      }
     })
   })
-
+async function runQuery(a){
+  Response.find({candidateId:a},(err,docs)=>{
+    console.log(docs)
+    return docs.candidateName
+  })
+}
  module.exports = new GraphQLSchema({
     query:RootQueryType,
     mutation: RootMutationType
