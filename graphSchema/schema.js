@@ -98,19 +98,6 @@ const RootQueryType = new GraphQLObjectType({
                 return 'No Documents Fetched'
         })
       },
-      response: {
-        type: ResponseType,
-        description: 'A Single Response',
-        args: {
-          responseId: { type: GraphQLNonNull(GraphQLID )}
-        },
-        resolve: (parent, args) =>
-          Response.findOne({_id:args.responseId},(err,docs)=>{
-            if(err){
-              console.log(err)
-            }
-        })
-      },
       candidateResponses: {
         type: new GraphQLList(ResponseType),
         description: 'All Responses of a Candidate',
@@ -175,6 +162,19 @@ const RootMutationType = new GraphQLObjectType({
           Candidates.findOne({_id:args.candidateId},(err,docs)=>{
             
               return docs;
+        })
+      },
+     response: {
+        type: ResponseType,
+        description: 'A Single Response',
+        args: {
+          responseId: { type: GraphQLNonNull(GraphQLID )}
+        },
+        resolve: (parent, args) =>
+          Response.findOne({_id:args.responseId},(err,docs)=>{
+            if(err){
+              console.log(err)
+            }
         })
       },
       addVacancy: {
