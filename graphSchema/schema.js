@@ -69,6 +69,10 @@ const ResponseType = new GraphQLObjectType({
     projectsLinks: { type: new GraphQLList(GraphQLString) },
     githubId: { type: GraphQLNonNull(GraphQLString)},
     status: { type: GraphQLNonNull(GraphQLString)},
+    candidateName: { type: GraphQLNonNull(GraphQLString)},
+    candidatePhoneNo: { type: GraphQLNonNull(GraphQLString)},
+    candidateEmail: { type: GraphQLNonNull(GraphQLString)},
+    vacancyPost: { type: GraphQLNonNull(GraphQLString)}
   })
 })
 const RootQueryType = new GraphQLObjectType({
@@ -352,12 +356,26 @@ const RootMutationType = new GraphQLObjectType({
                   projectsLinks:args.projectsLinks,
                   githubId:args.githubId,
                 })
-                Response.find({candidateId:args.candidateId,vacancyId:args.vacancyId},(err,docs)=>{
-                  if(docs!=undefined && docs.length==0){
-                    newResponse.responseId=newResponse._id
-                    newResponse.status='Pending'
-                    newResponse.save();
-                    return newResponse
+                Response.find({candidateId:args.candidateId,vacancyId:args.vacancyId},async (err,docs)=>{
+                  if(docs!=undefined&&docs.length==0){
+                    Vacancies.findOne({vacancyId:args.vacancyId}, (err,docs1)=>{
+                      if(docs1){
+                        Candidates.findOne({candidateId:args.candidateId},(err,docs2)=>{
+                          if(docs2){
+                            console.log(docs1)
+                            console.log(docs2)
+                            newResponse.responseId=newResponse._id
+                            newResponse.status='Pending'
+                            newResponse.vacancyPost=docs1.vacancyPost
+                            newResponse.candidateName=docs2.candidateName
+                            newResponse.candidatePhoneNo=docs2.phoneNo
+                            newResponse.candidateEmail=docs2.email
+                            newResponse.save();
+                            return newResponse
+                          }
+                        })
+                      }
+                    })
                   }
                 })   
             }catch(e){
@@ -370,15 +388,11 @@ const RootMutationType = new GraphQLObjectType({
         description:'Response Update',
         args:{
           responseId:{type: GraphQLNonNull(GraphQLID)},
-          vacancyId: { type: GraphQLNonNull(GraphQLID) },
-          candidateId: { type:  GraphQLNonNull(GraphQLID) },
           projectsLinks: { type: new GraphQLList(GraphQLString) },
           githubId: { type: GraphQLNonNull(GraphQLString)},
         },
         resolve: (parent, args) => {
             const updateResponse = {
-                  vacancyId:args.vacancyId,
-                  candidateId:args.candidateId,
                   projectsLinks:args.projectsLinks,
                   githubId:args.githubId,
             }
@@ -410,6 +424,14 @@ const RootMutationType = new GraphQLObjectType({
         },
         resolve:(parent,args)=>
           Response.find({candidateId:args.candidateId})
+      },
+      vacancyResponses:{
+        type:new GraphQLList(ResponseType),
+        args:{
+          vacancyId:{type:GraphQLNonNull(GraphQLID)}
+        },
+        resolve:(parent,args)=>
+          Response.find({vacancyId:args.vacancyId})
       }
     })
   })

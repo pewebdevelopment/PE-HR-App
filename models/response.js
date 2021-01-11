@@ -23,6 +23,22 @@ var responseSchema = mongoose.Schema({
     },
     status:{
         type:String
+    },
+    vacancyPost:{
+        type:String,
+        required:true
+    },
+    candidateName:{
+        type:String,
+        required:true
+    },
+    candidatePhoneNo:{
+        type:String,
+        required:true
+    },
+    candidateEmail:{
+        type:String,
+        required:true
     }
 })
 
