@@ -17,9 +17,9 @@
         </sidebar-item>
         <sidebar-item
           :link="{
-            name: 'candidate vacancy',
+            name: 'candidate ',
             icon: 'tim-icons icon-atom',
-            path: '/Candidatevacancy',
+            path: '/Candidate',
           }"
         >
         </sidebar-item>

@@ -394,7 +394,7 @@ export default {
         },
       });
 
-      this.$router.push("/");
+      this.$router.push("/candidatevacancy");
     },
   },
 };

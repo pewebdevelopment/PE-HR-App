@@ -33,11 +33,20 @@
                   >
                   <b-col sm="3"
                     >Skills <br /><br />
-                    <h6>{{ vac.skillsRequired }}</h6></b-col
+                    <h6 v-for="(items, index) in vac.skillsRequired" :key="index">
+                      {{ items }}
+                    </h6></b-col
                   >
-                  <b-col sm="3"
+                  <b-col sm="2"
                     >perks <br /><br />
-                    <h6>{{ vac.perks }}</h6></b-col
+                    <h6 v-for="(items, index) in vac.perks" :key="index">
+                      {{ items }}
+                    </h6>
+                  </b-col>
+                  <b-col sm="12"
+                    >About Post <br /><br />
+
+                    <h6>{{ vac.aboutPost }}</h6></b-col
                   >
                 </b-row>
 
@@ -45,8 +54,8 @@
                 <b-row>
                   <b-col sm="9"></b-col>
                   <b-col sm="3">
-                    <nuxt-link to="/candidate"
-                      ><b-button sm="3" variant="info">Apply</b-button></nuxt-link
+                    <b-button sm="2" variant="info" @click="showmodal(vac.vacancyId)"
+                      >Apply</b-button
                     >
                   </b-col>
                 </b-row>
@@ -57,6 +66,44 @@
       </ul>
       <div></div>
     </div>
+    <b-modal ref="updateform" body-bg-variant="dark" hide-footer>
+      <b-row class="my-1">
+        <b-col sm="2">
+          <label for="input-default">Github</label>
+        </b-col>
+        <b-col sm="10">
+          <b-form-input
+            v-model="githubid"
+            type="text"
+            placeholder="Enter github id"
+          ></b-form-input>
+        </b-col>
+      </b-row>
+      <b-row class="my-1">
+        <b-col sm="2">
+          <label for="input-default">Projects:</label>
+        </b-col>
+        <b-col sm="10">
+          <b-form-tags
+            required
+            input-id="tags-pills"
+            v-model="project"
+            tag-variant="dark"
+            tag-pills
+            size="lg"
+            separator=" "
+            placeholder="Enter new projects separated by space"
+          ></b-form-tags>
+        </b-col>
+      </b-row>
+      <b-button class="mt-2" variant="outline-success" @click="addresponse" block
+        >Submit</b-button
+      >
+
+      <b-button class="mt-3" variant="outline-danger" block @click="hidemodal"
+        >Cancel</b-button
+      >
+    </b-modal>
   </div>
 </template>
 
@@ -80,6 +127,10 @@ export default {
       Upvalue2: "",
       Upvalue3: "",
       upvacancy: [],
+      project: [],
+      vcancyid: "",
+      githubid: "",
+      candidate_Id: "5ffb02dfbeafa10011497b95",
     };
   },
   mounted() {},
@@ -103,7 +154,44 @@ export default {
       }
     `,
   },
-  methods: {},
+  methods: {
+    showmodal(id) {
+      this.vcancyid = id;
+      this.$refs["updateform"].show();
+    },
+    hidemodal() {
+      this.$refs["updateform"].hide();
+    },
+    async addresponse() {
+      const results = await this.$apollo.mutate({
+        mutation: gql`
+          mutation(
+            $vacancyId: ID!
+            $candidateId: ID!
+            $githubId: String!
+            $projectsLinks: [String]!
+          ) {
+            addResponse(
+              vacancyId: $vacancyId
+              candidateId: $candidateId
+              githubId: $githubId
+              projectsLinks: $projectsLinks
+            ) {
+              githubId
+            }
+          }
+        `,
+        variables: {
+          vacancyId: this.vcancyid,
+          candidateId: this.candidate_Id,
+          githubId: this.githubid,
+          projectsLinks: this.project,
+        },
+      });
+      this.hidemodal();
+      this.$router.push("/candidateresponse");
+    },
+  },
 };
 </script>
 

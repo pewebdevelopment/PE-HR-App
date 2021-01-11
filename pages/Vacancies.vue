@@ -36,11 +36,20 @@
                   >
                   <b-col sm="3"
                     >Skills <br /><br />
-                    <h6>{{ vac.skillsRequired }}</h6></b-col
+                    <h6 v-for="(items, index) in vac.skillsRequired" :key="index">
+                      {{ items }}
+                    </h6></b-col
                   >
-                  <b-col sm="3"
+                  <b-col sm="2"
                     >perks <br /><br />
-                    <h6>{{ vac.perks }}</h6></b-col
+                    <h6 v-for="(items, index) in vac.perks" :key="index">
+                      {{ items }}
+                    </h6>
+                  </b-col>
+                  <b-col sm="12"
+                    >About Post <br /><br />
+
+                    <h6>{{ vac.aboutPost }}</h6></b-col
                   >
                 </b-row>
 
@@ -292,9 +301,9 @@ export default {
         if (this.perks.length > 1) {
           this.Upvalue2 = "Letter";
           this.Upvalue3 = "Certificate";
-        } else if (this.perks[0] == "letter") {
+        } else if (this.perks[0] == "Letter") {
           this.UPvalue2 = "Letter";
-        } else if (this.perks[0] == "certificate") {
+        } else if (this.perks[0] == "Certificate") {
           this.Upvalue3 = "Certificate";
         }
       }
@@ -311,7 +320,7 @@ export default {
       console.log(this.UpskillsRequired);
       console.log(this.perks);
       this.perks = [];
-      if (this.value2 && this.value3) {
+      if (this.Upvalue2 && this.Upvalue3) {
         this.perks.push(this.Upvalue2);
         this.perks.push(this.Upvalue3);
       } else if (this.Upvalue3) {
