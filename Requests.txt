@@ -145,7 +145,7 @@ mutation{
 }
 //updateResponse
 mutation{
-  responseUpdate(responseId:"5ffb4a87ca89d40011bac29a",vacancyId:"5ffaf9babeafa10011497b94",candidateId:"5ffb02dfbeafa10011497b95",githubId:"new",projectsLinks:["ste","ste2"]){
+  responseUpdate(responseId:"5ffc8d16cca75b1b94ca32ef",githubId:"new",projectsLinks:["steuu","ste2"]){
     githubId
   }
 }
@@ -171,12 +171,13 @@ query{
 //get all candidates response
 mutation{
   candidateResponses(candidateId:"5ffaafa8d978022ca01c277d"){
-    vacancyId
+    vacancyPost
   }
 }
 //get all responses for vacancies
-query{
-  vacancyResponses(vacancyId:"5ff5eba3d071b439c8dfc8b2"){
-    vacancyId
+mutation{
+  vacancyResponses(vacancyId:"5ffaf9babeafa10011497b94"){
+    vacancyPost
+    candidateName
   }
 }
