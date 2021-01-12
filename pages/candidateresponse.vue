@@ -123,6 +123,9 @@ export default {
           vacancyId
           candidateId
           projectsLinks
+          candidateName
+          vacancyPost
+          candidateEmail
         }
       }
     `,
@@ -131,20 +134,26 @@ export default {
     return {
       fields: [
         {
-          key: "candidateId",
+          key: "candidateName",
           label: "Candidate Name",
           sortable: true,
           sortDirection: "asc",
         },
         {
-          key: "githubId",
+          key: "candidateEmail",
           label: "Candidate Email",
           sortable: true,
           sortDirection: "asc",
         },
         {
-          key: "vacancyId",
-          label: "Candidate Mobile",
+          key: "githubId",
+          label: "Github",
+          sortable: true,
+          sortDirection: "asc",
+        },
+        {
+          key: "vacancyPost",
+          label: "Vacancy Post",
           sortable: true,
           sortDirection: "desc",
         },
@@ -169,7 +178,6 @@ export default {
   },
   computed: {
     sortOptions() {
-      // Create an options list from our fields
       return this.fields
         .filter((f) => f.sortable)
         .map((f) => {

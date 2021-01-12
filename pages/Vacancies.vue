@@ -230,6 +230,7 @@ export default {
     };
   },
   mounted() {},
+
   components: {
     BaseAlert,
   },
@@ -265,6 +266,7 @@ export default {
       });
       this.$router.push("/Vacancies");
     },
+
     async getvacancy(id) {
       this.vacancID = id;
       console.log(id);
@@ -286,6 +288,7 @@ export default {
           vacancyId: id,
         },
       });
+
       (this.UpvacancyPost = this.upvacancy.data.vacancy.vacancyPost),
         (this.UpnoOfOpenings = this.upvacancy.data.vacancy.noOfOpenings),
         (this.Upstipend = this.upvacancy.data.vacancy.stipend),
@@ -304,6 +307,7 @@ export default {
           this.Upvalue3 = "Certificate";
         }
       }
+
       this.showmodal();
     },
     async updatevacancy() {
@@ -381,12 +385,15 @@ export default {
 .header {
   text-align: center;
 }
+
 .header h1 {
   display: inline-block;
 }
+
 .vacancies-list ul {
   list-style-type: none;
 }
+
 .vacancy {
   padding: 23px;
   margin-bottom: 24px;
@@ -400,6 +407,7 @@ export default {
   line-height: 1.33333333;
   font-weight: 600;
 }
+
 .add-vacancy {
   position: relative;
   float: right;

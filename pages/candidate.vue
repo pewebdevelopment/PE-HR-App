@@ -393,6 +393,7 @@ export default {
           skills: this.skills,
         },
       });
+
       this.$router.push("/candidatevacancy");
     },
   },

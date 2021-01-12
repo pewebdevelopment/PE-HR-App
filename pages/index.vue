@@ -612,6 +612,8 @@
                 <label for="input-default">Department:</label>
               </b-col>
               <b-col sm="9">
+                <!-- <h6>{{ sdepartmenthse }}</h6>
+-->
                 <b-form-input
                   disabled
                   v-model="sdepartmenthse"
@@ -625,7 +627,7 @@
                 <label for="input-default">Skills:</label>
               </b-col>
               <b-col sm="10">
-                <label>{{ sskills }}</label>
+                <h6 v-for="(items, index) in sskills" :key="index">{{ items }}</h6>
               </b-col>
             </b-row>
           </b-container>
