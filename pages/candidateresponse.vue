@@ -343,7 +343,7 @@
           hide-footer
         >
           <b-row class="my-1">
-            <h3>Edit Candidate</h3>
+            <h3>Show Candidate</h3>
           </b-row>
           <h4>Personal Details</h4>
           <b-container fluid>
