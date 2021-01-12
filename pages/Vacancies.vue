@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="header">
-      <h1>Vacancies</h1>
-      <button class="add-vacancy">
-        <NuxtLink to="/addVancany">Add Vacancy</NuxtLink>
-      </button>
+      <h1>VACANCIES</h1>
+      <nuxt-link to="/addVancany"
+        ><b-button class="float-right">Add Vacancy</b-button></nuxt-link
+      >
     </div>
     <div class="vacancies-list">
       <ul>
@@ -36,11 +36,20 @@
                   >
                   <b-col sm="3"
                     >Skills <br /><br />
-                    <h6>{{ vac.skillsRequired }}</h6></b-col
+                    <h6 v-for="(items, index) in vac.skillsRequired" :key="index">
+                      {{ items }}
+                    </h6></b-col
                   >
-                  <b-col sm="3"
+                  <b-col sm="2"
                     >perks <br /><br />
-                    <h6>{{ vac.perks }}</h6></b-col
+                    <h6 v-for="(items, index) in vac.perks" :key="index">
+                      {{ items }}
+                    </h6>
+                  </b-col>
+                  <b-col sm="12"
+                    >About Post <br /><br />
+
+                    <h6>{{ vac.aboutPost }}</h6></b-col
                   >
                 </b-row>
 
@@ -54,7 +63,7 @@
                   <b-col sm="6"></b-col>
                   <b-col sm="3">
                     <b-button sm="3" variant="info" @click="getvacancy(vac.vacancyId)"
-                      >Update</b-button
+                      >Edit</b-button
                     ></b-col
                   >
                 </b-row>
@@ -221,7 +230,6 @@ export default {
     };
   },
   mounted() {},
-
   components: {
     BaseAlert,
   },
@@ -257,7 +265,6 @@ export default {
       });
       this.$router.push("/Vacancies");
     },
-
     async getvacancy(id) {
       this.vacancID = id;
       console.log(id);
@@ -279,7 +286,6 @@ export default {
           vacancyId: id,
         },
       });
-
       (this.UpvacancyPost = this.upvacancy.data.vacancy.vacancyPost),
         (this.UpnoOfOpenings = this.upvacancy.data.vacancy.noOfOpenings),
         (this.Upstipend = this.upvacancy.data.vacancy.stipend),
@@ -292,13 +298,12 @@ export default {
         if (this.perks.length > 1) {
           this.Upvalue2 = "Letter";
           this.Upvalue3 = "Certificate";
-        } else if (this.perks[0] == "letter") {
+        } else if (this.perks[0] == "Letter") {
           this.UPvalue2 = "Letter";
-        } else if (this.perks[0] == "certificate") {
+        } else if (this.perks[0] == "Certificate") {
           this.Upvalue3 = "Certificate";
         }
       }
-
       this.showmodal();
     },
     async updatevacancy() {
@@ -311,7 +316,7 @@ export default {
       console.log(this.UpskillsRequired);
       console.log(this.perks);
       this.perks = [];
-      if (this.value2 && this.value3) {
+      if (this.Upvalue2 && this.Upvalue3) {
         this.perks.push(this.Upvalue2);
         this.perks.push(this.Upvalue3);
       } else if (this.Upvalue3) {
@@ -376,15 +381,12 @@ export default {
 .header {
   text-align: center;
 }
-
 .header h1 {
   display: inline-block;
 }
-
 .vacancies-list ul {
   list-style-type: none;
 }
-
 .vacancy {
   padding: 23px;
   margin-bottom: 24px;
@@ -398,7 +400,6 @@ export default {
   line-height: 1.33333333;
   font-weight: 600;
 }
-
 .add-vacancy {
   position: relative;
   float: right;
