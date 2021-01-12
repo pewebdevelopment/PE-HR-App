@@ -6,7 +6,7 @@
       :short-title="$t('sidebar.shortTitle')"
       :title="$t('sidebar.title')"
     >
-      <template slot-scope="props" slot="links">
+      <template slot-scope="" slot="links">
         <sidebar-item
           :link="{
             name: $t('sidebar.dashboard'),
@@ -17,7 +17,7 @@
         </sidebar-item>
         <sidebar-item
           :link="{
-            name: 'candidate',
+            name: 'candidate ',
             icon: 'tim-icons icon-atom',
             path: '/Candidate',
           }"
@@ -49,7 +49,6 @@
           }"
         >
         </sidebar-item>
-
         <sidebar-item
           :link="{
             name: $t('sidebar.regularTables'),
@@ -57,7 +56,6 @@
             path: '/regular',
           }"
         ></sidebar-item>
-
         <sidebar-item
           :link="{
             name: $t('sidebar.typography'),
@@ -65,7 +63,6 @@
             path: '/typography',
           }"
         ></sidebar-item>
-
         <sidebar-item
           :link="{
             name: $t('sidebar.rtl'),
@@ -73,7 +70,6 @@
             path: localePath('/rtl', 'ar'),
           }"
         ></sidebar-item>
-
         <li class="active-pro">
           <a
             href="https://www.creative-tim.com/product/nuxt-black-dashboard-pro"
@@ -110,7 +106,6 @@ import SidebarShare from "@/components/Layout/SidebarSharePlugin";
 function hasElement(className) {
   return document.getElementsByClassName(className).length > 0;
 }
-
 function initScrollbar(className) {
   if (hasElement(className)) {
     new PerfectScrollbar(`.${className}`);
@@ -121,12 +116,10 @@ function initScrollbar(className) {
     }, 100);
   }
 }
-
 import DashboardNavbar from "@/components/Layout/DashboardNavbar.vue";
 import ContentFooter from "@/components/Layout/ContentFooter.vue";
 import DashboardContent from "@/components/Layout/Content.vue";
 import { SlideYDownTransition, ZoomCenterTransition } from "vue2-transitions";
-
 export default {
   components: {
     DashboardNavbar,
@@ -160,7 +153,6 @@ export default {
         initScrollbar("sidebar");
         initScrollbar("main-panel");
         initScrollbar("sidebar-wrapper");
-
         docClasses.add("perfect-scrollbar-on");
       } else {
         docClasses.add("perfect-scrollbar-off");
@@ -183,11 +175,9 @@ $scaleSize: 0.95;
     opacity: 1;
   }
 }
-
 .main-panel .zoomIn {
   animation-name: zoomIn95;
 }
-
 @keyframes zoomOut95 {
   from {
     opacity: 1;
@@ -197,7 +187,6 @@ $scaleSize: 0.95;
     transform: scale3d($scaleSize, $scaleSize, $scaleSize);
   }
 }
-
 .main-panel .zoomOut {
   animation-name: zoomOut95;
 }
