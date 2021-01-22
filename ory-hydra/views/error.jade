@@ -1,0 +1,12 @@
+doctype html
+html
+    head
+        title Please log in
+    body(style="text-align: center")
+        h1.
+            An error occurred
+        p.
+            #{description}
+        pre(style="text-align: left; width: 100%; overflow: auto;")
+            code.
+                #{JSON.stringify(error, null, 2)}
