@@ -1,0 +1,9 @@
+//signUp
+mutation{
+  signUp(email:"stephcuriejulie33@gmail.com",password:"stephenRaJ22#",userName:"stephen",permission:"candidate")
+}
+
+//signIn
+mutation{
+  signIn(email:"stephcuriejulie33@gmail.com",password:"stephenRaJ22#")
+}
