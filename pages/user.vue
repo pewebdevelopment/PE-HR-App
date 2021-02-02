@@ -1,7 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-md-8"><edit-profile-form> </edit-profile-form></div>
-    <div class="col-md-4"><user-card> </user-card></div>
+    <h1>Welcome!!!</h1>
   </div>
 </template>
 <script>

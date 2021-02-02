@@ -66,7 +66,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    `~/plugins/dashboard-plugin.js`
+    `~/plugins/dashboard-plugin.js`,
+    { src: '~/plugins/amplify.js', mode: 'client' }
   ],
   /*
   ** Nuxt.js dev-modules
