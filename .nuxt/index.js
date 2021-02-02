@@ -22,7 +22,7 @@ import nuxt_plugin_workbox_07203246 from 'nuxt_plugin_workbox_07203246' // Sourc
 import nuxt_plugin_metaplugin_de44594e from 'nuxt_plugin_metaplugin_de44594e' // Source: ./pwa/meta.plugin.js (mode: 'all')
 import nuxt_plugin_iconplugin_d4f50e66 from 'nuxt_plugin_iconplugin_d4f50e66' // Source: ./pwa/icon.plugin.js (mode: 'all')
 import nuxt_plugin_dashboardplugin_111ada96 from 'nuxt_plugin_dashboardplugin_111ada96' // Source: ../plugins/dashboard-plugin.js (mode: 'all')
-import nuxt_plugin_amplify_900d1ace from 'nuxt_plugin_amplify_900d1ace' // Source: ../plugins/amplify.js (mode: 'all')
+import nuxt_plugin_amplify_900d1ace from 'nuxt_plugin_amplify_900d1ace' // Source: ../plugins/amplify.js (mode: 'client')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -247,7 +247,7 @@ async function createApp(ssrContext, config = {}) {
     await nuxt_plugin_dashboardplugin_111ada96(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_amplify_900d1ace === 'function') {
+  if (process.client && typeof nuxt_plugin_amplify_900d1ace === 'function') {
     await nuxt_plugin_amplify_900d1ace(app.context, inject)
   }
 

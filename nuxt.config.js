@@ -67,7 +67,7 @@ export default {
   */
   plugins: [
     `~/plugins/dashboard-plugin.js`,
-    `~/plugins/amplify.js`
+    { src: '~/plugins/amplify.js', mode: 'client' }
   ],
   /*
   ** Nuxt.js dev-modules
