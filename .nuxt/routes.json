@@ -28,11 +28,32 @@
     "_name": "_943f6934"
   },
   {
+    "name": "candidatevacancy___en",
+    "path": "/candidatevacancy",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/candidatevacancy.vue",
+    "chunkName": "pages/candidatevacancy",
+    "_name": "_54415234"
+  },
+  {
+    "name": "login___en",
+    "path": "/login",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/login.vue",
+    "chunkName": "pages/login",
+    "_name": "_5f55aeea"
+  },
+  {
     "name": "notifications___en",
     "path": "/notifications",
     "component": "/Users/anurag/Desktop/PE-HR-App/pages/notifications.vue",
     "chunkName": "pages/notifications",
     "_name": "_3bc24c8a"
+  },
+  {
+    "name": "signup___en",
+    "path": "/signup",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/signup.vue",
+    "chunkName": "pages/signup",
+    "_name": "_f2ac5434"
   },
   {
     "name": "user___en",
@@ -70,11 +91,32 @@
     "_name": "_943f6934"
   },
   {
+    "name": "candidatevacancy___ar",
+    "path": "/ar/candidatevacancy",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/candidatevacancy.vue",
+    "chunkName": "pages/candidatevacancy",
+    "_name": "_54415234"
+  },
+  {
+    "name": "login___ar",
+    "path": "/ar/login",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/login.vue",
+    "chunkName": "pages/login",
+    "_name": "_5f55aeea"
+  },
+  {
     "name": "notifications___ar",
     "path": "/ar/notifications",
     "component": "/Users/anurag/Desktop/PE-HR-App/pages/notifications.vue",
     "chunkName": "pages/notifications",
     "_name": "_3bc24c8a"
+  },
+  {
+    "name": "signup___ar",
+    "path": "/ar/signup",
+    "component": "/Users/anurag/Desktop/PE-HR-App/pages/signup.vue",
+    "chunkName": "pages/signup",
+    "_name": "_f2ac5434"
   },
   {
     "name": "user___ar",

@@ -8,7 +8,10 @@ const _1b67c8b9 = () => interopDefault(import('../pages/addVancany.vue' /* webpa
 const _06ad8574 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 const _034f9ca5 = () => interopDefault(import('../pages/candidate.vue' /* webpackChunkName: "pages/candidate" */))
 const _943f6934 = () => interopDefault(import('../pages/candidateresponse.vue' /* webpackChunkName: "pages/candidateresponse" */))
+const _54415234 = () => interopDefault(import('../pages/candidatevacancy.vue' /* webpackChunkName: "pages/candidatevacancy" */))
+const _5f55aeea = () => interopDefault(import('../pages/login.vue' /* webpackChunkName: "pages/login" */))
 const _3bc24c8a = () => interopDefault(import('../pages/notifications.vue' /* webpackChunkName: "pages/notifications" */))
+const _f2ac5434 = () => interopDefault(import('../pages/signup.vue' /* webpackChunkName: "pages/signup" */))
 const _656ed499 = () => interopDefault(import('../pages/user.vue' /* webpackChunkName: "pages/user" */))
 const _a068934a = () => interopDefault(import('../pages/Vacancies.vue' /* webpackChunkName: "pages/Vacancies" */))
 const _583459c9 = () => interopDefault(import('../pages/GeneralViews/NotFoundPage.vue' /* webpackChunkName: "pages/GeneralViews/NotFoundPage" */))
@@ -46,9 +49,21 @@ export const routerOptions = {
     component: _943f6934,
     name: "candidateresponse___en"
   }, {
+    path: "/candidatevacancy",
+    component: _54415234,
+    name: "candidatevacancy___en"
+  }, {
+    path: "/login",
+    component: _5f55aeea,
+    name: "login___en"
+  }, {
     path: "/notifications",
     component: _3bc24c8a,
     name: "notifications___en"
+  }, {
+    path: "/signup",
+    component: _f2ac5434,
+    name: "signup___en"
   }, {
     path: "/user",
     component: _656ed499,
@@ -70,9 +85,21 @@ export const routerOptions = {
     component: _943f6934,
     name: "candidateresponse___ar"
   }, {
+    path: "/ar/candidatevacancy",
+    component: _54415234,
+    name: "candidatevacancy___ar"
+  }, {
+    path: "/ar/login",
+    component: _5f55aeea,
+    name: "login___ar"
+  }, {
     path: "/ar/notifications",
     component: _3bc24c8a,
     name: "notifications___ar"
+  }, {
+    path: "/ar/signup",
+    component: _f2ac5434,
+    name: "signup___ar"
   }, {
     path: "/ar/user",
     component: _656ed499,
