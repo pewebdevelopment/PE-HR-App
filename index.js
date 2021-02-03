@@ -1,5 +1,4 @@
-const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
-const CognitoUserPool = AmazonCognitoIdentity.CognitoUserPool;
+
 const AWS = require('aws-sdk');
 global.fetch = require('node-fetch');
 const express = require('express');
@@ -13,6 +12,7 @@ const config = require('./config/env')
 
 
 app.use(cors());
+
 
 app.use('/graphql', graphqlHTTP({
     schema:schema,
