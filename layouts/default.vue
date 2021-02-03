@@ -27,7 +27,7 @@
           :link="{
             name: 'signupPage',
             icon: 'tim-icons icon-chart-pie-36',
-            path: '/signupPage',
+            path: '/signup',
           }"
         >
         </sidebar-item>
