@@ -5,14 +5,14 @@
 <div class="col-7">
   <b-card class="text-left">
     
-  <form @submit.prevent="login">
+  <form @submit.prevent="signIn">
     <p class="h2 text-center mb-4">Sign in</p>
     <hr>
     <label for="defaultFormLoginEmailEx" class="grey-text">Your email</label>
-    <input type="email" v-model = "input.email" id="defaultFormLoginEmailEx" class="form-control"/>
+    <input type="email" v-model = "email" id="defaultFormLoginEmailEx" class="form-control"/>
     <br/>
     <label for="defaultFormLoginPasswordEx" class="grey-text">Your password</label>
-    <input type="password" v-model = "input.password" id="defaultFormLoginPasswordEx" class="form-control"/>
+    <input type="password" v-model = "password" id="defaultFormLoginPasswordEx" class="form-control"/>
     <div class="text-center mt-4">
       <button class="btn btn-indigo" type="submit">Login</button>
     </div>
@@ -26,13 +26,12 @@
 </template>
 
 <script>
+import gql from  "graphql-tag"
 export default {
   data(){
     return{
-      input :{
           email : "",
           password : ""
-        }
     }
   },
   name: "login",
@@ -40,18 +39,42 @@ export default {
      
     },
     methods:{
-      async login(){
+      async signIn(){
+        console.log(this.email);
+        const user= await this.$apollo.mutate({
+          mutation:gql`mutation(
+            $email:String!
+            $password:String!
+          ){signIn(
+            email:$email,
+            password:$password,
+          )}`,
+        variables:{
+          email:this.email,
+          password:this.password,
+        }
+        })
+        console.log(user)
+        if(user.data.signIn.length!=0){
+          localStorage.setItem('accessToken',user.data.signIn[0]);
+          localStorage.setItem('idToken',user.data.signIn[1]);
+          localStorage.setItem('refreshToken',user.data.signIn[2]);
+          this.$router.push("/user");
+        }
+        else{
+          console.log("Authentication Failed")
+        }
+      },
+      /*async login(){
         try {
         var user =await this.$store.dispatch('auth/login', this.input);
-        localStorage.setItem('accessToken',user.signInUserSession.accessToken.jwtToken);
-        localStorage.setItem('idToken',user.signInUserSession.idToken.jwtToken);
-        localStorage.setItem('refreshToken',user.signInUserSession.refreshToken.token);
+        
         this.$router.push('/user');
         console.log(user )
       } catch (error) {
         console.log({ error });
       }
-      }
+      }*/
     }
 }
   
