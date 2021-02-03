@@ -1,7 +1,6 @@
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 const CognitoUserPool = AmazonCognitoIdentity.CognitoUserPool;
 const AWS = require('aws-sdk');
-const {rudOnVacancy,createOnVacancy,rudOnResponse,createOnResponse,rudOnCandidate,createOnCandidate}=require('./permission')
 global.fetch = require('node-fetch');
 const express =require('express');
 const bcrypt=require('bcrypt')
@@ -43,7 +42,12 @@ const RootQueryType = new GraphQLObjectType({
             },
             resolve:async (parent, args,req) =>{
               var user=await verifyToken(req.headers.authorization)
-              console.log(user)
+              if(user['custom:role']=='candidate'){
+                console.log("hi")
+              }
+              else{
+                console.log("Not Candidate")
+              }
             }
         },
     })
@@ -143,7 +147,7 @@ app.use('/graphql', expressGraphQL({
     graphiql:true,
     
 }))
-   .listen(5000,()=>{console.log("Server is Running")});
+   .listen(000,()=>{console.log("Server is Running")});
 
 
 
