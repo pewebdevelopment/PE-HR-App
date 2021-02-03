@@ -1,6 +1,7 @@
 const Response = require('../models/response');
 const Vacancies = require('../models/vacancy');
 const Candidates = require('../models/candidate');
+const user = require('../models/user');
 const verifyToken = require("../verifyToken");
 const config=require('../config/env');
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
@@ -154,8 +155,8 @@ const RootQueryType = new GraphQLObjectType({
         },
         resolve:async (parent, args,req) =>{
           var user=await verifyToken(req.headers.authorization)
-          if(user['custom:role']=='candidate'){
-            console.log("hi")
+          if(user['custom:permission']=='candidate'){
+            console.log(user)
           }
           else{
             console.log("Not Candidate")
@@ -183,12 +184,13 @@ const RootMutationType = new GraphQLObjectType({
               if(!docs){
                 var attributeList = [];
                 attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"email",Value:args.email}));
-                attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"custom:role",Value:args.permission}));
+                attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"custom:permission",Value:args.permission}));
                 userPool.signUp(args.email, args.password, attributeList, null,async function(err, result){
                 if (err) {
                     console.log(err);
                     reject(err)
                 }
+                else{
                 try{
                    const passwordHash=await bcrypt.hashSync(args.password,10);
                    var newUser=new user({  
@@ -200,17 +202,16 @@ const RootMutationType = new GraphQLObjectType({
                    newUser.userId=newUser._id;
                    await newUser.save();
                    resolve('user created');
+                  
                 }catch(err){
                    console.log(err);
-                }
-                  
-                
+                }       
                 cognitoUser = result.user;
-            
+                }
                 })
              }
              else{
-                reject('Email exists');
+                resolve('Email exists');
              }
 
             })   
@@ -218,7 +219,7 @@ const RootMutationType = new GraphQLObjectType({
       }
     },
     signIn:{
-          type:GraphQLString,
+          type:GraphQLList (GraphQLString),
           description:"SignIn",
           args:{
               email:  { type: GraphQLNonNull(GraphQLString )},
@@ -232,14 +233,12 @@ const RootMutationType = new GraphQLObjectType({
             var userData = {
                 Username : args.email,
                 Pool : userPool
-            };
-            console.log(req.headers)
-            
+            };            
             var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
             return new Promise((resolve, reject) => (
                 cognitoUser.authenticateUser(authenticationDetails, {
-                 onSuccess: (result) => resolve(JSON.stringify({accessToken:result.getAccessToken().getJwtToken(),idToken:result.getIdToken().getJwtToken(),refreshToken:result.getRefreshToken().getToken()})),
-                 onFailure: (err) => reject(err),
+                 onSuccess: (result) => resolve([result.getAccessToken().getJwtToken(),result.getIdToken().getJwtToken(),result.getRefreshToken().getToken()]),
+                 onFailure: (err) => resolve([]),
                 })
             ));
           }
