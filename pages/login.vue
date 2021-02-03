@@ -42,8 +42,10 @@ export default {
     methods:{
       async login(){
         try {
-        await this.$store.dispatch('auth/login', this.input);
+        var user =await this.$store.dispatch('auth/login', this.input);
+        localStorage.setItem()
         this.$router.push('/user');
+        console.log(user )
       } catch (error) {
         console.log({ error });
       }
