@@ -86,7 +86,8 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: 'https://nodejs-express-server-dev-q2jjx.ondigitalocean.app/graphql'
+        httpEndpoint: 'http://localhost:5000/graphql'
+        //'https://nodejs-express-server-dev-q2jjx.ondigitalocean.app/graphql'
         //'https://nodejs-express-server-dev-q2jjx.ondigitalocean.app/graphql',
         //http://localhost:5000/graphql
         //https://nodejs-express-server-dev-q2jjx.ondigitalocean.app/graphql/

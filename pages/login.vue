@@ -43,7 +43,9 @@ export default {
       async login(){
         try {
         var user =await this.$store.dispatch('auth/login', this.input);
-        localStorage.setItem()
+        localStorage.setItem('accessToken',user.signInUserSession.accessToken.jwtToken);
+        localStorage.setItem('idToken',user.signInUserSession.idToken.jwtToken);
+        localStorage.setItem('refreshToken',user.signInUserSession.refreshToken.token);
         this.$router.push('/user');
         console.log(user )
       } catch (error) {
