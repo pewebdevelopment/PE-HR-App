@@ -2,6 +2,10 @@
 const mongoose = require('mongoose');
 
 var responseSchema = mongoose.Schema({
+    userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        required:true
+    },
     responseId:{
         type: mongoose.Schema.Types.ObjectId,
         required:true

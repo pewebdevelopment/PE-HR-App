@@ -3,10 +3,11 @@ const request = require('request');
 const jwkToPem = require('jwk-to-pem');
 const jwt = require('jsonwebtoken');
 module.exports=(authorization)=>{
+
     return new Promise((resolve,reject)=>{
         const authHeader = authorization;
        if (authHeader) {
-        const token = authHeader.split('Bearer ')[1];
+        const token = authHeader
         if(token){
         request({
             url: `https://cognito-idp.${config.pool_region}.amazonaws.com/${config.UserPoolId}/.well-known/jwks.json`,
@@ -26,19 +27,19 @@ module.exports=(authorization)=>{
                 }
                 var decodedJwt = jwt.decode(token, {complete: true});
                 if (!decodedJwt) {
-                    reject(null);
+                    resolve(null);
                 }
                 else{
 
                 var kid = decodedJwt.header.kid;
                 var pem = pems[kid];
                 if (!pem) {
-                    reject(null);
+                    resolve(null);
                 }
                 else{
                 jwt.verify(token, pem, function(err, payload) {
                     if(err) {
-                        reject(null);
+                        resolve(null);
                     } else {
                         console.log("Valid Token.");
                         resolve(payload);
@@ -47,14 +48,14 @@ module.exports=(authorization)=>{
             }
                 }
             } else {
-                reject(null);
+                resolve(null);
             }
         });
         }else{
-            reject(null)
+            resolve(null)
         }
     }else{
-        reject(null)
+        resolve(null)
     }
     })
 }

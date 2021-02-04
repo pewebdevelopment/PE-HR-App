@@ -94,7 +94,7 @@ const RootQueryType = new GraphQLObjectType({
         description: 'List of All Vacancies',
         resolve: () => Vacancies.find({},(err,docs)=>{
             if(docs!=undefined && docs.length>0)
-                return docs;
+                console.log(docs);
             else
                 return 'No Documents Fetched'
         })
@@ -280,7 +280,7 @@ const RootMutationType = new GraphQLObjectType({
         })
       },
       addVacancy: {
-        type: VacancyType,
+        type: GraphQLInt,
         description: 'Add a vacancy',
         args: {
             vacancyPost: { type: GraphQLNonNull(GraphQLString) },
@@ -292,22 +292,29 @@ const RootMutationType = new GraphQLObjectType({
             skillsRequired: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
             status: { type: GraphQLNonNull(GraphQLBoolean) },
         },
-        resolve: (parent, args) => {
+        resolve: async (parent, args,req) => {
+            console.log(req.user)
+            if(req.user.permission=='admin'){
             Vacancies.find({vacancyPost:args.vacancyPost},(err,docs)=>{
               if(docs!=undefined && docs.length==0){
                 var newVacancy=new Vacancies({vacancyPost:args.vacancyPost,noOfOpenings:args.noOfOpenings,stipend:args.stipend,perks:args.perks,
                     duration:args.duration,aboutPost:args.aboutPost,skillsRequired:args.skillsRequired,
-                    status:args.status
+                    status:args.status,userId:req.user.userId
                 })
                 newVacancy.vacancyId=newVacancy._id 
                 newVacancy.save();
-                return newVacancy
+                return 1//success
               }
+              return 0;//post name exists
             })
+          }
+          else{
+            return 2//no permission
+          }
         }
       },
       vacancyUpdate:{
-        type:VacancyType,
+        type:GraphQLInt,
         description:'Update a Vacancy',
         args:{
             vacancyId:{type:GraphQLNonNull(GraphQLID)},
@@ -320,34 +327,45 @@ const RootMutationType = new GraphQLObjectType({
             skillsRequired: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
             status: { type: GraphQLNonNull(GraphQLBoolean) },
         },
-        resolve: (parent, args) => {
+        resolve: (parent, args,req) => {
+          if(req.user.permission=='admin'){
             const vacancy = {vacancyPost:args.vacancyPost,noOfOpenings:args.noOfOpenings,stipend:args.stipend,perks:args.perks,
               duration:args.duration,aboutPost:args.aboutPost,skillsRequired:args.skillsRequired,
               status:args.status
             }
-            Vacancies.updateOne({_id:args.vacancyId},{$set:vacancy},(err,docs)=>{
+            Vacancies.updateOne({_id:args.vacancyId,userId:req.user.userId},{$set:vacancy},(err,docs)=>{
               if(docs!=undefined && docs.length>0)
-                  return docs;
+                  return 1;
               else
-                  return 'No Documents Updated'
+                  return 0
           })
-            
+          }else{
+            return 2;
+          }
+
           }     
       },
       vacancyDelete:{
-        type:VacancyType,
+        type:GraphQLInt,
         description:'Delete a Vacancy',
         args:{
           vacancyId:{type:GraphQLNonNull(GraphQLID)},
         },
-        resolve: (parent, args) => {
-          Vacancies.deleteOne({_id:args.vacancyId},(err,docs)=>{
-            return docs;
+        resolve: (parent, args,req) => {
+          if(req.user.permission=='admin'){
+            Vacancies.deleteOne({_id:args.vacancyId,userId:req.user.userId},(err,docs)=>{
+              if(docs)
+               return 1;
+              else
+                return 0;
           })
+          }else{
+            return 2;
+          }
         }
       },
       addCandidate: {
-        type: CandidateType,
+        type: GraphQLInt,
         description: 'Add an candidate',
         args: {
           candidateName:{ type: GraphQLNonNull(GraphQLString) },
@@ -372,37 +390,48 @@ const RootMutationType = new GraphQLObjectType({
           ugPercentage:{ type: GraphQLNonNull(GraphQLFloat)},
           skills:{ type: GraphQLNonNull( new GraphQLList(GraphQLString))},
         },
-        resolve: (parent, args) => {
+        resolve: (parent, args,req) => {  
+          if(req.user.permission=='candidate'){
           Candidates.find({email:args.email},(err,docs)=>{
             if(docs!=undefined && docs.length==0){
               var newCandidate=new Candidates({candidateName:args.candidateName,email:args.email,phoneNo:args.phoneNo,address:args.address,
                 hseSchool:args.hseSchool,hseBoard:args.hseBoard,hseSpecialization:args.hseSpecialization,hseFrom:args.hseFrom,hseTo:args.hseTo,hsePercentage:args.hsePercentage,
                 sslcSchool:args.sslcSchool,sslcBoard:args.sslcBoard,sslcFrom:args.sslcFrom,sslcTo:args.sslcTo,sslcPercentage:args.sslcPercentage,ugCollege:args.ugCollege,ugSpecialization:args.ugSpecialization,
-                ugFrom:args.ugFrom,ugTo:args.ugTo,ugPercentage:args.ugPercentage,skills:args.skills
+                ugFrom:args.ugFrom,ugTo:args.ugTo,ugPercentage:args.ugPercentage,skills:args.skills,userId:req.user.userId
               })
               newCandidate.candidateId=newCandidate._id
               newCandidate.save({},(err,docs)=>{
-                console.log(err)
+                //console.log(err)
+                if(docs)
+                  return 1;//success
+                
               });
             }
+            return 0;//email exists
           })
+        }else{
+            return 2;//no permission
+        }
         }
       },
       deleteCandidate:{
-        type:CandidateType,
+        type:GraphQLInt,
         description:'Delete a Candidate',
         args:{
           candidateId:{type:GraphQLNonNull(GraphQLID)},
           
         },
-        resolve: (parent, args) => {
-          Candidates.deleteOne({_id:args.candidateId},(err,docs)=>{
-            return docs;
+        resolve: (parent, args,req) => {
+          Candidates.deleteOne({_id:args.candidateId,userId:req.user.userId},(err,docs)=>{
+            if(docs)
+              return 1;
+            else
+              return 0;
           })
         }
       },
       updateCandidate: {
-        type: CandidateType,
+        type: GraphQLInt,
         description: 'Update a candidate',
         args: {
           candidateId:{type:GraphQLNonNull(GraphQLID)},
@@ -428,92 +457,116 @@ const RootMutationType = new GraphQLObjectType({
           ugPercentage:{ type: GraphQLNonNull(GraphQLFloat)},
           skills:{ type: GraphQLNonNull( new GraphQLList(GraphQLString))},
         },
-        resolve: (parent, args) => {
-          Candidates.updateOne({_id:args.candidateId},{candidateName:args.candidateName,email:args.email,phoneNo:args.phoneNo,address:args.address,
+        resolve: (parent, args,req) => {
+          if(req.user.permission=='candidate'){
+
+          Candidates.updateOne({_id:args.candidateId,userId:req.user.userId},{candidateName:args.candidateName,email:args.email,phoneNo:args.phoneNo,address:args.address,
             hseSchool:args.hseSchool,hseBoard:args.hseBoard,hseSpecialization:args.hseSpecialization,hseFrom:args.hseFrom,hseTo:args.hseTo,hsePercentage:args.hsePercentage,
             sslcSchool:args.sslcSchool,sslcBoard:args.sslcBoard,sslcFrom:args.sslcFrom,sslcTo:args.sslcTo,sslcPercentage:args.sslcPercentage,ugCollege:args.ugCollege,ugSpecialization:args.ugSpecialization,
             ugFrom:args.ugFrom,ugTo:args.ugTo,ugPercentage:args.ugPercentage,skills:args.skills
           },(err,docs)=>{
-            console.log(err,docs)
+            if(docs)
+              return 1;
+            else
+              return 0;
           })
+        }else{
+          return 2;
+        }
         }
       }, 
       addResponse: {
-        type: ResponseType,
+        type: GraphQLInt,
         description: 'Add a vacancy',
         args: {
           vacancyId: { type: GraphQLNonNull(GraphQLID) },
-          candidateId: { type:  GraphQLNonNull(GraphQLID) },
           projectsLinks: { type: new GraphQLList(GraphQLString) },
           githubId: { type: GraphQLNonNull(GraphQLString)},
         },
-        resolve: (parent, args) => {
+        resolve: (parent, args,req) => {
+          if(req.user.permission=='candidate'){
             try{
                 var newResponse=new Response({
                   vacancyId:args.vacancyId,
-                  candidateId:args.candidateId,
                   projectsLinks:args.projectsLinks,
                   githubId:args.githubId,
                 })
-                Response.find({candidateId:args.candidateId,vacancyId:args.vacancyId},async (err,docs)=>{
+
+                Response.find({userId:req.user.userId,vacancyId:args.vacancyId},async (err,docs)=>{
                   if(docs!=undefined&&docs.length==0){
                     Vacancies.findOne({vacancyId:args.vacancyId}, (err,docs1)=>{
                       if(docs1){
-                        Candidates.findOne({candidateId:args.candidateId},(err,docs2)=>{
+                        Candidates.findOne({userId:req.user.userId},(err,docs2)=>{
                           if(docs2){
                             console.log(docs1)
                             console.log(docs2)
+                            newResponse.candidateId=docs2._id
                             newResponse.responseId=newResponse._id
                             newResponse.status='Pending'
+                            newResponse.userId=req.user.userId
                             newResponse.vacancyPost=docs1.vacancyPost
                             newResponse.candidateName=docs2.candidateName
                             newResponse.candidatePhoneNo=docs2.phoneNo
                             newResponse.candidateEmail=docs2.email
                             newResponse.save();
-                            return newResponse
+                            return 1;
                           }
+                          return 0;
                         })
                       }
+                      return 0;
                     })
                   }
+                  return 2
                 })   
             }catch(e){
               console.log(e)
             }
+          }
         }
       },
       responseUpdate:{
-        type:ResponseType,
+        type:GraphQLInt,
         description:'Response Update',
         args:{
           responseId:{type: GraphQLNonNull(GraphQLID)},
           projectsLinks: { type: new GraphQLList(GraphQLString) },
           githubId: { type: GraphQLNonNull(GraphQLString)},
         },
-        resolve: (parent, args) => {
+        resolve: (parent, args,req) => {
+          if(req.user.permission=='candidate'){
             const updateResponse = {
                   projectsLinks:args.projectsLinks,
                   githubId:args.githubId,
             }
-            Response.updateOne({_id:args.responseId},{$set:updateResponse},(err,docs)=>{
-              if(docs!=undefined && docs.length>0)
-                  return docs;
+            Response.updateOne({_id:args.responseId,userId:req.user.userId},{$set:updateResponse},(err,docs)=>{
+              if(docs!=undefined)
+                  return 1;
               else
-                  return 'No Documents Updated'
+                  return 0;
           })
             
-          }     
+          }
+          return 2;  
+        }   
       },
       responseDelete:{
-        type:ResponseType,
+        type:GraphQLInt,
         description:'Delete a Response',
         args:{
           responseId:{type:GraphQLNonNull(GraphQLID)},
         },
         resolve: (parent, args) => {
-          Response.deleteOne({_id:args.responseId},(err,docs)=>{
-            return docs;
+        if(req.user.permission=='candidate'){
+
+          Response.deleteOne({_id:args.responseId,userId:req.user.userId},(err,docs)=>{
+            if(docs)
+              return 1
+            else
+            return 0
           })
+        }
+        return 2
         }
       },
      candidateResponses:{
@@ -522,7 +575,7 @@ const RootMutationType = new GraphQLObjectType({
           candidateId:{type:GraphQLNonNull(GraphQLID)}
         },
         resolve:(parent,args)=>
-          Response.find({candidateId:args.candidateId})
+          Response.find({userId:req.user.userId})
       },
       vacancyResponses:{
         type:new GraphQLList(ResponseType),
@@ -530,7 +583,7 @@ const RootMutationType = new GraphQLObjectType({
           vacancyId:{type:GraphQLNonNull(GraphQLID)}
         },
         resolve:(parent,args)=>
-          Response.find({vacancyId:args.vacancyId})
+          Response.find({vacancyId:args.vacancyId,userId:req.user.userId})
       }
     })
   })

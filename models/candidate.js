@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const candidateSchema=mongoose.Schema({
+    userId:{    
+        type: mongoose.Schema.Types.ObjectId,
+        required:true
+    },
     candidateId:{    
         type: mongoose.Schema.Types.ObjectId,
         required:true
