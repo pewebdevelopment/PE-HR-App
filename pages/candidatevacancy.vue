@@ -130,7 +130,6 @@ export default {
       project: [],
       vcancyid: "",
       githubid: "",
-      candidate_Id: "5ffb02dfbeafa10011497b95",
     };
   },
   mounted() {},
@@ -167,23 +166,18 @@ export default {
         mutation: gql`
           mutation(
             $vacancyId: ID!
-            $candidateId: ID!
             $githubId: String!
             $projectsLinks: [String]!
           ) {
             addResponse(
               vacancyId: $vacancyId
-              candidateId: $candidateId
               githubId: $githubId
               projectsLinks: $projectsLinks
-            ) {
-              githubId
-            }
+            ) 
           }
         `,
         variables: {
           vacancyId: this.vcancyid,
-          candidateId: this.candidate_Id,
           githubId: this.githubid,
           projectsLinks: this.project,
         },

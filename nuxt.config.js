@@ -81,17 +81,22 @@ export default {
     'nuxt-i18n',
     '@nuxtjs/bootstrap-vue',
     '@nuxtjs/apollo',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+     '@nuxt/http',
+     'cookie-universal-nuxt',
+     ['cookie-universal-nuxt', { alias: 'cookiz' }],
   ],
   apollo: {
     clientConfigs: {
-      default: {
-        httpEndpoint: 'http://localhost:5000/graphql'
+      default: '~/plugins/apollo-client.js'
+      //{
+        //httpEndpoint: 'http://localhost:5000/graphql',
         //'https://nodejs-express-server-dev-q2jjx.ondigitalocean.app/graphql'
         //'https://nodejs-express-server-dev-q2jjx.ondigitalocean.app/graphql',
         //http://localhost:5000/graphql
         //https://nodejs-express-server-dev-q2jjx.ondigitalocean.app/graphql/
-      }
+      //},
+      
     }
   },
   i18n: {

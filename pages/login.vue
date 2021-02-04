@@ -56,6 +56,8 @@ export default {
         })
         console.log(user)
         if(user.data.signIn.length!=0){
+          
+
           localStorage.setItem('accessToken',user.data.signIn[0]);
           localStorage.setItem('idToken',user.data.signIn[1]);
           localStorage.setItem('refreshToken',user.data.signIn[2]);

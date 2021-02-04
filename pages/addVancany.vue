@@ -178,11 +178,10 @@ export default {
               aboutPost: $aboutPost
               skillsRequired: $skillsRequired
               status: $status
-            ) {
-              aboutPost
-            }
+            ) 
           }
         `,
+         
         variables: {
           vacancyPost: this.vacancyPost,
           noOfOpenings: parseInt(this.noOfOpenings),
@@ -194,6 +193,7 @@ export default {
           status: this.status,
         },
       });
+      console.log(result);
       this.$router.push("/");
     },
   },

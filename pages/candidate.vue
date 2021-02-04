@@ -364,9 +364,7 @@ export default {
               hseTo: $hseTo
               hsePercentage: $hsePercentage
               skills: $skills
-            ) {
-              candidateName
-            }
+            )
           }
         `,
         variables: {

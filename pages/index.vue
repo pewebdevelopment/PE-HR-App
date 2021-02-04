@@ -744,9 +744,7 @@ export default {
       this.singlecandidate = await this.$apollo.mutate({
         mutation: gql`
           mutation($candidateId: ID!) {
-            deleteCandidate(candidateId: $candidateId) {
-              candidateName
-            }
+            deleteCandidate(candidateId: $candidateId)
           }
         `,
         variables: {
@@ -933,9 +931,7 @@ export default {
               hseTo: $hseTo
               hsePercentage: $hsePercentage
               skills: $skills
-            ) {
-              candidateName
-            }
+            )
           }
         `,
         variables: {

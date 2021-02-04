@@ -255,9 +255,7 @@ export default {
       const result = await this.$apollo.mutate({
         mutation: gql`
           mutation($vacancyId: ID!) {
-            vacancyDelete(vacancyId: $vacancyId) {
-              vacancyPost
-            }
+            vacancyDelete(vacancyId: $vacancyId) 
           }
         `,
         variables: {
@@ -351,9 +349,7 @@ export default {
               aboutPost: $aboutPost
               skillsRequired: $skillsRequired
               status: $status
-            ) {
-              aboutPost
-            }
+            ) 
           }
         `,
         variables: {
