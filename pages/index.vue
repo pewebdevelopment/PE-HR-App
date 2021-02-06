@@ -25,7 +25,7 @@
                     <b-button size="sm" @click="showdetail(item.candidateId)"
                       >Show Details</b-button
                     >
-                    <b-button size="sm" @click="getcandidate(item.candidateId)"
+                    <b-button v-if="role === 'candidate'" size="sm" @click="getcandidate(item.candidateId)"
                       >Edit</b-button
                     >
                     <b-button size="sm" @click="ondelete(item.candidateId)">
@@ -698,6 +698,7 @@ export default {
   },*/
   data() {
     return {
+      role:'No Access',
       Fname: "",
       email: "",
       mobile: "",
@@ -744,6 +745,11 @@ export default {
       candidate_Id: "",
       candidates:undefined
     };
+  },
+  mounted() {
+      this.get();
+      this.role = localStorage.getItem('access') || "No Access"
+    console.log(this.role);
   },
   computed: {
     sortOptions() {
