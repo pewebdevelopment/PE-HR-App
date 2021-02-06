@@ -39,6 +39,7 @@
           }"
         >
         </sidebar-item>
+        <!--
         <sidebar-item
           :link="{
             name: 'Vacany',
@@ -46,7 +47,7 @@
             path: '/Vacancies',
           }"
         >
-        </sidebar-item>
+        </sidebar-item>-->
 
         <sidebar-item
           :link="{

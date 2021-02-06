@@ -108,6 +108,8 @@
         </b-modal>
       </b-container>
     </card>
+    <b-button sm="3" variant="info" @click="displayPage()"
+                      >view vacancies</b-button>
   </div>
 </template>
 
@@ -115,7 +117,7 @@
 import gql from "graphql-tag";
 export default {
   name: "google",
-  apollo: {
+  /*apollo: {
     responses: gql`
       query {
         responses {
@@ -129,7 +131,7 @@ export default {
         }
       }
     `,
-  },
+  },*/
   data() {
     return {
       fields: [
@@ -160,6 +162,7 @@ export default {
 
         { key: "actions", label: "Actions" },
       ],
+      responses:undefined,
       totalRows: 1,
       currentPage: 1,
       perPage: 5,
@@ -185,8 +188,41 @@ export default {
         });
     },
   },
-  mounted() {},
+  mounted() {
+    this.responseList()
+  },
   methods: {
+    async displayPage(){
+      if(localStorage.getItem('access')=='candidate'){
+            this.$router.push("/candidatevacancy");
+      }
+      else{
+            this.$router.push("/Vacancies");
+      }
+    },
+    async responseList() {
+      const results = await this.$apollo.mutate({
+        mutation: gql`
+          mutation {
+           responses {
+              githubId
+              vacancyId
+              candidateId
+              projectsLinks
+              candidateName
+              vacancyPost
+              candidateEmail
+            } 
+          }
+        `,
+        variables: {
+          
+        },
+      });
+      this.responses=results.data.responses
+      console.log(this.responses)
+    
+    },
     info(item, index, button) {
       this.totalRows = this.responses.length;
       this.infoModal.title = `Row index: ${index}`;

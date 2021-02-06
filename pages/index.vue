@@ -1,5 +1,7 @@
-<template>
+<template >
   <div>
+  
+  
     <card>
       <b-container fluid>
         <!-- User Interface controls -->
@@ -645,14 +647,21 @@
 
       <!-- Info modal -->
     </card>
+    <b-button size="sm" @click="logout()">
+                      Logout
+                    </b-button>
   </div>
+  
 </template>
 
 <script>
 import gql from "graphql-tag";
 export default {
   name: "google",
-  apollo: {
+  mounted(){
+    this.get()
+  },
+  /*apollo: {
     candidates: gql`
       query {
         candidates {
@@ -681,7 +690,7 @@ export default {
         }
       }
     `,
-  },
+  },*/
   data() {
     return {
       Fname: "",
@@ -728,6 +737,7 @@ export default {
       sskills: [],
       singlecandidate: [],
       candidate_Id: "",
+      candidates:undefined
     };
   },
   computed: {
@@ -740,6 +750,13 @@ export default {
     },
   },
   methods: {
+    async logout(){
+      localStorage.removeItem('idToken')
+      localStorage.removeItem('accessToken')
+      localStorage.removeItem('refreshToken')
+      localStorage.removeItem('access')
+      this.$router.push("/login");
+    },
     async ondelete(id) {
       this.singlecandidate = await this.$apollo.mutate({
         mutation: gql`
@@ -752,11 +769,11 @@ export default {
         },
       });
     },
-    async getcandidate(id) {
-      this.singlecandidate = await this.$apollo.mutate({
+    async get() {
+      const results = await this.$apollo.mutate({
         mutation: gql`
-          mutation($candidateId: ID!) {
-            candidate(candidateId: $candidateId) {
+          mutation {
+            candidate{
               candidateId
               candidateName
               email
@@ -783,39 +800,76 @@ export default {
           }
         `,
         variables: {
-          candidateId: id,
         },
       });
+      this.candidates=results.data.candidate
+    },
+    async getcandidate(id) {
+      console.log("stet")
+      this.singlecandidate = await this.$apollo.mutate({
+        mutation: gql`
+          mutation {
+            candidate{
+              candidateId
+              candidateName
+              email
+              phoneNo
+              address
+              ugCollege
+              ugSpecialization
+              ugTo
+              ugFrom
+              ugPercentage
+              sslcSchool
+              sslcBoard
+              sslcTo
+              sslcFrom
+              sslcPercentage
+              hseTo
+              hseFrom
+              hseBoard
+              hseSchool
+              hsePercentage
+              hseSpecialization
+              skills
+            }
+          }
+        `,
+        variables: {
+        },
+        
+      });
+      console.log(this.singlecandidate)
       this.candidate_Id = id;
-      (this.Fname = this.singlecandidate.data.candidate.candidateName),
-        (this.email = this.singlecandidate.data.candidate.email),
-        (this.mobile = this.singlecandidate.data.candidate.phoneNo),
-        (this.address = this.singlecandidate.data.candidate.address),
-        (this.college = this.singlecandidate.data.candidate.ugCollege),
-        (this.StartDateGra = this.singlecandidate.data.candidate.ugFrom),
-        (this.FinishDateGra = this.singlecandidate.data.candidate.ugTo),
-        (this.percentageGra = this.singlecandidate.data.candidate.ugPercentage),
-        (this.school = this.singlecandidate.data.candidate.sslcSchool),
-        (this.boardSch = this.singlecandidate.data.candidate.sslcBoard),
-        (this.StartDateSch = this.singlecandidate.data.candidate.sslcFrom),
-        (this.FinishDateSch = this.singlecandidate.data.candidate.sslcTo),
-        (this.percentageSch = this.singlecandidate.data.candidate.sslcPercentage),
-        (this.collegehse = this.singlecandidate.data.candidate.hseSchool),
-        (this.boardhse = this.singlecandidate.data.candidate.hseBoard),
-        (this.StartDatehse = this.singlecandidate.data.candidate.hseFrom),
-        (this.FinishDatehse = this.singlecandidate.data.candidate.hseTo),
-        (this.percentagehse = this.singlecandidate.data.candidate.hsePercentage),
-        (this.Department = this.singlecandidate.data.candidate.ugSpecialization),
-        (this.departmenthse = this.singlecandidate.data.candidate.hseSpecialization),
-        (this.skills = this.singlecandidate.data.candidate.skills),
+      (this.Fname = this.singlecandidate.data.candidate[0].candidateName),
+        (this.email = this.singlecandidate.data.candidate[0].email),
+        (this.mobile = this.singlecandidate.data.candidate[0].phoneNo),
+        (this.address = this.singlecandidate.data.candidate[0].address),
+        (this.college = this.singlecandidate.data.candidate[0].ugCollege),
+        (this.StartDateGra = this.singlecandidate.data.candidate[0].ugFrom),
+        (this.FinishDateGra = this.singlecandidate.data.candidate[0].ugTo),
+        (this.percentageGra = this.singlecandidate.data.candidate[0].ugPercentage),
+        (this.school = this.singlecandidate.data.candidate[0].sslcSchool),
+        (this.boardSch = this.singlecandidate.data.candidate[0].sslcBoard),
+        (this.StartDateSch = this.singlecandidate.data.candidate[0].sslcFrom),
+        (this.FinishDateSch = this.singlecandidate.data.candidate[0].sslcTo),
+        (this.percentageSch = this.singlecandidate.data.candidate[0].sslcPercentage),
+        (this.collegehse = this.singlecandidate.data.candidate[0].hseSchool),
+        (this.boardhse = this.singlecandidate.data.candidate[0].hseBoard),
+        (this.StartDatehse = this.singlecandidate.data.candidate[0].hseFrom),
+        (this.FinishDatehse = this.singlecandidate.data.candidate[0].hseTo),
+        (this.percentagehse = this.singlecandidate.data.candidate[0].hsePercentage),
+        (this.Department = this.singlecandidate.data.candidate[0].ugSpecialization),
+        (this.departmenthse = this.singlecandidate.data.candidate[0].hseSpecialization),
+        (this.skills = this.singlecandidate.data.candidate[0].skills),
         this.showmodal();
       this.$router.push("/");
     },
     async showdetail(id) {
-      this.singlecandidate = await this.$apollo.mutate({
+       this.singlecandidate = await this.$apollo.mutate({
         mutation: gql`
           mutation($candidateId: ID!) {
-            candidate(candidateId: $candidateId) {
+            oneCandidate(candidateId: $candidateId){
               candidateId
               candidateName
               email
@@ -844,29 +898,31 @@ export default {
         variables: {
           candidateId: id,
         },
+        
       });
-      this.candidate_id = this.singlecandidate.data.candidate.candidateId;
-      (this.sFname = this.singlecandidate.data.candidate.candidateName),
-        (this.semail = this.singlecandidate.data.candidate.email),
-        (this.smobile = this.singlecandidate.data.candidate.phoneNo),
-        (this.saddress = this.singlecandidate.data.candidate.address),
-        (this.scollege = this.singlecandidate.data.candidate.ugCollege),
-        (this.sStartDateGra = this.singlecandidate.data.candidate.ugFrom),
-        (this.sFinishDateGra = this.singlecandidate.data.candidate.ugTo),
-        (this.spercentageGra = this.singlecandidate.data.candidate.ugPercentage),
-        (this.sschool = this.singlecandidate.data.candidate.sslcSchool),
-        (this.sboardSch = this.singlecandidate.data.candidate.sslcBoard),
-        (this.sStartDateSch = this.singlecandidate.data.candidate.sslcFrom),
-        (this.sFinishDateSch = this.singlecandidate.data.candidate.sslcTo),
-        (this.spercentageSch = this.singlecandidate.data.candidate.sslcPercentage),
-        (this.scollegehse = this.singlecandidate.data.candidate.hseSchool),
-        (this.sboardhse = this.singlecandidate.data.candidate.hseBoard),
-        (this.sStartDatehse = this.singlecandidate.data.candidate.hseFrom),
-        (this.sFinishDatehse = this.singlecandidate.data.candidate.hseTo),
-        (this.spercentagehse = this.singlecandidate.data.candidate.hsePercentage),
-        (this.sDepartment = this.singlecandidate.data.candidate.ugSpecialization),
-        (this.sdepartmenthse = this.singlecandidate.data.candidate.hseSpecialization),
-        (this.sskills = this.singlecandidate.data.candidate.skills);
+      console.log(this.singlecandidate)      
+      this.candidate_id = this.singlecandidate.data.oneCandidate[0].candidateId;
+      (this.sFname = this.singlecandidate.data.oneCandidate[0].candidateName),
+        (this.semail = this.singlecandidate.data.oneCandidate[0].email),
+        (this.smobile = this.singlecandidate.data.oneCandidate[0].phoneNo),
+        (this.saddress = this.singlecandidate.data.oneCandidate[0].address),
+        (this.scollege = this.singlecandidate.data.oneCandidate[0].ugCollege),
+        (this.sStartDateGra = this.singlecandidate.data.oneCandidate[0].ugFrom),
+        (this.sFinishDateGra = this.singlecandidate.data.oneCandidate[0].ugTo),
+        (this.spercentageGra = this.singlecandidate.data.oneCandidate[0].ugPercentage),
+        (this.sschool = this.singlecandidate.data.oneCandidate[0].sslcSchool),
+        (this.sboardSch = this.singlecandidate.data.oneCandidate[0].sslcBoard),
+        (this.sStartDateSch = this.singlecandidate.data.oneCandidate[0].sslcFrom),
+        (this.sFinishDateSch = this.singlecandidate.data.oneCandidate[0].sslcTo),
+        (this.spercentageSch = this.singlecandidate.data.oneCandidate[0].sslcPercentage),
+        (this.scollegehse = this.singlecandidate.data.oneCandidate[0].hseSchool),
+        (this.sboardhse = this.singlecandidate.data.oneCandidate[0].hseBoard),
+        (this.sStartDatehse = this.singlecandidate.data.oneCandidate[0].hseFrom),
+        (this.sFinishDatehse = this.singlecandidate.data.oneCandidate[0].hseTo),
+        (this.spercentagehse = this.singlecandidate.data.oneCandidate[0].hsePercentage),
+        (this.sDepartment = this.singlecandidate.data.oneCandidate[0].ugSpecialization),
+        (this.sdepartmenthse = this.singlecandidate.data.oneCandidate[0].hseSpecialization),
+        (this.sskills = this.singlecandidate.data.oneCandidate[0].skills);
       this.showmodal1();
     },
     showmodal() {

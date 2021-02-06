@@ -227,29 +227,17 @@ export default {
       Upvalue2: "",
       Upvalue3: "",
       upvacancy: [],
+      vacancies:undefined
     };
   },
-  mounted() {},
+  mounted() {
+    this.getadminvacancy()
+  },
 
   components: {
     BaseAlert,
   },
-  apollo: {
-    vacancies: gql`
-      query getVacancies {
-        vacancies {
-          vacancyId
-          vacancyPost
-          noOfOpenings
-          stipend
-          perks
-          duration
-          aboutPost
-          skillsRequired
-        }
-      }
-    `,
-  },
+ 
   methods: {
     async deletevacancy(id) {
       const result = await this.$apollo.mutate({
@@ -264,7 +252,29 @@ export default {
       });
       this.$router.push("/Vacancies");
     },
-
+    async getadminvacancy() {
+   
+      const results = await this.$apollo.mutate({
+        mutation: gql`
+          mutation getadminvacancies {
+        adminVacancy {
+          vacancyId
+          vacancyPost
+          noOfOpenings
+          stipend
+          perks
+          duration
+          aboutPost
+          skillsRequired
+        }
+      }
+        `,
+        variables: {
+        },
+      });
+      console.log(results)
+      this.vacancies=results.data.adminVacancy
+    },
     async getvacancy(id) {
       this.vacancID = id;
       console.log(id);

@@ -4,8 +4,14 @@
 <div class="col-2"></div>
 <div class="col-7">
   <b-card class="text-left">
-  
-  <form>
+   <div>
+<v-alert
+  type="error"
+   dense
+   outlined
+>{{ err }}</v-alert>
+</div>
+  <form @submit.prevent="signUp">
     <p class="h2 text-center mb-4">Sign up</p>
     <label for="defaultFormRegisterNameEx" class="grey-text">Your name</label>
     <input type="text"  v-model="userName" class="form-control"/>
@@ -17,16 +23,18 @@
     <label for="defaultFormRegisterPasswordEx" class="grey-text">Your password</label>
     <input type="password" v-model="password" class="form-control"/>
     <label for="defaultFormRegisterConfirmEx" class="grey-text">Permission</label>
-    <input type="password" v-model="permission" class="form-control"/>
+    <input type="text" v-model="permission" class="form-control"/>
     <br/>
     <div class="text-center mt-4">
-      <button class="btn btn-unique" type="submit" @click="signUp()">Register</button>
+      <button class="btn btn-unique" type="submit" >Register</button>
     </div>
   </form>
-
+ 
    </b-card>
 </div>
+ 
 </div>
+ 
 </div>
 </template>
 
@@ -39,7 +47,8 @@
         userName:"",
         email:"",
         password:"",
-        permission:""
+        permission:"",
+        err:""
       }
     },
     components: {
@@ -69,10 +78,11 @@
         })
         console.log(result)
         if(result.data.signUp=='user created'){
-
-}
+          this.$router.push("/login");
+        }
         else{
-          console.log("email exists")
+          this.err="email exists"
+          console.log("Email exists, Try New")
         }
       },
     }

@@ -4,8 +4,15 @@
 <div class="col-2"></div>
 <div class="col-7">
   <b-card class="text-left">
-    
+      <div>
+<v-alert
+  type="error"
+   dense
+   outlined
+>{{ err }}</v-alert>
+</div> 
   <form @submit.prevent="signIn">
+
     <p class="h2 text-center mb-4">Sign in</p>
     <hr>
     <label for="defaultFormLoginEmailEx" class="grey-text">Your email</label>
@@ -31,7 +38,8 @@ export default {
   data(){
     return{
           email : "",
-          password : ""
+          password : "",
+          err:""
     }
   },
   name: "login",
@@ -61,10 +69,17 @@ export default {
           localStorage.setItem('accessToken',user.data.signIn[0]);
           localStorage.setItem('idToken',user.data.signIn[1]);
           localStorage.setItem('refreshToken',user.data.signIn[2]);
-          this.$router.push("/user");
+          localStorage.setItem('access',user.data.signIn[3])
+          if(user.data.signIn[3]=='admin'){
+                      this.$router.push("/vacancies");
+          } 
+          else {
+            this.$router.push("/");
+
+          }
         }
         else{
-          console.log("Authentication Failed")
+          this.err='Authentication Failed'
         }
       },
       /*async login(){

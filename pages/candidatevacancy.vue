@@ -182,6 +182,7 @@ export default {
           projectsLinks: this.project,
         },
       });
+      console.log(results);
       this.hidemodal();
       this.$router.push("/candidateresponse");
     },

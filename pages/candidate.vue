@@ -1,5 +1,10 @@
 <template>
   <div>
+    <v-alert
+  type="error"
+   dense
+   outlined
+>{{ err }}</v-alert>
     <h3>Personal Details</h3>
     <b-container fluid>
       <b-row class="my-1">
@@ -292,6 +297,7 @@ export default {
   name: "icons",
   data() {
     return {
+      err:"",
       Fname: "",
       email: "",
       mobile: "",
@@ -391,8 +397,14 @@ export default {
           skills: this.skills,
         },
       });
-
-      this.$router.push("/candidatevacancy");
+      if(result.data.addCandidate==0){
+        this.err="Email exists"
+      }
+      else if(result.data.addCandidate==2){
+              this.$router.push("/login");
+      }
+      else
+        this.$router.push("/");
     },
   },
 };
