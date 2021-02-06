@@ -659,7 +659,12 @@ import gql from "graphql-tag";
 export default {
   name: "google",
   mounted(){
+    if(localStorage.getItem('access')&&localStorage.getItem('idToken')&&localStorage.getItem('accessToken')&&localStorage.getItem('refreshToken')){
     this.get()
+    }
+    else{
+      this.$router.push("/login");
+    }
   },
   /*apollo: {
     candidates: gql`

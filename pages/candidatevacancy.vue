@@ -132,7 +132,14 @@ export default {
       githubid: "",
     };
   },
-  mounted() {},
+  mounted() {
+    if(localStorage.getItem('access')&&localStorage.getItem('idToken')&&localStorage.getItem('accessToken')&&localStorage.getItem('refreshToken')){
+
+    }
+    else{
+      this.$router.push("/login");
+    }
+  },
 
   components: {
     BaseAlert,

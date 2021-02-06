@@ -231,7 +231,12 @@ export default {
     };
   },
   mounted() {
+    if(localStorage.getItem('access')&&localStorage.getItem('idToken')&&localStorage.getItem('accessToken')&&localStorage.getItem('refreshToken')){
     this.getadminvacancy()
+    }
+    else{
+      this.$router.push("/login");
+    }
   },
 
   components: {

@@ -321,6 +321,14 @@ export default {
       skills: [],
     };
   },
+  mounted(){
+    if(localStorage.getItem('access')&&localStorage.getItem('idToken')&&localStorage.getItem('accessToken')&&localStorage.getItem('refreshToken')){
+    this.responseList()
+    }
+    else{
+      this.$router.push("/login");
+    }
+  },
   methods: {
     async addcandidate() {
       const result = await this.$apollo.mutate({

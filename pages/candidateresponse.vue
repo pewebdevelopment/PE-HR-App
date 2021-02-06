@@ -189,7 +189,12 @@ export default {
     },
   },
   mounted() {
+     if(localStorage.getItem('access')&&localStorage.getItem('idToken')&&localStorage.getItem('accessToken')&&localStorage.getItem('refreshToken')){
     this.responseList()
+    }
+    else{
+      this.$router.push("/login");
+    }
   },
   methods: {
     async displayPage(){
