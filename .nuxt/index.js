@@ -13,7 +13,6 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_cookieuniversalnuxt_0a614b45 from 'nuxt_plugin_cookieuniversalnuxt_0a614b45' // Source: .\\cookie-universal-nuxt.js (mode: 'all')
 import nuxt_plugin_http_a15835da from 'nuxt_plugin_http_a15835da' // Source: .\\http.js (mode: 'all')
 import nuxt_plugin_axios_24e4859d from 'nuxt_plugin_axios_24e4859d' // Source: .\\axios.js (mode: 'all')
 import nuxt_plugin_apollomodule_ce6b372e from 'nuxt_plugin_apollomodule_ce6b372e' // Source: .\\apollo-module.js (mode: 'all')
@@ -212,10 +211,6 @@ async function createApp(ssrContext, config = {}) {
     }
   }
   // Plugin execution
-
-  if (typeof nuxt_plugin_cookieuniversalnuxt_0a614b45 === 'function') {
-    await nuxt_plugin_cookieuniversalnuxt_0a614b45(app.context, inject)
-  }
 
   if (typeof nuxt_plugin_http_a15835da === 'function') {
     await nuxt_plugin_http_a15835da(app.context, inject)

@@ -79,7 +79,7 @@ export default {
           localStorage.setItem('access',user.data.signIn[3])
           localStorage.setItem('reload',1);
           if(user.data.signIn[3]=='admin'){
-                      this.$router.push("/vacancies");
+                      this.$router.push("/");
           } 
           else {
             this.$router.push("/");
