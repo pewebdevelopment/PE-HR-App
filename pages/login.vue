@@ -46,6 +46,13 @@ export default {
   components: {
      
     },
+    mounted(){
+     var val =localStorage.getItem('reload') || 0
+     if(val==0){
+       this.$router.go(0);
+       localStorage.setItem('reload',2)
+     }
+    },
     methods:{
       async signIn(){
         console.log(this.email);
@@ -70,6 +77,7 @@ export default {
           localStorage.setItem('idToken',user.data.signIn[1]);
           localStorage.setItem('refreshToken',user.data.signIn[2]);
           localStorage.setItem('access',user.data.signIn[3])
+          localStorage.setItem('reload',1);
           if(user.data.signIn[3]=='admin'){
                       this.$router.push("/vacancies");
           } 

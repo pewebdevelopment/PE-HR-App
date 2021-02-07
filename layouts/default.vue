@@ -7,6 +7,7 @@
       :title="$t('sidebar.title')"
     >
       <template slot-scope="" slot="links">
+      <div v-if =" role != 'No Access' ">
         <sidebar-item
           :link="{
             name: $t('sidebar.dashboard'),
@@ -15,6 +16,8 @@
           }"
         >
         </sidebar-item>
+        </div>
+      <div v-if =" role === 'No Access' ">
        <sidebar-item
           :link="{
             name: 'loginPage',
@@ -31,7 +34,10 @@
           }"
         >
         </sidebar-item>
-        <sidebar-item
+        </div>
+
+        <div v-if =" role === 'candidate' ">
+        <sidebar-item 
           :link="{
             name: 'candidate ',
             icon: 'tim-icons icon-atom',
@@ -39,6 +45,8 @@
           }"
         >
         </sidebar-item>
+        </div>
+
         <!--
         <sidebar-item
           :link="{
@@ -48,7 +56,7 @@
           }"
         >
         </sidebar-item>-->
-
+      <div v-if =" role != 'No Access' ">
         <sidebar-item
           :link="{
             name: 'response',
@@ -57,6 +65,7 @@
           }"
         >
         </sidebar-item>
+        </div>
         <!--
         <sidebar-item
           :link="{
@@ -148,13 +157,16 @@ export default {
   },
   data() {
     return {
-      sidebarBackground: "vue", //vue|blue|orange|green|red|primary
+      sidebarBackground: "vue", //vue|blue|orange|green|red|primary,
+      role:'No Access'                    //v-if="(localStorage.getItem('access') === 'candidate')"
     };
   },
   computed: {
+//this.role = localStorage.getItem('access') || "No Access"
     isFullScreenRoute() {
       return this.$route.path === "/maps/full-screen";
     },
+    
   },
   methods: {
     toggleSidebar() {
@@ -178,6 +190,8 @@ export default {
   },
   mounted() {
     this.initScrollbar();
+    this.role = localStorage.getItem('access') || "No Access"
+    console.log(this.role);
   },
 };
 </script>

@@ -25,7 +25,7 @@
                     <b-button size="sm" @click="showdetail(item.candidateId)"
                       >Show Details</b-button
                     >
-                    <b-button size="sm" @click="getcandidate(item.candidateId)"
+                    <b-button v-if="role === 'candidate'" size="sm" @click="getcandidate(item.candidateId)"
                       >Edit</b-button
                     >
                     <b-button size="sm" @click="ondelete(item.candidateId)">
@@ -656,16 +656,10 @@
 
 <script>
 import gql from "graphql-tag";
+import navBar from "@/layouts/default.vue"
 export default {
   name: "google",
-  mounted(){
-    if(localStorage.getItem('access')&&localStorage.getItem('idToken')&&localStorage.getItem('accessToken')&&localStorage.getItem('refreshToken')){
-    this.get()
-    }
-    else{
-      this.$router.push("/login");
-    }
-  },
+
   /*apollo: {
     candidates: gql`
       query {
@@ -698,6 +692,7 @@ export default {
   },*/
   data() {
     return {
+      role:'No Access',
       Fname: "",
       email: "",
       mobile: "",
@@ -745,6 +740,25 @@ export default {
       candidates:undefined
     };
   },
+  
+  mounted() {
+    //this.$forceUpdate()
+    var val=localStorage.getItem('reload') || 0
+    if(val==1){
+      this.$router.go(0);
+      localStorage.setItem('reload',0)
+    }
+    if(localStorage.getItem('access')&&localStorage.getItem('idToken')&&localStorage.getItem('accessToken')&&localStorage.getItem('refreshToken')){
+     this.get()
+    }
+    else{
+      this.$router.push("/login");
+    }
+      //this.get();
+
+      this.role = localStorage.getItem('access') || "No Access"
+      console.log(this.role);
+  },
   computed: {
     sortOptions() {
       return this.fields
@@ -760,6 +774,7 @@ export default {
       localStorage.removeItem('accessToken')
       localStorage.removeItem('refreshToken')
       localStorage.removeItem('access')
+      localStorage.removeItem('reload')
       this.$router.push("/login");
     },
     async ondelete(id) {
@@ -808,6 +823,7 @@ export default {
         },
       });
       this.candidates=results.data.candidate
+
     },
     async getcandidate(id) {
       console.log("stet")
