@@ -81,10 +81,7 @@ export default {
     'nuxt-i18n',
     '@nuxtjs/bootstrap-vue',
     '@nuxtjs/apollo',
-    '@nuxtjs/axios',
-     '@nuxt/http',
-     'cookie-universal-nuxt',
-     ['cookie-universal-nnuxt', { alias: 'cookiz' }],
+    '@nuxtjs/axios'
   ],
   apollo: {
     clientConfigs: {
