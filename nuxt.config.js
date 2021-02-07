@@ -82,7 +82,6 @@ export default {
     '@nuxtjs/bootstrap-vue',
     '@nuxtjs/apollo',
     '@nuxtjs/axios',
-     '@nuxt/http',
      'cookie-universal-nuxt',
      ['cookie-universal-nuxt', { alias: 'cookiz' }],
   ],
