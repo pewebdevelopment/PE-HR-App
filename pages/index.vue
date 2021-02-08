@@ -788,7 +788,8 @@ export default {
           candidateId: id,
         },
       });
-      this.$router.go(0);
+            //this.$router.push("/");
+            this.$router.go(0);
     },
     async get() {
       const results = await this.$apollo.mutate({
@@ -1038,6 +1039,7 @@ export default {
         },
       });
       this.hidemodal();
+      //this.$router.push("/");
       this.$router.go(0);
     },
   },
