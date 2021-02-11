@@ -37,6 +37,7 @@ const VacancyType = new GraphQLObjectType({
       aboutPost: { type: GraphQLNonNull(GraphQLString) },
       skillsRequired: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
       status: { type: GraphQLNonNull(GraphQLBoolean)},
+      rounds : {type : GraphQLNonNull(new GraphQLList(GraphQLNonNull(new GraphQLList(GraphQLString))))}
     })
 })
 
@@ -81,7 +82,9 @@ const ResponseType = new GraphQLObjectType({
     candidateName: { type: GraphQLNonNull(GraphQLString)},
     candidatePhoneNo: { type: GraphQLNonNull(GraphQLString)},
     candidateEmail: { type: GraphQLNonNull(GraphQLString)},
-    vacancyPost: { type: GraphQLNonNull(GraphQLString)}
+    vacancyPost: { type: GraphQLNonNull(GraphQLString)},
+    roundsAnswers : {type : GraphQLNonNull(new GraphQLList(GraphQLNonNull(new GraphQLList(GraphQLString))))}
+
   })
 })
 const RootQueryType = new GraphQLObjectType({
@@ -271,7 +274,8 @@ const RootMutationType = new GraphQLObjectType({
             var userData = {
                 Username : args.email,
                 Pool : userPool
-            };            
+            };  
+                    
             var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
             return new Promise((resolve, reject) => (
                 cognitoUser.authenticateUser(authenticationDetails, {
@@ -371,7 +375,7 @@ const RootMutationType = new GraphQLObjectType({
         })
       },
       addVacancy: {
-        type: GraphQLInt,
+        type: VacancyType,
         description: 'Add a vacancy',
         args: {
             vacancyPost: { type: GraphQLNonNull(GraphQLString) },
@@ -382,6 +386,7 @@ const RootMutationType = new GraphQLObjectType({
             aboutPost: { type: GraphQLNonNull(GraphQLString) },
             skillsRequired: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
             status: { type: GraphQLNonNull(GraphQLBoolean) },
+            rounds : {type : GraphQLNonNull(new GraphQLList(GraphQLNonNull(new GraphQLList(GraphQLString))))}
         },
         resolve: async (parent, args,req) => {
             console.log(req.user)
@@ -390,7 +395,7 @@ const RootMutationType = new GraphQLObjectType({
               if(docs!=undefined && docs.length==0){
                 var newVacancy=new Vacancies({vacancyPost:args.vacancyPost,noOfOpenings:args.noOfOpenings,stipend:args.stipend,perks:args.perks,
                     duration:args.duration,aboutPost:args.aboutPost,skillsRequired:args.skillsRequired,
-                    status:args.status,userId:req.user.userId
+                    status:args.status,userId:req.user.userId,rounds:args.rounds
                 })
                 newVacancy.vacancyId=newVacancy._id 
                 newVacancy.save();
@@ -417,6 +422,7 @@ const RootMutationType = new GraphQLObjectType({
             aboutPost: { type: GraphQLNonNull(GraphQLString) },
             skillsRequired: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
             status: { type: GraphQLNonNull(GraphQLBoolean) },
+            rounds : {type : GraphQLNonNull(new GraphQLList(GraphQLNonNull(new GraphQLList(GraphQLString))))}
         },
         resolve: (parent, args,req) => {
           if(req.user!=null&&req.user.permission=='admin'){
@@ -573,6 +579,7 @@ const RootMutationType = new GraphQLObjectType({
           vacancyId: { type: GraphQLNonNull(GraphQLID) },
           projectsLinks: { type: new GraphQLList(GraphQLString) },
           githubId: { type: GraphQLNonNull(GraphQLString)},
+          roundsAnswers : {type : GraphQLNonNull(new GraphQLList(GraphQLNonNull(new GraphQLList(GraphQLString))))}
         },
         resolve: (parent, args,req) => {
           if(req.user!=null&&req.user.permission=='candidate'){
@@ -582,6 +589,7 @@ const RootMutationType = new GraphQLObjectType({
                   vacancyId:args.vacancyId,
                   projectsLinks:args.projectsLinks,
                   githubId:args.githubId,
+                  roundsAnswers:args,roundsAnswers
                 })
 
                 Response.find({userId:req.user.userId,vacancyId:args.vacancyId},async (err,docs)=>{
