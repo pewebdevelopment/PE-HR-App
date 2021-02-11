@@ -7,6 +7,13 @@
     "_name": "_79060032"
   },
   {
+    "name": "adminSignup___en",
+    "path": "/adminSignup",
+    "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Internship\\\\PE-HR-App\\\\pages\\\\adminSignup.vue",
+    "chunkName": "pages/adminSignup",
+    "_name": "_4df24b90"
+  },
+  {
     "name": "index___ar",
     "path": "/ar",
     "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Internship\\\\PE-HR-App\\\\pages\\\\index.vue",
@@ -75,6 +82,13 @@
     "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Internship\\\\PE-HR-App\\\\pages\\\\addVancany.vue",
     "chunkName": "pages/addVancany",
     "_name": "_79060032"
+  },
+  {
+    "name": "adminSignup___ar",
+    "path": "/ar/adminSignup",
+    "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Internship\\\\PE-HR-App\\\\pages\\\\adminSignup.vue",
+    "chunkName": "pages/adminSignup",
+    "_name": "_4df24b90"
   },
   {
     "name": "candidate___ar",

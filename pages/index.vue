@@ -824,6 +824,7 @@ export default {
         variables: {
         },
       });
+      console.log(results)
       this.candidates=results.data.candidate
 
     },

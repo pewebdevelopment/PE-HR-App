@@ -12,7 +12,7 @@
 >{{ err }}</v-alert>
 </div>
   <form @submit.prevent="signUp">
-    <p class="h2 text-center mb-4">Candidate Sign up</p>
+    <p class="h2 text-center mb-4">Admin Sign up</p>
     <label for="defaultFormRegisterNameEx" class="grey-text">Your name</label>
     <input type="text"  v-model="userName" class="form-control"/>
     <br/>
@@ -46,7 +46,7 @@
         userName:"",
         email:"",
         password:"",
-        permission:"candidate",
+        permission:"admin",
         err:""
       }
     },

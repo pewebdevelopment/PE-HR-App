@@ -5,6 +5,7 @@ import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
 const _79060032 = () => interopDefault(import('..\\pages\\addVancany.vue' /* webpackChunkName: "pages/addVancany" */))
+const _4df24b90 = () => interopDefault(import('..\\pages\\adminSignup.vue' /* webpackChunkName: "pages/adminSignup" */))
 const _0df2734a = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages/index" */))
 const _987fdbe8 = () => interopDefault(import('..\\pages\\candidate.vue' /* webpackChunkName: "pages/candidate" */))
 const _36d72c66 = () => interopDefault(import('..\\pages\\candidateresponse.vue' /* webpackChunkName: "pages/candidateresponse" */))
@@ -36,6 +37,10 @@ export const routerOptions = {
     path: "/addVancany",
     component: _79060032,
     name: "addVancany___en"
+  }, {
+    path: "/adminSignup",
+    component: _4df24b90,
+    name: "adminSignup___en"
   }, {
     path: "/ar",
     component: _0df2734a,
@@ -76,6 +81,10 @@ export const routerOptions = {
     path: "/ar/addVancany",
     component: _79060032,
     name: "addVancany___ar"
+  }, {
+    path: "/ar/adminSignup",
+    component: _4df24b90,
+    name: "adminSignup___ar"
   }, {
     path: "/ar/candidate",
     component: _987fdbe8,

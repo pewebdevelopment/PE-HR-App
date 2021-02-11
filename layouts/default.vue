@@ -46,7 +46,26 @@
         >
         </sidebar-item>
         </div>
-
+        <div v-if =" role === 'candidate' ">
+        <sidebar-item 
+          :link="{
+            name: 'vacancy',
+            icon: 'tim-icons icon-atom',
+            path: '/candidatevacancy',
+          }"
+        >
+        </sidebar-item>
+        </div>
+        <div v-if =" role === 'admin'||role==='super-admin' ">
+        <sidebar-item 
+          :link="{
+            name: 'vacancy',
+            icon: 'tim-icons icon-atom',
+            path: '/Vacancies',
+          }"
+        >
+        </sidebar-item>
+        </div>
         <!--
         <sidebar-item
           :link="{
