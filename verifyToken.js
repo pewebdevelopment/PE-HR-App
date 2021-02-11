@@ -6,6 +6,7 @@ module.exports=(authorization)=>{
 
     return new Promise((resolve,reject)=>{
         const authHeader = authorization;
+        console.log(authHeader);
        if (authHeader) {
         const token = authHeader
         if(token){
@@ -26,7 +27,7 @@ module.exports=(authorization)=>{
                     pems[key_id] = pem;
                 }
                 var decodedJwt = jwt.decode(token, {complete: true});
-                if (!decodedJwt) {
+                if (!decodedJwt) { 
                     resolve(null);
                 }
                 else{
@@ -34,11 +35,13 @@ module.exports=(authorization)=>{
                 var kid = decodedJwt.header.kid;
                 var pem = pems[kid];
                 if (!pem) {
+                    console.log("hello");
                     resolve(null);
                 }
                 else{
                 jwt.verify(token, pem, function(err, payload) {
                     if(err) {
+                        
                         resolve(null);
                     } else {
                         //console.log("Valid Token.");

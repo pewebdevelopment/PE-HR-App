@@ -43,6 +43,14 @@ var vacanciesSchema = mongoose.Schema({
         type:Boolean,
         required:true
     },
+    rounds :[{
+
+        questions :[{
+            required:true,
+            type : String,
+            required : true
+        }]
+    }]
    
 })
 

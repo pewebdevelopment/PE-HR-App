@@ -43,7 +43,14 @@ var responseSchema = mongoose.Schema({
     candidateEmail:{
         type:String,
         required:true
-    }
+    },
+    roundsAnswers:[{
+        answers:[{
+            type:String,
+            required:true
+        }]
+    }]
+  
 })
 
 module.exports = mongoose.model('responses', responseSchema);
