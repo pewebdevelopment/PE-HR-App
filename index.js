@@ -15,16 +15,15 @@ const config = require('./config/env')
 
 app.use(cors());
 const validateToken=async (req,res,next)=>{
-   console.log(req.headers.authorization)
+   //console.log(req.headers.authorization)
    var currentUser=await verifyToken(req.headers.authorization);
-   console.log(currentUser)
+   //console.log(currentUser)
    if(currentUser!=null){
-    await user.findOne({email:currentUser.email},(err,docs)=>{
-            req.user=docs;
-            console.log(req.user)
-            next()
-    })
-    }
+            await user.findOne({email:currentUser.email},(err,docs)=>{
+                req.user=docs;
+                console.log(req.user) 
+                next()
+            })    }
     else{
         req.user=null
         next()

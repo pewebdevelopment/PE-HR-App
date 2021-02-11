@@ -41,7 +41,7 @@ module.exports=(authorization)=>{
                     if(err) {
                         resolve(null);
                     } else {
-                        console.log("Valid Token.");
+                        //console.log("Valid Token.");
                         resolve(payload);
                     }
                 });
