@@ -11,17 +11,16 @@ import App from './App.js'
 import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 /* Plugins */
-import nuxt_plugin_http_a15835da from 'nuxt_plugin_http_a15835da' // Source: .\\http.js (mode: 'all')
-import nuxt_plugin_axios_24e4859d from 'nuxt_plugin_axios_24e4859d' // Source: .\\axios.js (mode: 'all')
-import nuxt_plugin_apollomodule_ce6b372e from 'nuxt_plugin_apollomodule_ce6b372e' // Source: .\\apollo-module.js (mode: 'all')
-import nuxt_plugin_bootstrapvue_b7bf1268 from 'nuxt_plugin_bootstrapvue_b7bf1268' // Source: .\\bootstrap-vue.js (mode: 'all')
-import nuxt_plugin_pluginrouting_0ac4eb7c from 'nuxt_plugin_pluginrouting_0ac4eb7c' // Source: .\\nuxt-i18n\\plugin.routing.js (mode: 'all')
-import nuxt_plugin_pluginmain_2fac1173 from 'nuxt_plugin_pluginmain_2fac1173' // Source: .\\nuxt-i18n\\plugin.main.js (mode: 'all')
-import nuxt_plugin_workbox_00abf10e from 'nuxt_plugin_workbox_00abf10e' // Source: .\\workbox.js (mode: 'client')
-import nuxt_plugin_metaplugin_35f672f9 from 'nuxt_plugin_metaplugin_35f672f9' // Source: .\\pwa\\meta.plugin.js (mode: 'all')
-import nuxt_plugin_iconplugin_3a9e186d from 'nuxt_plugin_iconplugin_3a9e186d' // Source: .\\pwa\\icon.plugin.js (mode: 'all')
+
+import nuxt_plugin_axios_1e72c4d9 from 'nuxt_plugin_axios_1e72c4d9' // Source: .\\axios.js (mode: 'all')
+import nuxt_plugin_apollomodule_8898b0b6 from 'nuxt_plugin_apollomodule_8898b0b6' // Source: .\\apollo-module.js (mode: 'all')
+import nuxt_plugin_bootstrapvue_71ec8bf0 from 'nuxt_plugin_bootstrapvue_71ec8bf0' // Source: .\\bootstrap-vue.js (mode: 'all')
+import nuxt_plugin_pluginrouting_78268ac0 from 'nuxt_plugin_pluginrouting_78268ac0' // Source: .\\nuxt-i18n\\plugin.routing.js (mode: 'all')
+import nuxt_plugin_pluginmain_02ac58af from 'nuxt_plugin_pluginmain_02ac58af' // Source: .\\nuxt-i18n\\plugin.main.js (mode: 'all')
+import nuxt_plugin_workbox_62b53096 from 'nuxt_plugin_workbox_62b53096' // Source: .\\workbox.js (mode: 'client')
+import nuxt_plugin_metaplugin_439bd735 from 'nuxt_plugin_metaplugin_439bd735' // Source: .\\pwa\\meta.plugin.js (mode: 'all')
+import nuxt_plugin_iconplugin_48437ca9 from 'nuxt_plugin_iconplugin_48437ca9' // Source: .\\pwa\\icon.plugin.js (mode: 'all')
 import nuxt_plugin_dashboardplugin_111ada96 from 'nuxt_plugin_dashboardplugin_111ada96' // Source: ..\\plugins\\dashboard-plugin.js (mode: 'all')
-import nuxt_plugin_amplify_900d1ace from 'nuxt_plugin_amplify_900d1ace' // Source: ..\\plugins\\amplify.js (mode: 'client')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -67,7 +66,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"title":"Nuxt Black Dashboard","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Nuxt Black Dashboard"},{"hid":"charset","charset":"utf-8"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"nuxt-black-dashboard"},{"hid":"author","name":"author","content":"creativetim"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"nuxt-black-dashboard"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"nuxt-black-dashboard"},{"hid":"og:description","name":"og:description","property":"og:description","content":"Nuxt Black Dashboard"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.png"},{"rel":"stylesheet","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Poppins:200,300,400,600,700,800"},{"rel":"stylesheet","href":"https:\u002F\u002Fcdnjs.cloudflare.com\u002Fajax\u002Flibs\u002Ffont-awesome\u002F5.10.2\u002Fcss\u002Fall.min.css"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.23098305.json","hid":"manifest"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.2b233c.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.2b233c.png","sizes":"512x512"}],"bodyAttrs":{"class":""},"style":[],"script":[],"htmlAttrs":{"lang":"en"}},
+    head: {"title":"Nuxt Black Dashboard","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Nuxt Black Dashboard"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.png"},{"rel":"stylesheet","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Poppins:200,300,400,600,700,800"},{"rel":"stylesheet","href":"https:\u002F\u002Fcdnjs.cloudflare.com\u002Fajax\u002Flibs\u002Ffont-awesome\u002F5.10.2\u002Fcss\u002Fall.min.css"}],"bodyAttrs":{"class":""},"style":[],"script":[]},
 
     router,
     nuxt: {
@@ -181,37 +180,36 @@ async function createApp(ssrContext, config = {}) {
   }
   // Plugin execution
 
-  if (typeof nuxt_plugin_http_a15835da === 'function') {
-    await nuxt_plugin_http_a15835da(app.context, inject)
-
+  if (typeof nuxt_plugin_axios_1e72c4d9 === 'function') {
+    await nuxt_plugin_axios_1e72c4d9(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_apollomodule_5c52fd14 === 'function') {
-    await nuxt_plugin_apollomodule_5c52fd14(app.context, inject)
+  if (typeof nuxt_plugin_apollomodule_8898b0b6 === 'function') {
+    await nuxt_plugin_apollomodule_8898b0b6(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_bootstrapvue_45a6d84e === 'function') {
-    await nuxt_plugin_bootstrapvue_45a6d84e(app.context, inject)
+  if (typeof nuxt_plugin_bootstrapvue_71ec8bf0 === 'function') {
+    await nuxt_plugin_bootstrapvue_71ec8bf0(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_pluginrouting_2f555648 === 'function') {
-    await nuxt_plugin_pluginrouting_2f555648(app.context, inject)
+  if (typeof nuxt_plugin_pluginrouting_78268ac0 === 'function') {
+    await nuxt_plugin_pluginrouting_78268ac0(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_pluginmain_19332413 === 'function') {
-    await nuxt_plugin_pluginmain_19332413(app.context, inject)
+  if (typeof nuxt_plugin_pluginmain_02ac58af === 'function') {
+    await nuxt_plugin_pluginmain_02ac58af(app.context, inject)
   }
 
-  if (process.client && typeof nuxt_plugin_workbox_07203246 === 'function') {
-    await nuxt_plugin_workbox_07203246(app.context, inject)
+  if (process.client && typeof nuxt_plugin_workbox_62b53096 === 'function') {
+    await nuxt_plugin_workbox_62b53096(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_metaplugin_de44594e === 'function') {
-    await nuxt_plugin_metaplugin_de44594e(app.context, inject)
+  if (typeof nuxt_plugin_metaplugin_439bd735 === 'function') {
+    await nuxt_plugin_metaplugin_439bd735(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_iconplugin_d4f50e66 === 'function') {
-    await nuxt_plugin_iconplugin_d4f50e66(app.context, inject)
+  if (typeof nuxt_plugin_iconplugin_48437ca9 === 'function') {
+    await nuxt_plugin_iconplugin_48437ca9(app.context, inject)
   }
 
   if (typeof nuxt_plugin_dashboardplugin_111ada96 === 'function') {
