@@ -17,6 +17,7 @@ const _f3f34a5c = () => interopDefault(import('..\\pages\\user.vue' /* webpackCh
 const _603c2bc2 = () => interopDefault(import('..\\pages\\Vacancies.vue' /* webpackChunkName: "pages/Vacancies" */))
 const _1aec308b = () => interopDefault(import('..\\pages\\GeneralViews\\NotFoundPage.vue' /* webpackChunkName: "pages/GeneralViews/NotFoundPage" */))
 
+
 // TODO: remove in Nuxt 3
 const emptyFn = () => {}
 const originalPush = Router.prototype.push
@@ -35,7 +36,7 @@ export const routerOptions = {
 
   routes: [{
     path: "/addVancany",
-    component: _79060032,
+    component: _1b67c8b9,
     name: "addVancany___en"
   }, {
     path: "/adminSignup",
@@ -43,43 +44,43 @@ export const routerOptions = {
     name: "adminSignup___en"
   }, {
     path: "/ar",
-    component: _0df2734a,
+    component: _06ad8574,
     name: "index___ar"
   }, {
     path: "/candidate",
-    component: _987fdbe8,
+    component: _034f9ca5,
     name: "candidate___en"
   }, {
     path: "/candidateresponse",
-    component: _36d72c66,
+    component: _943f6934,
     name: "candidateresponse___en"
   }, {
     path: "/candidatevacancy",
-    component: _7c8a4f9f,
+    component: _54415234,
     name: "candidatevacancy___en"
   }, {
     path: "/login",
-    component: _7aa32d1c,
+    component: _5f55aeea,
     name: "login___en"
   }, {
     path: "/notifications",
-    component: _aac8931e,
+    component: _3bc24c8a,
     name: "notifications___en"
   }, {
     path: "/signup",
-    component: _410e9c42,
+    component: _f2ac5434,
     name: "signup___en"
   }, {
     path: "/user",
-    component: _f3f34a5c,
+    component: _656ed499,
     name: "user___en"
   }, {
     path: "/Vacancies",
-    component: _603c2bc2,
+    component: _a068934a,
     name: "Vacancies___en"
   }, {
     path: "/ar/addVancany",
-    component: _79060032,
+    component: _1b67c8b9,
     name: "addVancany___ar"
   }, {
     path: "/ar/adminSignup",
@@ -87,47 +88,47 @@ export const routerOptions = {
     name: "adminSignup___ar"
   }, {
     path: "/ar/candidate",
-    component: _987fdbe8,
+    component: _034f9ca5,
     name: "candidate___ar"
   }, {
     path: "/ar/candidateresponse",
-    component: _36d72c66,
+    component: _943f6934,
     name: "candidateresponse___ar"
   }, {
     path: "/ar/candidatevacancy",
-    component: _7c8a4f9f,
+    component: _54415234,
     name: "candidatevacancy___ar"
   }, {
     path: "/ar/login",
-    component: _7aa32d1c,
+    component: _5f55aeea,
     name: "login___ar"
   }, {
     path: "/ar/notifications",
-    component: _aac8931e,
+    component: _3bc24c8a,
     name: "notifications___ar"
   }, {
     path: "/ar/signup",
-    component: _410e9c42,
+    component: _f2ac5434,
     name: "signup___ar"
   }, {
     path: "/ar/user",
-    component: _f3f34a5c,
+    component: _656ed499,
     name: "user___ar"
   }, {
     path: "/ar/Vacancies",
-    component: _603c2bc2,
+    component: _a068934a,
     name: "Vacancies___ar"
   }, {
     path: "/GeneralViews/NotFoundPage",
-    component: _1aec308b,
+    component: _583459c9,
     name: "GeneralViews-NotFoundPage___en"
   }, {
     path: "/ar/GeneralViews/NotFoundPage",
-    component: _1aec308b,
+    component: _583459c9,
     name: "GeneralViews-NotFoundPage___ar"
   }, {
     path: "/",
-    component: _0df2734a,
+    component: _06ad8574,
     name: "index___en"
   }],
 

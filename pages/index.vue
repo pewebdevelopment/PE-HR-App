@@ -789,6 +789,7 @@ export default {
         },
       });
             //this.$router.push("/");
+
             this.$router.go(0);
     },
     async get() {
@@ -1041,6 +1042,7 @@ export default {
       });
       this.hidemodal();
       //this.$router.push("/");
+
       this.$router.go(0);
     },
   },

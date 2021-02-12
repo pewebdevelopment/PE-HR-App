@@ -67,7 +67,6 @@ export default {
   */
   plugins: [
     `~/plugins/dashboard-plugin.js`,
-    { src: '~/plugins/amplify.js', mode: 'client' }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -81,8 +80,8 @@ export default {
     'nuxt-i18n',
     '@nuxtjs/bootstrap-vue',
     '@nuxtjs/apollo',
-    '@nuxtjs/axios',
-     '@nuxt/http',
+
+    '@nuxtjs/axios'
   ],
   apollo: {
     clientConfigs: {
