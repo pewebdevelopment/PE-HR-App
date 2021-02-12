@@ -1,8 +1,6 @@
 //add a vacancy
 mutation{
-  addVacancy(vacancyPost:"webdev",noOfOpenings:10,stipend:1000,perks:["letter","certificate"],duration:3,startingDate:10000,aboutPost:"dd",skillsRequired:["sd","dd"],whoCanApply:[",,,","kmm"],status:false,assessment:["new","ewe"]){
-    vacancyPost
-  }
+  addVacancy(vacancyPost:"Rdev",noOfOpenings:2,stipend:1000,perks:["letter"],duration:10,aboutPost:"ste",skillsRequired:["lkmk","lml,"],status:true,rounds:[["sra","lklk"],["lknjn","fdfd"]],deadlineDate:"22/01/2021",startDate:"1/1/2021")
 }
 //update vacancy
 mutation{

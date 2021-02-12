@@ -21,6 +21,14 @@ var vacanciesSchema = mongoose.Schema({
         type:Number,
         required:true
     },
+    startDate:{
+        type:String,
+        required:true
+    },
+    deadlineDate:{
+        type:String,
+        required:true
+    },
     perks:[{
         type:String,
         required:true
@@ -44,9 +52,7 @@ var vacanciesSchema = mongoose.Schema({
         required:true
     },
     rounds :[{
-
         questions :[{
-            required:true,
             type : String,
             required : true
         }]

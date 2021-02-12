@@ -382,7 +382,7 @@ const RootMutationType = new GraphQLObjectType({
         })
       },
       addVacancy: {
-        type: VacancyType,
+        type:GraphQLInt,
         description: 'Add a vacancy',
         args: {
             vacancyPost: { type: GraphQLNonNull(GraphQLString) },
@@ -393,7 +393,9 @@ const RootMutationType = new GraphQLObjectType({
             aboutPost: { type: GraphQLNonNull(GraphQLString) },
             skillsRequired: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
             status: { type: GraphQLNonNull(GraphQLBoolean) },
-            rounds : {type : GraphQLNonNull(new GraphQLList(GraphQLNonNull(new GraphQLList(GraphQLString))))}
+            rounds : {type : GraphQLNonNull(new GraphQLList(GraphQLNonNull(new GraphQLList(GraphQLString))))},
+            deadlineDate:{type:GraphQLNonNull(GraphQLString)},
+            startDate:{type:GraphQLNonNull(GraphQLString)}
         },
         resolve: async (parent, args,req) => {
             if(req.user!=null&&(req.user.permission=='admin'||req.user.permission=='super-admin')){
@@ -401,7 +403,7 @@ const RootMutationType = new GraphQLObjectType({
               if(docs!=undefined && docs.length==0){
                 var newVacancy=new Vacancies({vacancyPost:args.vacancyPost,noOfOpenings:args.noOfOpenings,stipend:args.stipend,perks:args.perks,
                     duration:args.duration,aboutPost:args.aboutPost,skillsRequired:args.skillsRequired,
-                    status:args.status,userId:req.user.userId,rounds:args.rounds
+                    status:args.status,userId:req.user.userId,rounds:args.rounds,startDate:args.startDate,deadlineDate:args.deadlineDate
                 })
                 newVacancy.vacancyId=newVacancy._id 
                 newVacancy.save();
