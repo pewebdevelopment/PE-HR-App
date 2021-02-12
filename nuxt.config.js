@@ -80,6 +80,7 @@ export default {
     'nuxt-i18n',
     '@nuxtjs/bootstrap-vue',
     '@nuxtjs/apollo',
+
     '@nuxtjs/axios'
   ],
   apollo: {

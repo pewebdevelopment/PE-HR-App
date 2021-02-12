@@ -379,6 +379,8 @@ export default {
           status: this.Upstatus,
         },
       });
+      //this.$router.push("/");
+
       this.$router.go(0);
       this.hidemodal();
     },

@@ -108,8 +108,7 @@
         </b-modal>
       </b-container>
     </card>
-    <b-button sm="3" variant="info" @click="displayPage()"
-                      >view vacancies</b-button>
+    
   </div>
 </template>
 
@@ -197,14 +196,6 @@ export default {
     }
   },
   methods: {
-    async displayPage(){
-      if(localStorage.getItem('access')=='candidate'){
-            this.$router.push("/candidatevacancy");
-      }
-      else{
-            this.$router.push("/Vacancies");
-      }
-    },
     async responseList() {
       const results = await this.$apollo.mutate({
         mutation: gql`
