@@ -434,15 +434,18 @@ const RootMutationType = new GraphQLObjectType({
             perks: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
             duration: { type: GraphQLNonNull(GraphQLInt) },
             aboutPost: { type: GraphQLNonNull(GraphQLString) },
+            deadlineDate:{ type: GraphQLNonNull(GraphQLString) },
+            startDate:{ type: GraphQLNonNull(GraphQLString) },
             skillsRequired: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
             status: { type: GraphQLNonNull(GraphQLBoolean) },
             rounds : {type : GraphQLNonNull(new GraphQLList(GraphQLNonNull(new GraphQLList(GraphQLString))))}
         },
         resolve: (parent, args,req) => {
           if(req.user!=null&&req.user.permission=='admin'){
+            var d = Date.parse(args.deadlineDate);
             const vacancy = {vacancyPost:args.vacancyPost,noOfOpenings:args.noOfOpenings,stipend:args.stipend,perks:args.perks,
               duration:args.duration,aboutPost:args.aboutPost,skillsRequired:args.skillsRequired,
-              status:args.status
+              status:args.status,startDate:args.startDate,deadlineDate:args.deadlineDate,deadline:d,rounds:args.rounds
             }
             Vacancies.updateOne({_id:args.vacancyId,userId:req.user.userId},{$set:vacancy},(err,docs)=>{
               if(docs!=undefined && docs.length>0)
@@ -451,9 +454,10 @@ const RootMutationType = new GraphQLObjectType({
                   return 0
           })
           }else if(req.user!=null&&req.user.permission=='super-admin'){
+            var d = Date.parse(args.deadlineDate);
             const vacancy = {vacancyPost:args.vacancyPost,noOfOpenings:args.noOfOpenings,stipend:args.stipend,perks:args.perks,
               duration:args.duration,aboutPost:args.aboutPost,skillsRequired:args.skillsRequired,
-              status:args.status
+              status:args.status,startDate:args.startDate,deadlineDate:args.deadlineDate,deadline:d,rounds:args.rounds
             }
             Vacancies.updateOne({_id:args.vacancyId},{$set:vacancy},(err,docs)=>{
               if(docs!=undefined && docs.length>0)
