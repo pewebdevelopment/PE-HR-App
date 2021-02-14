@@ -147,23 +147,17 @@
       <div v-for="(round,index) in rounds" :key="index">
         <b-row class="my-1">
         <b-col sm="2">
-          <label for="input-default">Round Title</label>
+          <label for="input-default">{{"Round "+(index+1)}}</label>
         </b-col>
         <b-col sm="7">
-          <b-form-input
-            required
-            v-model="round.name"
-            type="text"
-            id="input-default"
-            placeholder="Enter Round Title"
-          ></b-form-input>
+          
           <div>
-            <b-button class="button btn-primary" @click="addQuestion(index)">Add Question</b-button>
+            <b-button class="button btn-primary" @click="addQuestion(index)">{{"Add questions for round "+(index+1)}}</b-button>
           </div>
           <div v-for="(question,index1,) in round.questions" :key="index1">
                   <b-row class="my-1">
               <b-col sm="2">
-                <label for="input-default">Question</label>
+                <label for="input-default">{{"Question "+(index1+1)}}</label>
               </b-col>
               <b-col sm="7">
                 <b-form-input
@@ -205,7 +199,7 @@ export default {
   data() {
     return {
       rounds: [],
-      roundCount:0,
+      roundsData:[],
       vacancyPost: "",
       noOfOpenings: undefined,
       stipend: undefined,
@@ -221,18 +215,16 @@ export default {
       value3: "",
     };
   },
+  
   name: "addVacancy",
   methods: {
     async addQuestion(index){
-      console.log(this.rounds.length,this.rounds[index].questions.length);
-      var txtCount=this.rounds[index].questions.length;
-      var id='txt1_'+txtCount;
-      this.rounds[index].questions.push({id,value:""});
+      
+      this.rounds[index].questions.push({value:""});
     },
     async  addRound() {
-      var txtCount=this.roundCount++;
-      var id='txt_'+txtCount;
-      this.rounds.push({ title: "first", description: "textbox1", id, name:"",questions:[] });
+     
+      this.rounds.push({questions:[]});
     },
     async onSubmit() {
       if (this.value2 && this.value3) {
@@ -243,7 +235,12 @@ export default {
       } else if (this.value2) {
         this.perks.push(this.value2);
       }
-      console.log(this.perks);
+      for(var i=0;i<this.rounds.length;i++){
+        this.roundsData.push([])
+        for(var j=0;j<this.rounds[i].questions.length;j++){
+          this.roundsData[i].push(this.rounds[i].questions[j].value)
+        }
+      }
       const result = await this.$apollo.mutate({
         mutation: gql`
           mutation(
@@ -255,6 +252,9 @@ export default {
             $aboutPost: String!
             $skillsRequired: [String]!
             $status: Boolean!
+            $startDate:String!
+            $deadlineDate:String!
+            $roundsData:[[String]!]!
           ) {
             addVacancy(
               vacancyPost: $vacancyPost
@@ -265,6 +265,9 @@ export default {
               aboutPost: $aboutPost
               skillsRequired: $skillsRequired
               status: $status
+              startDate:$startDate
+              deadlineDate:$deadlineDate
+              rounds:$roundsData
             ) 
           }
         `,
@@ -278,9 +281,12 @@ export default {
           aboutPost: this.aboutPost,
           skillsRequired: this.skillsRequired,
           status: this.status,
+          startDate:this.startDate,
+          deadlineDate:this.deadlineDate,
+          roundsData:this.roundsData
         },
       });
-      console.log(result);
+      console.log(this.roundsData);
       this.$router.push("/vacancies");
     },
   },

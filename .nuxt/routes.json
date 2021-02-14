@@ -14,6 +14,13 @@
     "_name": "_8469c350"
   },
   {
+    "name": "applyVacancy___en",
+    "path": "/applyVacancy",
+    "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Paathshala-Intern\\\\PE-HR-APP\\\\FrontEnd\\\\PE-HR-App\\\\pages\\\\applyVacancy.vue",
+    "chunkName": "pages/applyVacancy",
+    "_name": "_0fe56328"
+  },
+  {
     "name": "index___ar",
     "path": "/ar",
     "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Paathshala-Intern\\\\PE-HR-APP\\\\FrontEnd\\\\PE-HR-App\\\\pages\\\\index.vue",
@@ -56,6 +63,13 @@
     "_name": "_f0ea118e"
   },
   {
+    "name": "showAnswers___en",
+    "path": "/showAnswers",
+    "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Paathshala-Intern\\\\PE-HR-APP\\\\FrontEnd\\\\PE-HR-App\\\\pages\\\\showAnswers.vue",
+    "chunkName": "pages/showAnswers",
+    "_name": "_42a9b96e"
+  },
+  {
     "name": "signup___en",
     "path": "/signup",
     "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Paathshala-Intern\\\\PE-HR-APP\\\\FrontEnd\\\\PE-HR-App\\\\pages\\\\signup.vue",
@@ -91,6 +105,13 @@
     "_name": "_8469c350"
   },
   {
+    "name": "applyVacancy___ar",
+    "path": "/ar/applyVacancy",
+    "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Paathshala-Intern\\\\PE-HR-APP\\\\FrontEnd\\\\PE-HR-App\\\\pages\\\\applyVacancy.vue",
+    "chunkName": "pages/applyVacancy",
+    "_name": "_0fe56328"
+  },
+  {
     "name": "candidate___ar",
     "path": "/ar/candidate",
     "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Paathshala-Intern\\\\PE-HR-APP\\\\FrontEnd\\\\PE-HR-App\\\\pages\\\\candidate.vue",
@@ -124,6 +145,13 @@
     "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Paathshala-Intern\\\\PE-HR-APP\\\\FrontEnd\\\\PE-HR-App\\\\pages\\\\notifications.vue",
     "chunkName": "pages/notifications",
     "_name": "_f0ea118e"
+  },
+  {
+    "name": "showAnswers___ar",
+    "path": "/ar/showAnswers",
+    "component": "C:\\\\Users\\\\Stephen Raj\\\\Documents\\\\Paathshala-Intern\\\\PE-HR-APP\\\\FrontEnd\\\\PE-HR-App\\\\pages\\\\showAnswers.vue",
+    "chunkName": "pages/showAnswers",
+    "_name": "_42a9b96e"
   },
   {
     "name": "signup___ar",

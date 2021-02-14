@@ -17,9 +17,9 @@
                 <hr />
                 <b-row>
                   <b-col sm="3">Start Date</b-col>
-                  <b-col sm="3"><h5>20/01/2021</h5></b-col>
+                  <b-col sm="3"><h5>{{vac.startDate}}</h5></b-col>
                   <b-col sm="3">Apply by </b-col>
-                  <b-col sm="3"><h5>10/01/2021</h5></b-col>
+                  <b-col sm="3"><h5>{{vac.deadlineDate}}</h5></b-col>
                 </b-row>
                 <br />
                 <b-row>
@@ -54,8 +54,8 @@
                 <b-row>
                   <b-col sm="9"></b-col>
                   <b-col sm="3">
-                    <b-button sm="2" variant="info" @click="showmodal(vac.vacancyId)"
-                      >Apply</b-button
+                    <b-button sm="2" variant="info" :disabled=" Number(vac.deadline)>Date.now() ? false :true" @click="showResponsePage(vac.vacancyId)"
+                      >{{buttonText}}</b-button
                     >
                   </b-col>
                 </b-row>
@@ -66,44 +66,7 @@
       </ul>
       <div></div>
     </div>
-    <b-modal ref="updateform" body-bg-variant="dark" hide-footer>
-      <b-row class="my-1">
-        <b-col sm="2">
-          <label for="input-default">Github</label>
-        </b-col>
-        <b-col sm="10">
-          <b-form-input
-            v-model="githubid"
-            type="text"
-            placeholder="Enter github id"
-          ></b-form-input>
-        </b-col>
-      </b-row>
-      <b-row class="my-1">
-        <b-col sm="2">
-          <label for="input-default">Projects:</label>
-        </b-col>
-        <b-col sm="10">
-          <b-form-tags
-            required
-            input-id="tags-pills"
-            v-model="project"
-            tag-variant="dark"
-            tag-pills
-            size="lg"
-            separator=" "
-            placeholder="Enter new projects separated by space"
-          ></b-form-tags>
-        </b-col>
-      </b-row>
-      <b-button class="mt-2" variant="outline-success" @click="addresponse" block
-        >Submit</b-button
-      >
-
-      <b-button class="mt-3" variant="outline-danger" block @click="hidemodal"
-        >Cancel</b-button
-      >
-    </b-modal>
+   
   </div>
 </template>
 
@@ -127,14 +90,13 @@ export default {
       Upvalue2: "",
       Upvalue3: "",
       upvacancy: [],
-      project: [],
-      vcancyid: "",
-      githubid: "",
+      buttonText:"Apply",
+      
     };
   },
   mounted() {
     if(localStorage.getItem('access')&&localStorage.getItem('idToken')&&localStorage.getItem('accessToken')&&localStorage.getItem('refreshToken')){
-
+      
     }
     else{
       this.$router.push("/login");
@@ -149,6 +111,9 @@ export default {
       query getVacancies {
         vacancies {
           vacancyId
+          startDate
+          deadlineDate
+          deadline
           vacancyPost
           noOfOpenings
           stipend
@@ -161,38 +126,10 @@ export default {
     `,
   },
   methods: {
-    showmodal(id) {
-      this.vcancyid = id;
-      this.$refs["updateform"].show();
-    },
-    hidemodal() {
-      this.$refs["updateform"].hide();
-    },
-    async addresponse() {
-      const results = await this.$apollo.mutate({
-        mutation: gql`
-          mutation(
-            $vacancyId: ID!
-            $githubId: String!
-            $projectsLinks: [String]!
-          ) {
-            addResponse(
-              vacancyId: $vacancyId
-              githubId: $githubId
-              projectsLinks: $projectsLinks
-            ) 
-          }
-        `,
-        variables: {
-          vacancyId: this.vcancyid,
-          githubId: this.githubid,
-          projectsLinks: this.project,
-        },
-      });
-      console.log(results);
-      this.hidemodal();
-      this.$router.push("/candidateresponse");
-    },
+    
+   async showResponsePage(id){
+     this.$router.push('/applyVacancy?vacancyId='+id)
+   }
   },
 };
 </script>

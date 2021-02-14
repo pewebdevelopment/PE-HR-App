@@ -277,7 +277,7 @@ export default {
         variables: {
         },
       });
-      console.log(results)
+      console.log("results")
       this.vacancies=results.data.adminVacancy
     },
     async getvacancy(id) {
