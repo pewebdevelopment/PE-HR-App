@@ -32,8 +32,11 @@ const VacancyType = new GraphQLObjectType({
       vacancyPost: { type: GraphQLNonNull(GraphQLString) },
       noOfOpenings: { type: GraphQLNonNull(GraphQLInt) },
       stipend: { type: GraphQLNonNull(GraphQLInt) },
+      startDate:{type:GraphQLNonNull(GraphQLString)},
+      deadlineDate:{type:GraphQLNonNull(GraphQLString)},
       perks: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
       duration: { type: GraphQLNonNull(GraphQLInt) },
+      deadline:{ type: GraphQLNonNull(GraphQLString)},
       aboutPost: { type: GraphQLNonNull(GraphQLString) },
       skillsRequired: { type: GraphQLNonNull(new GraphQLList(GraphQLString)) },
       status: { type: GraphQLNonNull(GraphQLBoolean)},
@@ -300,6 +303,7 @@ const RootMutationType = new GraphQLObjectType({
               resolve(Vacancies.find({userId:req.user.userId}))
             }
             else if(req.user!=null && req.user.permission=='super-admin'){
+              console.log("ste")
               resolve(Vacancies.find({}))
             }
             else{
@@ -319,7 +323,7 @@ const RootMutationType = new GraphQLObjectType({
         },
         resolve: (parent, args,req) =>{
           return new Promise((resolve,reject)=>{
-            if(req.user!=null && (req.user.permission=='admin'||req.user.permission=='super-admin')){
+            if(req.user!=null){
               resolve(Vacancies.findOne({_id:args.vacancyId}))
             }
             else{
@@ -374,12 +378,11 @@ const RootMutationType = new GraphQLObjectType({
         args: {
           responseId: { type: GraphQLNonNull(GraphQLID )}
         },
-        resolve: (parent, args) =>
-          Response.findOne({_id:args.responseId},(err,docs)=>{
-            if(err){
-              console.log(err)
-            }
+        resolve: (parent, args) =>{
+        return new Promise((resolve,reject)=>{
+          resolve(Response.findOne({_id:args.responseId}))
         })
+      }
       },
       addVacancy: {
         type:GraphQLInt,
@@ -398,12 +401,15 @@ const RootMutationType = new GraphQLObjectType({
             startDate:{type:GraphQLNonNull(GraphQLString)}
         },
         resolve: async (parent, args,req) => {
+          console.log("passed")
             if(req.user!=null&&(req.user.permission=='admin'||req.user.permission=='super-admin')){
+              console.log("passed")
             Vacancies.find({vacancyPost:args.vacancyPost},(err,docs)=>{
               if(docs!=undefined && docs.length==0){
+                var d = Date.parse(args.deadlineDate);
                 var newVacancy=new Vacancies({vacancyPost:args.vacancyPost,noOfOpenings:args.noOfOpenings,stipend:args.stipend,perks:args.perks,
                     duration:args.duration,aboutPost:args.aboutPost,skillsRequired:args.skillsRequired,
-                    status:args.status,userId:req.user.userId,rounds:args.rounds,startDate:args.startDate,deadlineDate:args.deadlineDate
+                    status:args.status,userId:req.user.userId,rounds:args.rounds,startDate:args.startDate,deadlineDate:args.deadlineDate,deadline:d
                 })
                 newVacancy.vacancyId=newVacancy._id 
                 newVacancy.save();
@@ -617,7 +623,7 @@ const RootMutationType = new GraphQLObjectType({
                   vacancyId:args.vacancyId,
                   projectsLinks:args.projectsLinks,
                   githubId:args.githubId,
-                  roundsAnswers:args,roundsAnswers
+                  roundsAnswers:args.roundsAnswers
                 })
 
                 Response.find({userId:req.user.userId,vacancyId:args.vacancyId},async (err,docs)=>{

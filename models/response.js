@@ -44,12 +44,12 @@ var responseSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    roundsAnswers:[{
-        answers:[{
+    roundsAnswers:[
+        [{
             type:String,
             required:true
         }]
-    }]
+    ]
   
 })
 
