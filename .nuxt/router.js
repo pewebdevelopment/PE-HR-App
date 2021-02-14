@@ -11,6 +11,7 @@ const _25874f23 = () => interopDefault(import('..\\pages\\index.vue' /* webpackC
 const _27bef6d4 = () => interopDefault(import('..\\pages\\candidate.vue' /* webpackChunkName: "pages/candidate" */))
 const _42e60695 = () => interopDefault(import('..\\pages\\candidateresponse.vue' /* webpackChunkName: "pages/candidateresponse" */))
 const _3aa40c52 = () => interopDefault(import('..\\pages\\candidatevacancy.vue' /* webpackChunkName: "pages/candidatevacancy" */))
+const _1f482722 = () => interopDefault(import('..\\pages\\editVacancy.vue' /* webpackChunkName: "pages/editVacancy" */))
 const _21a21b8c = () => interopDefault(import('..\\pages\\login.vue' /* webpackChunkName: "pages/login" */))
 const _f0ea118e = () => interopDefault(import('..\\pages\\notifications.vue' /* webpackChunkName: "pages/notifications" */))
 const _42a9b96e = () => interopDefault(import('..\\pages\\showAnswers.vue' /* webpackChunkName: "pages/showAnswers" */))
@@ -64,6 +65,10 @@ export const routerOptions = {
     component: _3aa40c52,
     name: "candidatevacancy___en"
   }, {
+    path: "/editVacancy",
+    component: _1f482722,
+    name: "editVacancy___en"
+  }, {
     path: "/login",
     component: _21a21b8c,
     name: "login___en"
@@ -111,6 +116,10 @@ export const routerOptions = {
     path: "/ar/candidatevacancy",
     component: _3aa40c52,
     name: "candidatevacancy___ar"
+  }, {
+    path: "/ar/editVacancy",
+    component: _1f482722,
+    name: "editVacancy___ar"
   }, {
     path: "/ar/login",
     component: _21a21b8c,

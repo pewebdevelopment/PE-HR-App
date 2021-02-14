@@ -770,11 +770,11 @@ export default {
   },
   methods: {
     async logout(){
+      localStorage.removeItem('reload')
       localStorage.removeItem('idToken')
       localStorage.removeItem('accessToken')
       localStorage.removeItem('refreshToken')
       localStorage.removeItem('access')
-      localStorage.removeItem('reload')
       this.$router.push("/login");
     },
     async ondelete(id) {

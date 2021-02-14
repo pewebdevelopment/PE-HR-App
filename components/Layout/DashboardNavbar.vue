@@ -92,19 +92,19 @@
         <template
           slot="title"
         >
-          <div class="photo"><img src="img/mike.jpg" /></div>
+          <div class="photo"><img src="/IMG_20210214_213612_622.jpg" /></div>
           <b class="caret d-none d-lg-block d-xl-block"></b>
           <p class="d-lg-none">Log out</p>
         </template>
         <li class="nav-link">
-          <a href="#" class="nav-item dropdown-item">Profile</a>
+          <a href="/" v-if="flag" class="nav-item dropdown-item">Profile</a>
         </li>
         <li class="nav-link">
           <a href="#" class="nav-item dropdown-item">Settings</a>
         </li>
         <div class="dropdown-divider"></div>
         <li class="nav-link">
-          <a href="#" class="nav-item dropdown-item">Log out</a>
+          <a @click="logout()" class="nav-item dropdown-item">{{buttonText}}</a>
         </li>
       </base-dropdown>
     </ul>
@@ -138,10 +138,30 @@ export default {
       activeNotifications: false,
       showMenu: false,
       searchModalVisible: false,
-      searchQuery: ''
+      searchQuery: '',
+      flag:false,
+      buttonText:"Log in"
     };
   },
+  mounted(){
+    var a=localStorage.getItem('access')||null
+    if(a!=null){
+      this.flag=true
+      this.buttonText="Log out"
+    }
+  },
   methods: {
+    async logout(){
+      if(localStorage.getItem('access')&&localStorage.getItem('idToken')&&localStorage.getItem('accessToken')&&localStorage.getItem('refreshToken')){
+        localStorage.removeItem('reload')
+        localStorage.removeItem('idToken')
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('refreshToken')
+        localStorage.removeItem('access')
+      }
+      console.log("new")
+      this.$router.push("/login");
+    },
     capitalizeFirstLetter(string) {
       if (!string || typeof string !== 'string') {
         return ''
