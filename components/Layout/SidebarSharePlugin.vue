@@ -26,7 +26,7 @@
         <li class="adjustments-line">
           <div class="togglebutton switch-change-color mt-3">
             <span class="label-switch label-left">LIGHT MODE</span>
-            <base-switch v-model="darkMode" @input="toggleMode"></base-switch>
+            <base-switch v-model="darkMode" @input="toggleMode" class='light-dark-button'></base-switch>
             <span class="label-switch">DARK MODE</span>
           </div>
         </li>
@@ -102,5 +102,13 @@
 
   .badge-vue {
     background-color: $vue;
+  }
+
+  .dropdown-menu{
+    padding-bottom: 50px;
+  }
+
+  .light-dark-button{
+    margin-right: 15px;
   }
 </style>
