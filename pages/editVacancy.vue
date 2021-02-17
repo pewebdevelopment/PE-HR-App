@@ -9,7 +9,7 @@
         <b-col sm="7">
           <b-form-input
             required
-            v-model="vacancyPost"
+            v-model="UpvacancyPost"
             type="text"
             id="input-default"
             placeholder="Enter vacancy post"
@@ -23,7 +23,7 @@
         <b-col sm="7">
           <b-form-input
             required
-            v-model="noOfOpenings"
+            v-model="UpnoOfOpenings"
             type="number"
             id="input-default"
             placeholder="Enter total openings"
@@ -37,7 +37,7 @@
         <b-col sm="7">
           <b-form-input
             required
-            v-model="stipend"
+            v-model="Upstipend"
             type="number"
             id="input-default"
             placeholder="Enter stipend per month"
@@ -54,7 +54,7 @@
       <b-row class="my-2">
         <b-col sm="2"></b-col>
         <b-col sm="1">
-          <b-form-checkbox v-if="value1" v-model="value2" value="Letter"
+          <b-form-checkbox v-if="value1"   v-model="Upvalue2" value="Letter"
             >Letter</b-form-checkbox
           >
         </b-col>
@@ -62,7 +62,7 @@
       <b-row class="my-3">
         <b-col sm="2"></b-col>
         <b-col sm="1">
-          <b-form-checkbox v-if="value1" v-model="value3" value="Certificate"
+          <b-form-checkbox v-if="value1" v-model="Upvalue3" value="Certificate"
             >Certificate</b-form-checkbox
           >
         </b-col>
@@ -75,7 +75,7 @@
         <b-col sm="7">
           <b-form-input
             required
-            v-model="duration"
+            v-model="Upduration"
             type="number"
             id="input-default"
             placeholder="Enter duration in months"
@@ -117,7 +117,7 @@
         <b-col sm="7">
           <b-form-textarea
             required
-            v-model="aboutPost"
+            v-model="UpaboutPost"
             id="textarea-default"
             placeholder="Enter post description"
           ></b-form-textarea>
@@ -132,7 +132,7 @@
           <b-form-tags
             required
             input-id="tags-pills"
-            v-model="skillsRequired"
+            v-model="UpskillsRequired"
             tag-variant="dark"
             tag-pills
             size="lg"
@@ -154,7 +154,7 @@
           <div>
             <b-button class="button btn-primary" @click="addQuestion(index)">{{"Add questions for round "+(index+1)}}</b-button>
           </div>
-          <div v-for="(question,index1,) in round.questions" :key="index1">
+          <div v-for="(question,index1) in rounds[index]" :key="index1">
                   <b-row class="my-1">
               <b-col sm="2">
                 <label for="input-default">{{"Question "+(index1+1)}}</label>
@@ -162,7 +162,7 @@
               <b-col sm="7">
                 <b-form-input
                   required
-                  v-model="question.value"
+                  v-model="rounds[index][index1]"
                   type="text"
                   id="input-default"
                   placeholder="Enter Question"
@@ -183,7 +183,7 @@
       <b-row class="my-1">
         <b-col sm="3"> </b-col>
         <b-col sm="3">
-          <b-button @click="onSubmit">Submit</b-button>
+          <b-button @click="updatevacancy()">Submit</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -198,52 +198,108 @@ export default {
   components: { index },
   data() {
     return {
-      rounds: [],
-      roundsData:[],
-      vacancyPost: "",
-      noOfOpenings: undefined,
-      stipend: undefined,
+      vacancID: undefined,
+      UpvacancyPost: undefined,
+      UpnoOfOpenings: undefined,
+      Upstipend: undefined,
       perks: [],
+      Upduration: undefined,
+      UpaboutPost: undefined,
+      UpskillsRequired: [],
       startDate:undefined,
       deadlineDate:undefined,
-      duration: undefined,
-      aboutPost: "",
-      skillsRequired: [],
-      status: true,
+      Upstatus: true,
       value1: false,
-      value2: "",
-      value3: "",
+      Upvalue2: "",
+      Upvalue3: "",
+      upvacancy: [],
+      rounds:[],
+      roundsData:[],
+      vacancyId:this.$router.currentRoute.query['vacancyId']
     };
   },
-  
-  name: "addVacancy",
+  mounted(){
+    this.getvacancy(this.vacancyId)
+  },
+  name: "editVacancy",
   methods: {
     async addQuestion(index){
       
-      this.rounds[index].questions.push({value:""});
+      this.rounds[index].push("");
     },
     async  addRound() {
      
-      this.rounds.push({questions:[]});
+      this.rounds.push([]);
     },
-    async onSubmit() {
-      if (this.value2 && this.value3) {
-        this.perks.push(this.value2);
-        this.perks.push(this.value3);
-      } else if (this.value3) {
-        this.perks.push(this.value3);
-      } else if (this.value2) {
-        this.perks.push(this.value2);
-      }
-      for(var i=0;i<this.rounds.length;i++){
-        this.roundsData.push([])
-        for(var j=0;j<this.rounds[i].questions.length;j++){
-          this.roundsData[i].push(this.rounds[i].questions[j].value)
+    async getvacancy(id) {
+      this.vacancID = id;
+      console.log(id);
+      this.upvacancy = await this.$apollo.mutate({
+        mutation: gql`
+          mutation($vacancyId: ID!) {
+            vacancy(vacancyId: $vacancyId) {
+              vacancyPost
+              noOfOpenings
+              stipend
+              perks
+              duration
+              aboutPost
+              skillsRequired
+              deadlineDate
+              startDate
+              rounds
+            }
+          }
+        `,
+        variables: {
+          vacancyId: id,
+        },
+      });
+        (this.startDate = this.upvacancy.data.vacancy.startDate),
+        (this.deadlineDate = this.upvacancy.data.vacancy.deadlineDate),
+        (this.UpvacancyPost = this.upvacancy.data.vacancy.vacancyPost),
+        (this.UpnoOfOpenings = this.upvacancy.data.vacancy.noOfOpenings),
+        (this.Upstipend = this.upvacancy.data.vacancy.stipend),
+        (this.perks = this.upvacancy.data.vacancy.perks),
+        (this.Upduration = this.upvacancy.data.vacancy.duration),
+        (this.UpaboutPost = this.upvacancy.data.vacancy.aboutPost),
+        (this.UpskillsRequired = this.upvacancy.data.vacancy.skillsRequired);
+      if (this.perks) {
+        this.value1 = true;
+        if (this.perks.length > 1) {
+          this.Upvalue2 = "Letter";
+          this.Upvalue3 = "Certificate";
+        } else if (this.perks[0] == "Letter") {
+          this.UPvalue2 = "Letter";
+        } else if (this.perks[0] == "Certificate") {
+          this.Upvalue3 = "Certificate";
         }
       }
-      const result = await this.$apollo.mutate({
+      (this.rounds=this.upvacancy.data.vacancy.rounds)
+        console.log(this.upvacancy)
+    },
+     async updatevacancy() {
+      console.log(this.vacancID);
+      console.log(this.UpnoOfOpenings);
+      console.log(this.UpvacancyPost);
+      console.log(this.Upstipend);
+      console.log(this.Upduration);
+      console.log(this.UpaboutPost);
+      console.log(this.UpskillsRequired);
+      console.log(this.perks);
+      this.perks = [];
+      if (this.Upvalue2 && this.Upvalue3) {
+        this.perks.push(this.Upvalue2);
+        this.perks.push(this.Upvalue3);
+      } else if (this.Upvalue3) {
+        this.perks.push(this.Upvalue3);
+      } else if (this.Upvalue2) {
+        this.perks.push(this.Upvalue2);
+      }
+      const results = await this.$apollo.mutate({
         mutation: gql`
           mutation(
+            $vacancyId: ID!
             $vacancyPost: String!
             $noOfOpenings: Int!
             $stipend: Int!
@@ -254,9 +310,10 @@ export default {
             $status: Boolean!
             $startDate:String!
             $deadlineDate:String!
-            $roundsData:[[String]!]!
+            $rounds:[[String]!]!
           ) {
-            addVacancy(
+            vacancyUpdate(
+              vacancyId: $vacancyId
               vacancyPost: $vacancyPost
               noOfOpenings: $noOfOpenings
               stipend: $stipend
@@ -265,31 +322,31 @@ export default {
               aboutPost: $aboutPost
               skillsRequired: $skillsRequired
               status: $status
-              startDate:$startDate
               deadlineDate:$deadlineDate
-              rounds:$roundsData
+              startDate:$startDate
+              rounds:$rounds
             ) 
           }
         `,
-         
         variables: {
-          vacancyPost: this.vacancyPost,
-          noOfOpenings: parseInt(this.noOfOpenings),
-          stipend: parseInt(this.stipend),
+          vacancyId: this.vacancyId,
+          vacancyPost: this.UpvacancyPost,
+          noOfOpenings: parseInt(this.UpnoOfOpenings),
+          stipend: parseInt(this.Upstipend),
           perks: this.perks,
-          duration: parseInt(this.duration),
-          aboutPost: this.aboutPost,
-          skillsRequired: this.skillsRequired,
-          status: this.status,
+          duration: parseInt(this.Upduration),
+          aboutPost: this.UpaboutPost,
+          skillsRequired: this.UpskillsRequired,
+          status: this.Upstatus,
           startDate:this.startDate,
           deadlineDate:this.deadlineDate,
-          roundsData:this.roundsData
+          rounds:this.rounds
         },
       });
-      console.log(this.roundsData);
-      this.$router.push("/vacancies");
-    },
-  },
+      this.$router.push("/Vacancies");
+
+    }
+  }
 };
 </script>
 <style></style>

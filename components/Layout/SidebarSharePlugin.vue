@@ -25,38 +25,13 @@
         <li class="header-title">Sidebar Mini</li>
         <li class="adjustments-line">
           <div class="togglebutton switch-change-color mt-3">
-            <span class="label-switch">LIGHT MODE</span>
+            <span class="label-switch label-left">LIGHT MODE</span>
             <base-switch v-model="darkMode" @input="toggleMode"></base-switch>
-            <span class="label-switch label-right">DARK MODE</span>
+            <span class="label-switch">DARK MODE</span>
           </div>
         </li>
 
-        <li class="button-container mt-4">
-          <a
-            href="https://www.creative-tim.com/learning-lab/nuxt/overview/black-dashboard"
-            target="_blank"
-            rel="noopener"
-            class="btn btn-default btn-block btn-round"
-          >
-            Documentation
-          </a>
-          <a
-            href="https://creative-tim.com/product/nuxt-black-dashboard"
-            target="_blank"
-            rel="noopener"
-            class="btn btn-primary btn-block btn-round"
-          >
-            Download Now
-          </a>
-          <a
-            href="https://creative-tim.com/product/nuxt-black-dashboard-pro"
-            target="_blank"
-            rel="noopener"
-            class="btn btn-info btn-block btn-round"
-          >
-            Upgrade to PRO
-          </a>
-        </li>
+        
       </ul>
     </div>
   </div>
@@ -75,7 +50,7 @@
     data() {
       return {
         sidebarMini: true,
-        darkMode: true,
+        darkMode: false,
         isOpen: false,
         sidebarColors: [
           { color: 'primary', active: false, value: 'primary' },
@@ -103,11 +78,13 @@
         this.toggleList(this.sidebarColors, item);
       },
       toggleMode(type) {
+        
         let docClasses = document.body.classList;
-        if (type) {
-          docClasses.remove('white-content');
-        } else {
+        console.log(docClasses);
+        if (!type) {
           docClasses.add('white-content');
+        } else {
+          docClasses.remove('white-content');
         }
       },
       minimizeSidebar() {

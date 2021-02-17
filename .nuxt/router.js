@@ -5,12 +5,16 @@ import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
 const _1b67c8b9 = () => interopDefault(import('../pages/addVancany.vue' /* webpackChunkName: "pages/addVancany" */))
+const _106cd82e = () => interopDefault(import('../pages/adminSignup.vue' /* webpackChunkName: "pages/adminSignup" */))
+const _0444ea0a = () => interopDefault(import('../pages/applyVacancy.vue' /* webpackChunkName: "pages/applyVacancy" */))
 const _06ad8574 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 const _034f9ca5 = () => interopDefault(import('../pages/candidate.vue' /* webpackChunkName: "pages/candidate" */))
 const _943f6934 = () => interopDefault(import('../pages/candidateresponse.vue' /* webpackChunkName: "pages/candidateresponse" */))
 const _54415234 = () => interopDefault(import('../pages/candidatevacancy.vue' /* webpackChunkName: "pages/candidatevacancy" */))
+const _59469cb3 = () => interopDefault(import('../pages/editVacancy.vue' /* webpackChunkName: "pages/editVacancy" */))
 const _5f55aeea = () => interopDefault(import('../pages/login.vue' /* webpackChunkName: "pages/login" */))
 const _3bc24c8a = () => interopDefault(import('../pages/notifications.vue' /* webpackChunkName: "pages/notifications" */))
+const _18a998da = () => interopDefault(import('../pages/showAnswers.vue' /* webpackChunkName: "pages/showAnswers" */))
 const _f2ac5434 = () => interopDefault(import('../pages/signup.vue' /* webpackChunkName: "pages/signup" */))
 const _656ed499 = () => interopDefault(import('../pages/user.vue' /* webpackChunkName: "pages/user" */))
 const _a068934a = () => interopDefault(import('../pages/Vacancies.vue' /* webpackChunkName: "pages/Vacancies" */))
@@ -37,6 +41,14 @@ export const routerOptions = {
     component: _1b67c8b9,
     name: "addVancany___en"
   }, {
+    path: "/adminSignup",
+    component: _106cd82e,
+    name: "adminSignup___en"
+  }, {
+    path: "/applyVacancy",
+    component: _0444ea0a,
+    name: "applyVacancy___en"
+  }, {
     path: "/ar",
     component: _06ad8574,
     name: "index___ar"
@@ -53,6 +65,10 @@ export const routerOptions = {
     component: _54415234,
     name: "candidatevacancy___en"
   }, {
+    path: "/editVacancy",
+    component: _59469cb3,
+    name: "editVacancy___en"
+  }, {
     path: "/login",
     component: _5f55aeea,
     name: "login___en"
@@ -60,6 +76,10 @@ export const routerOptions = {
     path: "/notifications",
     component: _3bc24c8a,
     name: "notifications___en"
+  }, {
+    path: "/showAnswers",
+    component: _18a998da,
+    name: "showAnswers___en"
   }, {
     path: "/signup",
     component: _f2ac5434,
@@ -77,6 +97,14 @@ export const routerOptions = {
     component: _1b67c8b9,
     name: "addVancany___ar"
   }, {
+    path: "/ar/adminSignup",
+    component: _106cd82e,
+    name: "adminSignup___ar"
+  }, {
+    path: "/ar/applyVacancy",
+    component: _0444ea0a,
+    name: "applyVacancy___ar"
+  }, {
     path: "/ar/candidate",
     component: _034f9ca5,
     name: "candidate___ar"
@@ -89,6 +117,10 @@ export const routerOptions = {
     component: _54415234,
     name: "candidatevacancy___ar"
   }, {
+    path: "/ar/editVacancy",
+    component: _59469cb3,
+    name: "editVacancy___ar"
+  }, {
     path: "/ar/login",
     component: _5f55aeea,
     name: "login___ar"
@@ -96,6 +128,10 @@ export const routerOptions = {
     path: "/ar/notifications",
     component: _3bc24c8a,
     name: "notifications___ar"
+  }, {
+    path: "/ar/showAnswers",
+    component: _18a998da,
+    name: "showAnswers___ar"
   }, {
     path: "/ar/signup",
     component: _f2ac5434,

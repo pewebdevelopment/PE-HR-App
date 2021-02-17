@@ -46,7 +46,26 @@
         >
         </sidebar-item>
         </div>
-
+        <div v-if =" role === 'candidate' ">
+        <sidebar-item 
+          :link="{
+            name: 'vacancy',
+            icon: 'tim-icons icon-atom',
+            path: '/candidatevacancy',
+          }"
+        >
+        </sidebar-item>
+        </div>
+        <div v-if =" role === 'admin'||role==='super-admin' ">
+        <sidebar-item 
+          :link="{
+            name: 'vacancy',
+            icon: 'tim-icons icon-atom',
+            path: '/Vacancies',
+          }"
+        >
+        </sidebar-item>
+        </div>
         <!--
         <sidebar-item
           :link="{
@@ -142,14 +161,13 @@ function initScrollbar(className) {
     }, 100);
   }
 }
+
 import DashboardNavbar from "@/components/Layout/DashboardNavbar.vue";
-import ContentFooter from "@/components/Layout/ContentFooter.vue";
 import DashboardContent from "@/components/Layout/Content.vue";
 import { SlideYDownTransition, ZoomCenterTransition } from "vue2-transitions";
 export default {
   components: {
     DashboardNavbar,
-    ContentFooter,
     DashboardContent,
     SlideYDownTransition,
     ZoomCenterTransition,
@@ -158,7 +176,7 @@ export default {
   data() {
     return {
       sidebarBackground: "vue", //vue|blue|orange|green|red|primary,
-      role:'No Access'                    //v-if="(localStorage.getItem('access') === 'candidate')"
+      role:'No Access'  //v-if="(localStorage.getItem('access') === 'candidate')"
     };
   },
   computed: {
@@ -183,19 +201,29 @@ export default {
         initScrollbar("main-panel");
         initScrollbar("sidebar-wrapper");
         docClasses.add("perfect-scrollbar-on");
+       
+        console.log(docClasses);
       } else {
         docClasses.add("perfect-scrollbar-off");
       }
     },
+
+    //default theme would be white
+    defaultTheme(){
+      let docClasses = document.body.classList;
+       docClasses.add("white-content");
+    }
   },
   mounted() {
     this.initScrollbar();
+    this.defaultTheme();
     this.role = localStorage.getItem('access') || "No Access"
-    console.log(this.role);
   },
 };
 </script>
 <style lang="scss">
+  @import '~@/assets/sass/dashboard/custom/variables';
+
 $scaleSize: 0.95;
 @keyframes zoomIn95 {
   from {

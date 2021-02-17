@@ -67,7 +67,6 @@ export default {
   */
   plugins: [
     `~/plugins/dashboard-plugin.js`,
-
   ],
   /*
   ** Nuxt.js dev-modules
@@ -81,6 +80,7 @@ export default {
     'nuxt-i18n',
     '@nuxtjs/bootstrap-vue',
     '@nuxtjs/apollo',
+
     '@nuxtjs/axios'
   ],
   apollo: {

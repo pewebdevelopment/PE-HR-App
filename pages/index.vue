@@ -770,11 +770,11 @@ export default {
   },
   methods: {
     async logout(){
+      localStorage.removeItem('reload')
       localStorage.removeItem('idToken')
       localStorage.removeItem('accessToken')
       localStorage.removeItem('refreshToken')
       localStorage.removeItem('access')
-      localStorage.removeItem('reload')
       this.$router.push("/login");
     },
     async ondelete(id) {
@@ -788,6 +788,8 @@ export default {
           candidateId: id,
         },
       });
+            //this.$router.push("/");
+
             this.$router.go(0);
     },
     async get() {
@@ -823,6 +825,7 @@ export default {
         variables: {
         },
       });
+      console.log(results)
       this.candidates=results.data.candidate
 
     },
@@ -1038,6 +1041,8 @@ export default {
         },
       });
       this.hidemodal();
+      //this.$router.push("/");
+
       this.$router.go(0);
     },
   },

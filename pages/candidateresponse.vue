@@ -52,6 +52,9 @@
             <b-button size="sm" @click="row.toggleDetails">
               {{ row.detailsShowing ? "Hide" : "Show" }} Details
             </b-button>
+            <b-button sm="2" variant="info"  @click="showAnswersPage(row.item.responseId)"
+                      >See Answers</b-button
+                    >
           </template>
 
           <template v-slot:row-details="row">
@@ -108,8 +111,7 @@
         </b-modal>
       </b-container>
     </card>
-    <b-button sm="3" variant="info" @click="displayPage()"
-                      >view vacancies</b-button>
+    
   </div>
 </template>
 
@@ -197,13 +199,8 @@ export default {
     }
   },
   methods: {
-    async displayPage(){
-      if(localStorage.getItem('access')=='candidate'){
-            this.$router.push("/candidatevacancy");
-      }
-      else{
-            this.$router.push("/Vacancies");
-      }
+    async showAnswersPage(str){
+       this.$router.push("/showAnswers?responseId="+str)
     },
     async responseList() {
       const results = await this.$apollo.mutate({
@@ -217,6 +214,8 @@ export default {
               candidateName
               vacancyPost
               candidateEmail
+              responseId
+              roundsAnswers
             } 
           }
         `,
@@ -232,6 +231,7 @@ export default {
       this.totalRows = this.responses.length;
       this.infoModal.title = `Row index: ${index}`;
       this.infoModal.content = JSON.stringify(responses, null, 2);
+      console.log(this.infoModal)
       this.$root.$emit("bv::show::modal", this.infoModal.id, button);
     },
     resetInfoModal() {
