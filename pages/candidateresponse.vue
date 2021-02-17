@@ -21,7 +21,7 @@
                   placeholder="Type to Search"
                 ></b-form-input>
                 <b-input-group-append>
-                  <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+                  <b-button class="filter-clear-button"  variant="info" @click="filter = ''">Clear</b-button>
                 </b-input-group-append>
               </b-input-group>
             </b-form-group>
@@ -52,7 +52,7 @@
             <b-button size="sm" @click="row.toggleDetails">
               {{ row.detailsShowing ? "Hide" : "Show" }} Details
             </b-button>
-            <b-button sm="2" variant="info"  @click="showAnswersPage(row.item.responseId)"
+            <b-button class="see-answers" size="sm" variant="info"  @click="showAnswersPage(row.item.responseId)"
                       >See Answers</b-button
                     >
           </template>
@@ -254,4 +254,15 @@ export default {
     width: 100%;
   }
 }
+
+.filter-clear-button{
+  bottom:3px;
+}
+
+
+.page-item.active .page-link {
+  background-color: #1d8cf8 !important;
+
+}
+
 </style>
