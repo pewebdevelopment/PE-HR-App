@@ -55,7 +55,7 @@ export default {
     },
     methods:{
       async signIn(){
-        console.log(this.email);
+        
         const user= await this.$apollo.mutate({
           mutation:gql`mutation(
             $email:String!
@@ -69,14 +69,15 @@ export default {
           password:this.password,
         }
         })
-        console.log(user)
+        
         if(user.data.signIn.length!=0){
           
-
+          
           localStorage.setItem('accessToken',user.data.signIn[0]);
           localStorage.setItem('idToken',user.data.signIn[1]);
           localStorage.setItem('refreshToken',user.data.signIn[2]);
-          localStorage.setItem('access',user.data.signIn[3])
+          localStorage.setItem('access',user.data.signIn[3]);
+          localStorage.setItem('username',user.data.signIn[4]);
           localStorage.setItem('reload',1);
           if(user.data.signIn[3]=='admin'){
                       this.$router.push("/");

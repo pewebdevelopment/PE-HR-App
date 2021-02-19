@@ -743,6 +743,7 @@ export default {
   
   mounted() {
     //this.$forceUpdate()
+
     var val=localStorage.getItem('reload') || 0
     if(val==1){
       this.$router.go(0);
@@ -830,7 +831,7 @@ export default {
 
     },
     async getcandidate(id) {
-      console.log("stet")
+    
       this.singlecandidate = await this.$apollo.mutate({
         mutation: gql`
           mutation {
