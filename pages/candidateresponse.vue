@@ -25,7 +25,9 @@
 
                 <b-input-group>
                   <b-button class="filter-clear-button"  variant="info" @click="filter = ''">Clear</b-button>
+                  <b-button class="filter-clear-button"  variant="info" >Send Email</b-button>
                 </b-input-group>
+            
 
             </b-form-group>
            
@@ -51,8 +53,8 @@
           @filtered="onFiltered"
         >
          <template v-slot:cell(check)="row">
-           <b-form-checkbox  v-model="row.item.candidateEmail"
-            >{{row.item.candidateEmail}}</b-form-checkbox
+           <b-form-checkbox  v-model="row.item.selected" @change="change(row.item.selected,row.item.candidateEmail)"
+            >{{row.item.selected}}</b-form-checkbox
           >
           </template>
           <template v-slot:cell(actions)="row">
@@ -142,6 +144,7 @@ export default {
   },*/
   data() {
     return {
+      emailList:new Set(),
       fields: [
         {key:"check",label:"selected"},
         
@@ -219,6 +222,15 @@ export default {
     }
   },
   methods: {
+    async change(a,b){
+      if(a==null || a){
+        this.emailList.add(b)
+        console.log(this.emailList)
+      }else{
+        this.emailList.delete(b);
+        console.log(this.emailList)
+      }
+    },
     async showAnswersPage(str){
        this.$router.push("/showAnswers?responseId="+str)
     },
