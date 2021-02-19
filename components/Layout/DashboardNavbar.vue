@@ -159,14 +159,14 @@ export default {
     if(a!=null){
       this.flag=true
       this.buttonText="Log out";
-      let name = localStorage.getItem('username');
-      let rgx = new RegExp(/(\p{L}{1})\p{L}+/, 'gu');
-
-      let initials = [...name.matchAll(rgx)] || [];
-
-      initials = (
-        (initials.shift()?.[1] || '') + (initials.pop()?.[1] || '')
-      ).toUpperCase();
+      let names = localStorage.getItem('username').split(" ");
+      
+      var initials = names[0].substring(0, 1).toUpperCase();
+    
+        if (names.length > 1) {
+            initials += names[names.length - 1].substring(0, 1).toUpperCase();
+        }
+     
 
       this.name = initials;
       
