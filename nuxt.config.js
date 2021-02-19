@@ -32,7 +32,7 @@ export default {
       { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css'}
     ],
     bodyAttrs: {
-      class: '' // Add `white-content` class here to enable "white" mode.
+      class: 'white-content' // Add `white-content` class here to enable "white" mode.
     }
     // --------------------
   //   title: pkg.name,
@@ -67,11 +67,13 @@ export default {
   */
   plugins: [
     `~/plugins/dashboard-plugin.js`,
+    
   ],
   /*
   ** Nuxt.js dev-modules
   */
-  buildModules: [],
+  buildModules: [
+  ],
   /*
   ** Nuxt.js modules
   */
@@ -80,9 +82,9 @@ export default {
     'nuxt-i18n',
     '@nuxtjs/bootstrap-vue',
     '@nuxtjs/apollo',
-
     '@nuxtjs/axios'
   ],
+  
   apollo: {
     clientConfigs: {
       default: '~/plugins/apollo-client.js'

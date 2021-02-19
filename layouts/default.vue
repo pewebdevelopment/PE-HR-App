@@ -209,14 +209,10 @@ export default {
     },
 
     //default theme would be white
-    defaultTheme(){
-      let docClasses = document.body.classList;
-       docClasses.add("white-content");
-    }
+    
   },
   mounted() {
     this.initScrollbar();
-    this.defaultTheme();
     this.role = localStorage.getItem('access') || "No Access"
   },
 };
