@@ -5,6 +5,7 @@
         <!-- User Interface controls -->
         <b-row>
           <b-col lg="6" class="my-0">
+            
             <b-form-group
               label="Filter"
               label-cols-sm="3"
@@ -13,20 +14,25 @@
               label-for="filterInput"
               class="mb-0"
             >
-              <b-input-group size="sm">
+
                 <b-form-input
                   v-model="filter"
                   type="search"
                   id="filterInput"
                   placeholder="Type to Search"
+                  
                 ></b-form-input>
-                <b-input-group-append>
+
+                <b-input-group>
                   <b-button class="filter-clear-button"  variant="info" @click="filter = ''">Clear</b-button>
-                </b-input-group-append>
-              </b-input-group>
+                </b-input-group>
+
             </b-form-group>
+           
           </b-col>
         </b-row>
+
+        
 
         <!-- Main table element -->
         <b-table
@@ -91,7 +97,6 @@
               class="mb-0"
             >
               <b-form-select
-                class="bg-dark"
                 v-model="perPage"
                 id="perPageSelect"
                 size="sm"
@@ -273,9 +278,14 @@ export default {
 }
 
 .filter-clear-button{
+  margin-top: 10px;
   bottom:3px;
 }
-
+#filterInput{
+  text-align: center;
+  display: inline-block;
+  border:2px solid #237DF6;
+}
 
 .page-item.active .page-link {
   background-color: #1d8cf8 !important;

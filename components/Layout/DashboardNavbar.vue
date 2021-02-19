@@ -89,18 +89,24 @@
         title-classes="nav-link"
         menu-classes="dropdown-navbar"
       >
+     
         <template
           slot="title"
         >
-          <div class="photo"><img src="/IMG_20210214_213612_622.jpg" /></div>
-          <b class="caret d-none d-lg-block d-xl-block"></b>
+          <!-- avatar here -->
+          <div v-if="flag">
+            
+          <b-avatar variant="primary">{{name}}</b-avatar>
+
+          </div>
+
           <p class="d-lg-none">Log out</p>
         </template>
         <li class="nav-link">
           <a href="/" v-if="flag" class="nav-item dropdown-item">Profile</a>
         </li>
         <li class="nav-link">
-          <a href="#" class="nav-item dropdown-item">Settings</a>
+          <a href="/candidateresponse" class="nav-item dropdown-item">Response</a>
         </li>
         <div class="dropdown-divider"></div>
         <li class="nav-link">
@@ -113,6 +119,8 @@
 <script>
 import { CollapseTransition } from 'vue2-transitions';
 import { BaseNav, Modal } from '@/components';
+//import { CAvatar, CAvatarBadge } from "@chakra-ui/vue";
+
 
 export default {
   components: {
@@ -120,6 +128,7 @@ export default {
     BaseNav,
     Modal
   },
+  
   computed: {
     routeName() {
       const { path } = this.$route;
@@ -140,16 +149,31 @@ export default {
       searchModalVisible: false,
       searchQuery: '',
       flag:false,
-      buttonText:"Log in"
+      buttonText:"Log in",
+      name : ""
     };
   },
   mounted(){
+
     var a=localStorage.getItem('access')||null
     if(a!=null){
       this.flag=true
-      this.buttonText="Log out"
+      this.buttonText="Log out";
+      let names = localStorage.getItem('username').split(" ");
+      
+      var initials = names[0].substring(0, 1).toUpperCase();
+    
+        if (names.length > 1) {
+            initials += names[names.length - 1].substring(0, 1).toUpperCase();
+        }
+     
+
+      this.name = initials;
+      
     }
+    
   },
+   
   methods: {
     async logout(){
       if(localStorage.getItem('access')&&localStorage.getItem('idToken')&&localStorage.getItem('accessToken')&&localStorage.getItem('refreshToken')){
@@ -176,8 +200,12 @@ export default {
     },
     toggleMenu() {
       this.showMenu = !this.showMenu;
+    },
+    username(){
+      console.log("hello")
     }
   }
+
 };
 </script>
 <style scoped>
