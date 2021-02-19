@@ -44,10 +44,11 @@
           :sort-direction="sortDirection"
           @filtered="onFiltered"
         >
-          <template v-slot:cell(name)="row">
-            {{ row.value.first }} {{ row.value.last }}
+         <template v-slot:cell(check)="row">
+           <b-form-checkbox  v-model="row.item.candidateEmail"
+            >{{row.item.candidateEmail}}</b-form-checkbox
+          >
           </template>
-
           <template v-slot:cell(actions)="row">
             <b-button size="sm" @click="row.toggleDetails">
               {{ row.detailsShowing ? "Hide" : "Show" }} Details
@@ -56,7 +57,7 @@
                       >See Answers</b-button
                     >
           </template>
-
+         
           <template v-slot:row-details="row">
             <b-card>
               <ul>
@@ -137,6 +138,8 @@ export default {
   data() {
     return {
       fields: [
+        {key:"check",label:"selected"},
+        
         {
           key: "candidateName",
           label: "Candidate Name",
@@ -161,8 +164,20 @@ export default {
           sortable: true,
           sortDirection: "desc",
         },
-
         { key: "actions", label: "Actions" },
+        {
+          key:"rating",
+          label:"rating", 
+          sortable: true,
+          sortDirection: "asc",  
+        },
+        {
+          key:"comment",
+          label:"comment", 
+          sortable: true,
+          sortDirection: "desc",  
+        },
+       // {key:"comment",label:"comment"},
       ],
       responses:undefined,
       totalRows: 1,
@@ -216,6 +231,8 @@ export default {
               candidateEmail
               responseId
               roundsAnswers
+              rating
+              comment
             } 
           }
         `,
