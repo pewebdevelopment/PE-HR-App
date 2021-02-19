@@ -88,6 +88,7 @@ const ResponseType = new GraphQLObjectType({
   })
 })
 const RootQueryType = new GraphQLObjectType({
+ 
     name: 'Query',
     description: 'Root Query',
     fields: () => ({
@@ -99,6 +100,18 @@ const RootQueryType = new GraphQLObjectType({
                 console.log(docs);
             else
                 return 'No Documents Fetched'
+        })
+      },
+      getUsername:{
+        type: GraphQLString,
+        desctription : 'Name of user logged in',
+        resolve: () => cognitoUser.getUserAttributes((err, result) => {
+          if (err) {
+            alert(err.message || JSON.stringify(err));
+            return;
+          }
+          return result.getName();
+      
         })
       },
     
@@ -266,7 +279,9 @@ const RootMutationType = new GraphQLObjectType({
               email:  { type: GraphQLNonNull(GraphQLString )},
               password:{ type: GraphQLNonNull(GraphQLString )},
           },
-          resolve:(parent,args,req)=>{
+          resolve:async (parent,args,req)=>{
+            
+
             var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
                 Username : args.email,
                 Password : args.password,
@@ -275,11 +290,15 @@ const RootMutationType = new GraphQLObjectType({
                 Username : args.email,
                 Pool : userPool
             };  
-                    
+            
+            var st = await user.findOne({email:args.email});
+
             var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
             return new Promise((resolve, reject) => (
                 cognitoUser.authenticateUser(authenticationDetails, {
-                 onSuccess: (result) => resolve([result.getAccessToken().getJwtToken(),result.getIdToken().getJwtToken(),result.getRefreshToken().getToken(),result.getIdToken().payload['custom:permission']]),
+
+
+                 onSuccess: (result) => resolve([result.getAccessToken().getJwtToken(),result.getIdToken().getJwtToken(),result.getRefreshToken().getToken(),result.getIdToken().payload['custom:permission'],st.userName]),
                  onFailure: (err) => resolve([]),
                 })
             ));
