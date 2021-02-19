@@ -86,8 +86,9 @@ const ResponseType = new GraphQLObjectType({
     candidatePhoneNo: { type: GraphQLNonNull(GraphQLString)},
     candidateEmail: { type: GraphQLNonNull(GraphQLString)},
     vacancyPost: { type: GraphQLNonNull(GraphQLString)},
-    roundsAnswers : {type : GraphQLNonNull(new GraphQLList(GraphQLNonNull(new GraphQLList(GraphQLString))))}
-
+    roundsAnswers : {type : GraphQLNonNull(new GraphQLList(GraphQLNonNull(new GraphQLList(GraphQLString))))},
+    rating:{type:GraphQLNonNull(GraphQLString)},
+    comment:{type:GraphQLNonNull(GraphQLString)},
   })
 })
 const RootQueryType = new GraphQLObjectType({
@@ -627,7 +628,9 @@ const RootMutationType = new GraphQLObjectType({
                   vacancyId:args.vacancyId,
                   projectsLinks:args.projectsLinks,
                   githubId:args.githubId,
-                  roundsAnswers:args.roundsAnswers
+                  roundsAnswers:args.roundsAnswers,
+                  rating:0,
+                  comment:""
                 })
 
                 Response.find({userId:req.user.userId,vacancyId:args.vacancyId},async (err,docs)=>{
