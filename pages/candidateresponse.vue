@@ -24,7 +24,7 @@
                 ></b-form-input>
 
                 <b-input-group>
-                  <b-button class="filter-clear-button"  variant="info" @click="filter = ''">Clear</b-button>
+                  <b-button class="filter-clear-button" variant="info" @click="filter = ''">Clear</b-button>
                   <b-button class="filter-clear-button"  variant="info" >Send Email</b-button>
                 </b-input-group>
             
@@ -54,10 +54,13 @@
         >
          <template v-slot:cell(check)="row">
            <b-form-checkbox  v-model="row.item.selected" @change="change(row.item.selected,row.item.candidateEmail)"
-            >{{row.item.selected}}</b-form-checkbox
+            ></b-form-checkbox
           >
           </template>
           <template v-slot:cell(actions)="row">
+            <b-button size="sm" @click="showdetail(row.item.candidateId)">
+              Candidate details
+             </b-button>
             <b-button size="sm" @click="row.toggleDetails">
               {{ row.detailsShowing ? "Hide" : "Show" }} Details
             </b-button>
@@ -117,6 +120,312 @@
         >
           <pre> {{ infoModal.content }} </pre>
         </b-modal>
+        <b-modal
+          ref="showdetails"
+          scrollable
+          body-bg-variant="dark"
+          hide-header
+          hide-backdrop
+          hide-footer
+        >
+          <b-row class="my-1">
+            <h3>Edit Candidate</h3>
+          </b-row>
+          <h4>Personal Details</h4>
+          <b-container fluid>
+            <label>{{ candidate_Id }}</label>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Full Name:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="sFname"
+                  type="text"
+                  placeholder="Enter your name"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Email:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="semail"
+                  type="text"
+                  placeholder="Enter your email"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Mobile:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="smobile"
+                  type="text"
+                  placeholder="Enter your mobile number"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Address:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="saddress"
+                  type="text"
+                  placeholder="Enter your address"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <hr />
+            <h4>Gradutation</h4>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default"> College:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="scollege"
+                  type="text"
+                  placeholder="Enter your college name"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default"> Department:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="sDepartment"
+                  type="text"
+                  placeholder="Enter your department name"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Start Date:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="sStartDateGra"
+                  type="number"
+                  placeholder="Gradutation start date"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Finish Date:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="sFinishDateGra"
+                  type="number"
+                  placeholder="Gradutation complete date"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Percentage:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="spercentageGra"
+                  type="number"
+                  placeholder="Enter gradutation percentage"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+
+            <hr />
+
+            <h4>Secondary Education</h4>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">School:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="sschool"
+                  type="text"
+                  placeholder="Enter your college name"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Board:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="sboardSch"
+                  type="text"
+                  placeholder="Enter your board name"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Start Date:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="sStartDateSch"
+                  type="number"
+                  placeholder="Gradutation start date"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Finish Date:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="sFinishDateSch"
+                  type="number"
+                  placeholder="Gradutation complete date"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Percentage:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="spercentageSch"
+                  type="number"
+                  placeholder="Enter gradutation percentage"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+
+            <hr />
+
+            <h4>Higher Secondary Education</h4>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default"> College:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="scollegehse"
+                  type="text"
+                  placeholder="Enter your college name"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Board:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="sboardhse"
+                  type="text"
+                  placeholder="Enter your board name"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Start Date:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="sStartDatehse"
+                  type="number"
+                  placeholder="Gradutation start date"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Finish Date:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="sFinishDatehse"
+                  type="number"
+                  placeholder="Gradutation complete date"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Percentage:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  disabled
+                  v-model="spercentagehse"
+                  type="number"
+                  placeholder="Enter gradutation percentage"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Department:</label>
+              </b-col>
+              <b-col sm="9">
+                <!-- <h6>{{ sdepartmenthse }}</h6>
+-->
+                <b-form-input
+                  disabled
+                  v-model="sdepartmenthse"
+                  type="text"
+                  placeholder="Enter gradutation percentage"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Skills:</label>
+              </b-col>
+              <b-col sm="10">
+                <h6 v-for="(items, index) in sskills" :key="index">{{ items }}</h6>
+              </b-col>
+            </b-row>
+          </b-container>
+          <hr />
+          <b-row class="my-1">
+            <b-col sm="3"> </b-col>
+          </b-row>
+
+          <b-button class="mt-9" variant="outline-danger" @click="hidemodal1"
+            >Cancel</b-button
+          >
+        </b-modal>
       </b-container>
     </card>
     
@@ -144,6 +453,28 @@ export default {
   },*/
   data() {
     return {
+      sFname: "",
+      semail: "",
+      smobile: "",
+      saddress: "",
+      scollege: "",
+      sStartDateGra: "",
+      sFinishDateGra: "",
+      spercentageGra: "",
+      sschool: "",
+      sboardSch: "",
+      sStartDateSch: "",
+      sFinishDateSch: "",
+      spercentageSch: "",
+      scollegehse: "",
+      sboardhse: "",
+      sStartDatehse: "",
+      sFinishDatehse: "",
+      spercentagehse: "",
+      sDepartment: "",
+      sdepartmenthse: "",
+      sskills: [],
+      singlecandidate: [],
       emailList:new Set(),
       fields: [
         {key:"check",label:"selected"},
@@ -230,6 +561,72 @@ export default {
         this.emailList.delete(b);
         console.log(this.emailList)
       }
+    },
+    async showdetail(id) {
+       this.singlecandidate = await this.$apollo.mutate({
+        mutation: gql`
+          mutation($candidateId: ID!) {
+            oneCandidate(candidateId: $candidateId){
+              candidateId
+              candidateName
+              email
+              phoneNo
+              address
+              ugCollege
+              ugSpecialization
+              ugTo
+              ugFrom
+              ugPercentage
+              sslcSchool
+              sslcBoard
+              sslcTo
+              sslcFrom
+              sslcPercentage
+              hseTo
+              hseFrom
+              hseBoard
+              hseSchool
+              hsePercentage
+              hseSpecialization
+              skills
+            }
+          }
+        `,
+        variables: {
+          candidateId: id,
+        },
+        
+      });
+      console.log(this.singlecandidate)      
+      this.candidate_id = this.singlecandidate.data.oneCandidate[0].candidateId;
+      (this.sFname = this.singlecandidate.data.oneCandidate[0].candidateName),
+        (this.semail = this.singlecandidate.data.oneCandidate[0].email),
+        (this.smobile = this.singlecandidate.data.oneCandidate[0].phoneNo),
+        (this.saddress = this.singlecandidate.data.oneCandidate[0].address),
+        (this.scollege = this.singlecandidate.data.oneCandidate[0].ugCollege),
+        (this.sStartDateGra = this.singlecandidate.data.oneCandidate[0].ugFrom),
+        (this.sFinishDateGra = this.singlecandidate.data.oneCandidate[0].ugTo),
+        (this.spercentageGra = this.singlecandidate.data.oneCandidate[0].ugPercentage),
+        (this.sschool = this.singlecandidate.data.oneCandidate[0].sslcSchool),
+        (this.sboardSch = this.singlecandidate.data.oneCandidate[0].sslcBoard),
+        (this.sStartDateSch = this.singlecandidate.data.oneCandidate[0].sslcFrom),
+        (this.sFinishDateSch = this.singlecandidate.data.oneCandidate[0].sslcTo),
+        (this.spercentageSch = this.singlecandidate.data.oneCandidate[0].sslcPercentage),
+        (this.scollegehse = this.singlecandidate.data.oneCandidate[0].hseSchool),
+        (this.sboardhse = this.singlecandidate.data.oneCandidate[0].hseBoard),
+        (this.sStartDatehse = this.singlecandidate.data.oneCandidate[0].hseFrom),
+        (this.sFinishDatehse = this.singlecandidate.data.oneCandidate[0].hseTo),
+        (this.spercentagehse = this.singlecandidate.data.oneCandidate[0].hsePercentage),
+        (this.sDepartment = this.singlecandidate.data.oneCandidate[0].ugSpecialization),
+        (this.sdepartmenthse = this.singlecandidate.data.oneCandidate[0].hseSpecialization),
+        (this.sskills = this.singlecandidate.data.oneCandidate[0].skills);
+      this.showmodal1();
+    },
+    showmodal1() {
+      this.$refs["showdetails"].show();
+    },
+    hidemodal1() {
+      this.$refs["showdetails"].hide();
     },
     async showAnswersPage(str){
        this.$router.push("/showAnswers?responseId="+str)

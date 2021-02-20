@@ -90,4 +90,9 @@ export default {
     display: none;
   }
 }
+.sidebar{
+  margin-left:1px;
+  margin-top: 0px;
+  margin-bottom: auto;
+}
 </style>
