@@ -57,8 +57,11 @@ var responseSchema = mongoose.Schema({
             type:String,
             required:true
         }]
-    ]
-  
+    ],
+    skillsRating:[{
+            type:Number,
+            required:true
+    }]
 })
 
 module.exports = mongoose.model('responses', responseSchema);

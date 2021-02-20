@@ -89,6 +89,7 @@ const ResponseType = new GraphQLObjectType({
     roundsAnswers : {type : GraphQLNonNull(new GraphQLList(GraphQLNonNull(new GraphQLList(GraphQLString))))},
     rating:{type:GraphQLNonNull(GraphQLString)},
     comment:{type:GraphQLNonNull(GraphQLString)},
+    skillsRating:{type:GraphQLNonNull(new GraphQLList(GraphQLInt))}
   })
 })
 const RootQueryType = new GraphQLObjectType({
@@ -629,6 +630,29 @@ const RootMutationType = new GraphQLObjectType({
           return 2;
         }
         }
+      },
+      rateResponse:{
+        type: GraphQLInt,
+        description: 'Rate a response',
+        args:{
+          rating:{type : GraphQLNonNull(GraphQLInt)},
+          comment:{type:GraphQLNonNull(GraphQLString)},
+          responseId:{type:GraphQLNonNull(GraphQLID)}
+        },
+        resolve: (parent, args,req) => {
+          if(req.user!=null&&(req.user.permission=='admin'||req.user.permission=='super-admin')){
+            Response.updateOne({responseId:args.responseId},{rating:args.rating,comment:args.comment},(err,docs)=>{
+              if(docs!=undefined&&docs.length!=0){
+                return 1;
+              }
+              else{
+                return 0;
+              }
+            })
+          }else{
+            return 2;
+          }
+        }
       }, 
       addResponse: {
         type: GraphQLInt,
@@ -637,11 +661,12 @@ const RootMutationType = new GraphQLObjectType({
           vacancyId: { type: GraphQLNonNull(GraphQLID) },
           projectsLinks: { type: new GraphQLList(GraphQLString) },
           githubId: { type: GraphQLNonNull(GraphQLString)},
-          roundsAnswers : {type : GraphQLNonNull(new GraphQLList(GraphQLNonNull(new GraphQLList(GraphQLString))))}
+          roundsAnswers : {type : GraphQLNonNull(new GraphQLList(GraphQLNonNull(new GraphQLList(GraphQLString))))},
+          skillsRating:{type : GraphQLNonNull(new GraphQLList(GraphQLInt))}
         },
         resolve: (parent, args,req) => {
           if(req.user!=null&&req.user.permission=='candidate'){
-            
+            console.log(args.skillsRating)            
             try{
                 var newResponse=new Response({
                   vacancyId:args.vacancyId,
@@ -649,7 +674,8 @@ const RootMutationType = new GraphQLObjectType({
                   githubId:args.githubId,
                   roundsAnswers:args.roundsAnswers,
                   rating:0,
-                  comment:""
+                  comment:"Not Evaluated",
+                  skillsRating:args.skillsRating
                 })
 
                 Response.find({userId:req.user.userId,vacancyId:args.vacancyId},async (err,docs)=>{
