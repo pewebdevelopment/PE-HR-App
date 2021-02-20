@@ -2,181 +2,211 @@
   {
     "name": "addVancany___en",
     "path": "/addVancany",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/addVancany.vue",
-    "chunkName": "pages/addVancany"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\addVancany.vue",
+    "chunkName": "pages/addVancany",
+    "_name": "_98d95bec"
   },
   {
     "name": "adminSignup___en",
     "path": "/adminSignup",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/adminSignup.vue",
-    "chunkName": "pages/adminSignup"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\adminSignup.vue",
+    "chunkName": "pages/adminSignup",
+    "_name": "_650f34b8"
   },
   {
     "name": "applyVacancy___en",
     "path": "/applyVacancy",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/applyVacancy.vue",
-    "chunkName": "pages/applyVacancy"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\applyVacancy.vue",
+    "chunkName": "pages/applyVacancy",
+    "_name": "_394c040c"
   },
   {
     "name": "index___ar",
     "path": "/ar",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/index.vue",
-    "chunkName": "pages/index"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_3db3ad83"
   },
   {
     "name": "candidate___en",
     "path": "/candidate",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/candidate.vue",
-    "chunkName": "pages/candidate"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\candidate.vue",
+    "chunkName": "pages/candidate",
+    "_name": "_7bd52534"
   },
   {
     "name": "candidateresponse___en",
     "path": "/candidateresponse",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/candidateresponse.vue",
-    "chunkName": "pages/candidateresponse"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\candidateresponse.vue",
+    "chunkName": "pages/candidateresponse",
+    "_name": "_0697d4f5"
   },
   {
     "name": "candidatevacancy___en",
     "path": "/candidatevacancy",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/candidatevacancy.vue",
-    "chunkName": "pages/candidatevacancy"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\candidatevacancy.vue",
+    "chunkName": "pages/candidatevacancy",
+    "_name": "_5458df77"
   },
   {
     "name": "editVacancy___en",
     "path": "/editVacancy",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/editVacancy.vue",
-    "chunkName": "pages/editVacancy"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\editVacancy.vue",
+    "chunkName": "pages/editVacancy",
+    "_name": "_72e784fc"
   },
   {
     "name": "login___en",
     "path": "/login",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/login.vue",
-    "chunkName": "pages/login"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\login.vue",
+    "chunkName": "pages/login",
+    "_name": "_075b509a"
   },
   {
     "name": "notifications___en",
     "path": "/notifications",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/notifications.vue",
-    "chunkName": "pages/notifications"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\notifications.vue",
+    "chunkName": "pages/notifications",
+    "_name": "_6e22f599"
   },
   {
     "name": "showAnswers___en",
     "path": "/showAnswers",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/showAnswers.vue",
-    "chunkName": "pages/showAnswers"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\showAnswers.vue",
+    "chunkName": "pages/showAnswers",
+    "_name": "_f4218cae"
   },
   {
     "name": "signup___en",
     "path": "/signup",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/signup.vue",
-    "chunkName": "pages/signup"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\signup.vue",
+    "chunkName": "pages/signup",
+    "_name": "_3068afb7"
   },
   {
     "name": "user___en",
     "path": "/user",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/user.vue",
-    "chunkName": "pages/user"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\user.vue",
+    "chunkName": "pages/user",
+    "_name": "_7be822ac"
   },
   {
     "name": "Vacancies___en",
     "path": "/Vacancies",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/Vacancies.vue",
-    "chunkName": "pages/Vacancies"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\Vacancies.vue",
+    "chunkName": "pages/Vacancies",
+    "_name": "_28513eea"
   },
   {
     "name": "addVancany___ar",
     "path": "/ar/addVancany",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/addVancany.vue",
-    "chunkName": "pages/addVancany"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\addVancany.vue",
+    "chunkName": "pages/addVancany",
+    "_name": "_98d95bec"
   },
   {
     "name": "adminSignup___ar",
     "path": "/ar/adminSignup",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/adminSignup.vue",
-    "chunkName": "pages/adminSignup"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\adminSignup.vue",
+    "chunkName": "pages/adminSignup",
+    "_name": "_650f34b8"
   },
   {
     "name": "applyVacancy___ar",
     "path": "/ar/applyVacancy",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/applyVacancy.vue",
-    "chunkName": "pages/applyVacancy"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\applyVacancy.vue",
+    "chunkName": "pages/applyVacancy",
+    "_name": "_394c040c"
   },
   {
     "name": "candidate___ar",
     "path": "/ar/candidate",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/candidate.vue",
-    "chunkName": "pages/candidate"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\candidate.vue",
+    "chunkName": "pages/candidate",
+    "_name": "_7bd52534"
   },
   {
     "name": "candidateresponse___ar",
     "path": "/ar/candidateresponse",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/candidateresponse.vue",
-    "chunkName": "pages/candidateresponse"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\candidateresponse.vue",
+    "chunkName": "pages/candidateresponse",
+    "_name": "_0697d4f5"
   },
   {
     "name": "candidatevacancy___ar",
     "path": "/ar/candidatevacancy",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/candidatevacancy.vue",
-    "chunkName": "pages/candidatevacancy"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\candidatevacancy.vue",
+    "chunkName": "pages/candidatevacancy",
+    "_name": "_5458df77"
   },
   {
     "name": "editVacancy___ar",
     "path": "/ar/editVacancy",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/editVacancy.vue",
-    "chunkName": "pages/editVacancy"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\editVacancy.vue",
+    "chunkName": "pages/editVacancy",
+    "_name": "_72e784fc"
   },
   {
     "name": "login___ar",
     "path": "/ar/login",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/login.vue",
-    "chunkName": "pages/login"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\login.vue",
+    "chunkName": "pages/login",
+    "_name": "_075b509a"
   },
   {
     "name": "notifications___ar",
     "path": "/ar/notifications",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/notifications.vue",
-    "chunkName": "pages/notifications"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\notifications.vue",
+    "chunkName": "pages/notifications",
+    "_name": "_6e22f599"
   },
   {
     "name": "showAnswers___ar",
     "path": "/ar/showAnswers",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/showAnswers.vue",
-    "chunkName": "pages/showAnswers"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\showAnswers.vue",
+    "chunkName": "pages/showAnswers",
+    "_name": "_f4218cae"
   },
   {
     "name": "signup___ar",
     "path": "/ar/signup",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/signup.vue",
-    "chunkName": "pages/signup"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\signup.vue",
+    "chunkName": "pages/signup",
+    "_name": "_3068afb7"
   },
   {
     "name": "user___ar",
     "path": "/ar/user",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/user.vue",
-    "chunkName": "pages/user"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\user.vue",
+    "chunkName": "pages/user",
+    "_name": "_7be822ac"
   },
   {
     "name": "Vacancies___ar",
     "path": "/ar/Vacancies",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/Vacancies.vue",
-    "chunkName": "pages/Vacancies"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\Vacancies.vue",
+    "chunkName": "pages/Vacancies",
+    "_name": "_28513eea"
   },
   {
     "name": "GeneralViews-NotFoundPage___en",
     "path": "/GeneralViews/NotFoundPage",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/GeneralViews/NotFoundPage.vue",
-    "chunkName": "pages/GeneralViews/NotFoundPage"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\GeneralViews\\\\NotFoundPage.vue",
+    "chunkName": "pages/GeneralViews/NotFoundPage",
+    "_name": "_6a0ad263"
   },
   {
     "name": "GeneralViews-NotFoundPage___ar",
     "path": "/ar/GeneralViews/NotFoundPage",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/GeneralViews/NotFoundPage.vue",
-    "chunkName": "pages/GeneralViews/NotFoundPage"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\GeneralViews\\\\NotFoundPage.vue",
+    "chunkName": "pages/GeneralViews/NotFoundPage",
+    "_name": "_6a0ad263"
   },
   {
     "name": "index___en",
     "path": "/",
-    "component": "/Users/anurag/Desktop/PE-HR-App/pages/index.vue",
-    "chunkName": "pages/index"
+    "component": "C:\\\\Users\\\\user\\\\Desktop\\\\task4\\\\PE-HR-App\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_3db3ad83"
   }
 ]

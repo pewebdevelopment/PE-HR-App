@@ -5,18 +5,18 @@ import NuxtError from './components/nuxt-error.vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
-import '../node_modules/bootstrap/dist/css/bootstrap.css'
+import '..\\node_modules\\bootstrap\\dist\\css\\bootstrap.css'
 
-import '../assets/css/demo.css'
+import '..\\assets\\css\\demo.css'
 
-import '../assets/css/nucleo-icons.css'
+import '..\\assets\\css\\nucleo-icons.css'
 
-import '../assets/sass/black-dashboard.scss'
+import '..\\assets\\sass\\black-dashboard.scss'
 
-import '../node_modules/bootstrap-vue/dist/bootstrap-vue.css'
+import '..\\node_modules\\bootstrap-vue\\dist\\bootstrap-vue.css'
 
-import _6f6c098b from '../layouts/default.vue'
-import _bb79184e from '../layouts/starter.vue'
+import _6f6c098b from '..\\layouts\\default.vue'
+import _bb79184e from '..\\layouts\\starter.vue'
 
 const layouts = { "_default": sanitizeComponent(_6f6c098b),"_starter": sanitizeComponent(_bb79184e) }
 
