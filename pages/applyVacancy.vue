@@ -75,8 +75,34 @@
         </b-row>
                 </div>
         </div>
-
+        <h3>Skills Rating</h3>
+        <label for="input-default">Rate your skills from 0 to 100</label>
+        <div v-for="(skill,index) in skills" :key="index">
+              <label for="input-default">{{skill}}</label>
+              <b-row class="my-1">
+                <b-col sm="7">
+                  <b-form-input
+                    required
+                    v-model="skillsRating[index]"
+                    id="textarea-default"
+                    placeholder="Enter Your Answer Here"
+                    type="number"
+                  ></b-form-input>
+                  
+                </b-col>
+                
+              </b-row>
+             
+          </div>
+          <div>
+            <v-alert
+              type="error"
+              dense
+              outlined
+            >{{err}}</v-alert>
+          </div>
         <b-row class="my-1">
+          
           <b-col sm="3"> </b-col>
           <b-col sm="3">
             <b-button @click="addresponse()">Submit</b-button>
@@ -98,9 +124,13 @@ export default {
       rounds:undefined,
       answers:[],
       project: [],
+      skillsRating:[],
+      skills:undefined,
       vacancyid:this.$router.currentRoute.query['vacancyId'],
       githubid: "",
-      vacancyPost:""
+      vacancyPost:"",
+      err:"",
+      flag:false
     };
   },
   mounted() {
@@ -125,6 +155,7 @@ export default {
             vacancy(vacancyId: $vacancyId) {
               vacancyPost
               rounds
+              skillsRequired
             }
           }
         `,
@@ -133,14 +164,19 @@ export default {
         },
       });
       (this.vacancyPost = result.data.vacancy.vacancyPost),
-      (this.rounds=result.data.vacancy.rounds)
+      (this.rounds=result.data.vacancy.rounds),
+      (this.skills=result.data.vacancy.skillsRequired)
       for(var i=0;i<this.rounds.length;i++){
            this.answers.push([])
            for(var j=0;j<this.rounds[i].length;j++){
              this.answers[i].push("")
            }
          }
-            console.log(result.data.vacancy.rounds)
+
+      for(var i=0;i<this.skills.length;i++){
+        this.skillsRating.push(0);
+      }
+            console.log(this.skillsRating)
             console.log(this.answers)
 
 
@@ -148,32 +184,53 @@ export default {
     async addresponse() {
       console.log(this.answers)
       console.log(this.githubid)
-      console.log(this.project)
-      const results = await this.$apollo.mutate({
-        mutation: gql`
-          mutation(
-            $vacancyId: ID!
-            $githubId: String!
-            $projectsLinks: [String]!
-            $roundsAnswers:[[String]!]!
-          ) {
-            addResponse(
-              vacancyId: $vacancyId
-              githubId: $githubId
-              projectsLinks: $projectsLinks
-              roundsAnswers:$roundsAnswers
-            ) 
-          }
-        `,
-        variables: {
-          vacancyId: this.vacancyid,
-          githubId: this.githubid,
-          projectsLinks: this.project,
-          roundsAnswers:this.answers
-        },
-      });
-      console.log(results);
-      this.$router.push("/candidateresponse");
+
+      console.log(this.skillsRating)
+      this.flag=true;
+      for(var i=0;i<this.skillsRating.length;i++){
+        if(this.skillsRating[i]<0||this.skillsRating[i]>100){
+          this.flag=false;
+        }
+        this.skillsRating[i]=parseInt(this.skillsRating[i])
+      }
+    if(this.flag){
+      if(this.project.length!=0&&this.githubid!=""){
+        const results = await this.$apollo.mutate({
+          mutation: gql`
+            mutation(
+              $vacancyId: ID!
+              $githubId: String!
+              $projectsLinks: [String]!
+              $roundsAnswers:[[String]!]!
+              $skillsRating:[Int]!
+            ) {
+              addResponse(
+                vacancyId: $vacancyId
+                githubId: $githubId
+                projectsLinks: $projectsLinks
+                roundsAnswers:$roundsAnswers
+                skillsRating:$skillsRating
+              ) 
+            }
+          `,
+          variables: {
+            vacancyId: this.vacancyid,
+            githubId: this.githubid,
+            projectsLinks: this.project,
+            roundsAnswers:this.answers,
+            skillsRating:this.skillsRating
+          },
+        });
+        console.log(results);
+        this.$router.push("/candidateresponse");
+      }
+      else{
+        this.err="Projects and Github id required"
+      }
+    }
+    else{
+      this.err="Ratings should range from 0 to 100"
+    }
     },
   },
 };

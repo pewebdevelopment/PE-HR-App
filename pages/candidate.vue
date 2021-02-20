@@ -484,7 +484,7 @@ $ugCollege: String
               email: $email
               phoneNo: $phoneNo
               address: $address
-ugCollege: $ugCollege
+              ugCollege: $ugCollege
               ugSpecialization: $ugSpecialization
               ugFrom: $ugFrom
               ugTo: $ugTo

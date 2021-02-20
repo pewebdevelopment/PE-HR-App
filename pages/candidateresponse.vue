@@ -59,7 +59,7 @@
           </template>
           <template v-slot:cell(actions)="row">
             <b-button size="sm" @click="showdetail(row.item.candidateId)">
-              Candidate details
+              Bio Data
              </b-button>
             <b-button size="sm" @click="row.toggleDetails">
               {{ row.detailsShowing ? "Hide" : "Show" }} Details

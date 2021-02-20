@@ -27,8 +27,67 @@
             
           </b-col>
         </b-row>
-                </div>
         </div>
+        </div>
+        <h3>Skills Rating</h3>
+        <label for="input-default">Rate your skills from 0 to 100</label>
+        <div v-for="(skill,index) in skills" :key="index">
+              <label for="input-default">{{skill}}</label>
+              <b-row class="my-1">
+                <b-col sm="7">
+                  <b-form-input
+                    required
+                    v-model="skillsRating[index]"
+                    id="textarea-default"
+                    placeholder="Enter Your Answer Here"
+                    type="number"
+                  ></b-form-input> 
+                </b-col>
+                
+              </b-row>
+             
+          </div>
+          <div >
+            <h3>Rating the response</h3>
+            <label for="input-default">Rating the response</label>
+             <b-row class="my-1">
+          <b-col sm="7">
+            <b-form-input
+              required
+              v-model="rating"
+              id="textarea-default"
+              placeholder="Enter rating Here"
+              type="number"
+            ></b-form-input>
+            
+          </b-col>
+        </b-row>
+            <label for="input-default">comment on response</label>
+             <b-row class="my-1">
+          <b-col sm="7">
+            <b-form-textarea
+              required
+              v-model="comment"
+              id="textarea-default"
+              placeholder="Enter comment Here"
+            ></b-form-textarea>
+            
+          </b-col>
+        </b-row>
+         <v-alert
+              type="error"
+              dense
+              outlined
+            >{{ err }}</v-alert>
+         <b-row class="my-1">
+          
+          <b-col sm="3"> </b-col>
+          <b-col sm="3">
+            <b-button v-if =" role === 'admin' " @click="rate()">Submit</b-button>
+          </b-col>
+        </b-row>
+          </div>
+          
     </b-container>
         
     </div>
@@ -48,12 +107,20 @@ export default {
       vacancyid:"",
       responseid:this.$router.currentRoute.query['responseId'],
       githubid: "",
-      vacancyPost:""
+      vacancyPost:"",
+      skillsRequired:undefined,
+      skillsRating:undefined,
+      role:'No Access',
+      rating:0,
+      comment:"",
+      err:""
     };
   },
   mounted() {
     if(localStorage.getItem('access')&&localStorage.getItem('idToken')&&localStorage.getItem('accessToken')&&localStorage.getItem('refreshToken')){
       this.get(this.responseid)
+      this.role = localStorage.getItem('access') || "No Access"
+
     }
     else{
       this.$router.push("/login");
@@ -66,12 +133,13 @@ export default {
 
   methods: {
     async getVac(id) {
-        const result = await this.$apollo.mutate({
+         const result = await this.$apollo.mutate({
         mutation: gql`
           mutation($vacancyId: ID!) {
             vacancy(vacancyId: $vacancyId) {
               vacancyPost
               rounds
+              skillsRequired
             }
           }
         `,
@@ -80,8 +148,9 @@ export default {
         },
       });
       (this.vacancyPost = result.data.vacancy.vacancyPost),
-      (this.rounds=result.data.vacancy.rounds)
-      console.log(this.rounds)
+      (this.rounds=result.data.vacancy.rounds),
+      (this.skills=result.data.vacancy.skillsRequired)
+      console.log(this.skills)
     },
     async get(id) {
         const result = await this.$apollo.mutate({
@@ -90,6 +159,9 @@ export default {
             response(responseId: $responseId) {
               roundsAnswers
               vacancyId
+              skillsRating
+              comment
+              rating
             }
           }
         `,
@@ -97,41 +169,47 @@ export default {
           responseId: id,
         },
       });
-      (this.answers=result.data.response.roundsAnswers)
-      console.log(this.answers)
+      (this.answers=result.data.response.roundsAnswers),
+      (this.skillsRating=result.data.response.skillsRating),
+      (this.rating=result.data.response.rating),
+      (this.comment=result.data.response.comment)
+      console.log(this.skillsRating)
       await this.getVac(result.data.response.vacancyId)
       
     },
-    async addresponse() {
-      console.log(this.answers)
-      console.log(this.githubid)
-      console.log(this.project)
-      const results = await this.$apollo.mutate({
-        mutation: gql`
-          mutation(
-            $vacancyId: ID!
-            $githubId: String!
-            $projectsLinks: [String]!
-            $roundsAnswers:[[String]!]!
-          ) {
-            addResponse(
-              vacancyId: $vacancyId
-              githubId: $githubId
-              projectsLinks: $projectsLinks
-              roundsAnswers:$roundsAnswers
-            ) 
-          }
-        `,
-        variables: {
-          vacancyId: this.vacancyid,
-          githubId: this.githubid,
-          projectsLinks: this.project,
-          roundsAnswers:this.answers
-        },
-      });
-      console.log(results);
+    async rate(){
+      if(this.comment!=""){
+        if(this.rating>=0&&this.rating<=100){
+          const result = await this.$apollo.mutate({
+            mutation: gql`
+              mutation(
+                $responseId: ID!
+                $comment:String!
+                $rating:Int!
+                ) {
+                rateResponse(
+                  responseId: $responseId
+                  comment:$comment
+                  rating:$rating
+                ) 
+              }
+            `,
+            variables: {
+              responseId: this.responseid,
+              rating:parseInt(this.rating),
+              comment:this.comment
+            },
+          });
       this.$router.push("/candidateresponse");
-    },
+        }
+        else{
+          this.err="Rating should be between 0 and 100"
+        }
+      }
+      else{
+        this.err="Comment required"
+      }
+    }
   },
 };
 </script>
