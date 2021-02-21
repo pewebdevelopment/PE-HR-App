@@ -25,7 +25,7 @@
 
                 <b-input-group>
                   <b-button class="filter-clear-button" variant="info" @click="filter = ''">Clear</b-button>
-                  <b-button class="filter-clear-button"  variant="info" >Send Email</b-button>
+                  <b-button class="filter-clear-button" v-if =" role != 'No Access' " variant="info" @click="showmodal">Send Email</b-button>
                 </b-input-group>
             
 
@@ -120,6 +120,47 @@
         >
           <pre> {{ infoModal.content }} </pre>
         </b-modal>
+        <b-modal
+          ref="email"
+          scrollable
+          body-bg-variant="dark"
+          hide-header
+          hide-backdrop
+          hide-footer
+        >
+          <b-row class="my-1">
+            <h3>Email</h3>
+          </b-row>
+          <b-container fluid>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Subject</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="subject"
+                  type="text"
+                  placeholder="Enter subject name"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Content</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-textarea
+                  v-model="content"
+                  type="text"
+                  placeholder="Enter content"
+                ></b-form-textarea>
+              </b-col>
+            </b-row>
+            <b-button class="mt-9" variant="outline-danger" @click="hidemodal"
+            >Submit</b-button
+          >
+          </b-container>
+          </b-modal>
         <b-modal
           ref="showdetails"
           scrollable
@@ -476,6 +517,7 @@ export default {
       sskills: [],
       singlecandidate: [],
       emailList:new Set(),
+      role:"No Access",
       fields: [
         {key:"check",label:"selected"},
         
@@ -546,7 +588,9 @@ export default {
   },
   mounted() {
      if(localStorage.getItem('access')&&localStorage.getItem('idToken')&&localStorage.getItem('accessToken')&&localStorage.getItem('refreshToken')){
-    this.responseList()
+        this.responseList()
+        this.role = localStorage.getItem('access') || "No Access"
+
     }
     else{
       this.$router.push("/login");
@@ -624,6 +668,9 @@ export default {
     },
     showmodal1() {
       this.$refs["showdetails"].show();
+    },
+    showmodal() {
+      this.$refs["email"].show();
     },
     hidemodal1() {
       this.$refs["showdetails"].hide();
