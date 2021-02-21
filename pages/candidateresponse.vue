@@ -25,7 +25,7 @@
 
                 <b-input-group>
                   <b-button class="filter-clear-button" variant="info" @click="filter = ''">Clear</b-button>
-                  <b-button class="filter-clear-button" v-if =" role != 'No Access' " variant="info" @click="showmodal">Send Email</b-button>
+                  <b-button class="filter-clear-button" v-if =" role == 'admin' " variant="info" @click="showmodal">Send Email</b-button>
                 </b-input-group>
             
 
