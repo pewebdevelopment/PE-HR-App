@@ -6,6 +6,8 @@ const verifyToken = require("../verifyToken");
 const config=require('../config/env');
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 const CognitoUserPool = AmazonCognitoIdentity.CognitoUserPool;
+var mailgun = require('mailgun-js')({apiKey: config.mailgun_api_key, domain: config.mailgun_domain});
+
 const bcrypt =require('bcrypt')
 const {GraphQLSchema,
     GraphQLObjectType,
@@ -629,6 +631,31 @@ const RootMutationType = new GraphQLObjectType({
         }else{
           return 2;
         }
+        }
+      },
+      sendEmail:{
+        type:GraphQLInt,
+        description:"Sending email to candidates",
+        args:{
+          emailList:{type:GraphQLNonNull(new GraphQLList(GraphQLString))},
+          subject:{type:GraphQLNonNull(GraphQLString)},
+          message:{type:GraphQLNonNull(GraphQLString)}
+        },
+        resolve:(parent,args,req)=>{
+          if(req.user!=null&&(req.user.permission=='admin'||req.user.permission=='super-admin')){
+            var data = {
+              from: 'Paathshala <paathshala.webdevelopment@gmail.com>',
+              to: 'stephcuriejulie33@gmail.com,stephcuriejuli33@gmail.com',
+              subject: 'Hello',
+              text: 'Testing some Mailgun awesomeness!'
+            };
+            mailgun.messages().send(data, function (error, body) {
+              console.log(error);
+            });
+          }
+          else{
+
+          }
         }
       },
       rateResponse:{

@@ -10,7 +10,8 @@ mongoconnect()
 const schema = require('./graphSchema/schema');
 const cors = require('cors');
 const {graphqlHTTP} = require('express-graphql');
-const config = require('./config/env')
+const config = require('./config/env');
+ 
 
 
 app.use(cors());
