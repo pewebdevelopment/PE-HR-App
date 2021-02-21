@@ -7,8 +7,8 @@ export default function(context) {
     link: createHttpLink({
       //this is appolo-client.js in plugins folder of nuxt app 
 
-      uri://'https://nuxt-dev-backend-9aws4.ondigitalocean.app/graphql',
-          'http://localhost:5000/graphql', 
+      uri:'https://nuxt-dev-backend-9aws4.ondigitalocean.app/graphql',
+          //'http://localhost:5000/graphql', 
       //credentials: 'include',
       fetch: (uri, options) => {
         //const token = typeof window !== 'undefined' ? localStorage.getItem('idToken') : null
