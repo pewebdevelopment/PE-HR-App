@@ -120,6 +120,7 @@
         >
           <pre> {{ infoModal.content }} </pre>
         </b-modal>
+        
         <b-modal
           ref="email"
           scrollable
@@ -128,6 +129,12 @@
           hide-backdrop
           hide-footer
         >
+        <v-alert
+          type="error"
+          dense
+          outlined
+        >{{ err }}</v-alert>
+
           <b-row class="my-1">
             <h3>Email</h3>
           </b-row>
@@ -138,7 +145,7 @@
               </b-col>
               <b-col sm="9">
                 <b-form-input
-                  v-model="subject"
+                  v-model="emailSubject"
                   type="text"
                   placeholder="Enter subject name"
                 ></b-form-input>
@@ -150,13 +157,13 @@
               </b-col>
               <b-col sm="9">
                 <b-form-textarea
-                  v-model="content"
+                  v-model="emailContent"
                   type="text"
                   placeholder="Enter content"
                 ></b-form-textarea>
               </b-col>
             </b-row>
-            <b-button class="mt-9" variant="outline-danger" @click="hidemodal"
+            <b-button class="mt-9" variant="outline-danger" @click="sendMail"
             >Submit</b-button
           >
           </b-container>
@@ -519,8 +526,10 @@ export default {
       emailList:new Set(),
       role:"No Access",
       fields: [
-        {key:"check",label:"selected"},
-        
+        { 
+          key:"check",
+          label:"selected"
+        },
         {
           key: "candidateName",
           label: "Candidate Name",
@@ -575,6 +584,10 @@ export default {
         title: "",
         content: "",
       },
+      emailSubject:"",
+      emailContent:"",
+      err:""
+      
     };
   },
   computed: {
@@ -600,7 +613,6 @@ export default {
     async change(a,b){
       if(a==null || a){
         this.emailList.add(b)
-        console.log(this.emailList)
       }else{
         this.emailList.delete(b);
         console.log(this.emailList)
@@ -704,6 +716,33 @@ export default {
       this.responses=results.data.responses
       console.log(this.responses)
     
+    },
+    async sendMail(){
+      console.log(this.emailList.size == 0);
+        if(this.emailList.size != 0){
+        const emailSent = await this.$apollo.mutate({
+        mutation:gql`
+          mutation(
+            $emailContent:String!
+            $emails:[String]!
+            $emailSubject:String!
+          ){
+            sendEmail(
+            emailContent:$emailContent
+            emails:$emails
+            emailSubject:$emailSubject
+            )
+          }
+          `,
+          variables:{
+            emailContent:this.emailContent,
+            emails:Array.from(this.emailList),
+            emailSubject:this.emailSubject
+          }
+        })
+        }else{
+          this.err = "Please select atleast one email to send";
+        }
     },
     info(item, index, button) {
       this.totalRows = this.responses.length;
