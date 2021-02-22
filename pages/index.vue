@@ -479,6 +479,7 @@ export default {
       localStorage.removeItem('accessToken')
       localStorage.removeItem('refreshToken')
       localStorage.removeItem('access')
+      localStorage.removeItem('username')
       this.$router.push("/login");
     },
     async ondelete(id) {

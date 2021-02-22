@@ -106,7 +106,7 @@
           <a href="/" v-if="flag" class="nav-item dropdown-item">Profile</a>
         </li>
         <li class="nav-link">
-          <a href="/candidateresponse" class="nav-item dropdown-item">Response</a>
+          <a href="/candidateresponse" v-if="flag" class="nav-item dropdown-item">Response</a>
         </li>
         <div class="dropdown-divider"></div>
         <li class="nav-link">
@@ -182,6 +182,7 @@ export default {
         localStorage.removeItem('accessToken')
         localStorage.removeItem('refreshToken')
         localStorage.removeItem('access')
+        localStorage.removeItem('username')
       }
       console.log("new")
       this.$router.push("/login");

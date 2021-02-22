@@ -177,11 +177,11 @@
           hide-footer
         >
           <b-row class="my-1">
-            <h3>Edit Candidate</h3>
+            <h3>View Candidate</h3>
           </b-row>
           <h4>Personal Details</h4>
           <b-container fluid>
-            <label>{{ candidate_Id }}</label>
+            <label>{{ candidateId }}</label>
             <b-row class="my-1">
               <b-col sm="3">
                 <label for="input-default">Full Name:</label>
@@ -611,6 +611,7 @@ export default {
   },
   methods: {
     async change(a,b){
+      console.log(this.emailList)
       if(a==null || a){
         this.emailList.add(b)
       }else{
