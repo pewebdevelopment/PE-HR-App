@@ -6,6 +6,11 @@
         ><b-button class="float-right">Add Vacancy</b-button></nuxt-link
       >
     </div>
+      <v-alert
+          type="error"
+          dense
+          outlined
+        >{{err}}</v-alert>
     <div class="vacancies-list">
       <ul>
         <li v-for="vac in vacancies" :key="vac.id">
@@ -87,13 +92,22 @@ export default {
   name: "candidates",
   data() {
     return {
-      
+      err:"",
+      vacancyName:this.$router.currentRoute.query['vacancyName'],
       vacancies:undefined
     };
   },
   mounted() {
     if(localStorage.getItem('access')&&localStorage.getItem('idToken')&&localStorage.getItem('accessToken')&&localStorage.getItem('refreshToken')){
-    this.getadminvacancy()
+      if(this.vacancyName!=null){
+        this.searchVacancy(this.vacancyName)
+        console.log(this.vacancyName)
+        console.log('syee')
+      }
+      else{
+        this.getadminvacancy()
+        console.log(this.vacancyName)
+      }
     }
     else{
       this.$router.push("/login");
@@ -107,6 +121,35 @@ export default {
   methods: {
     async showEditVacancy(id){
       this.$router.push('/editVacancy?vacancyId='+id)
+    },
+    async searchVacancy(){
+      const results = await this.$apollo.mutate({
+        mutation: gql`
+          mutation getsearchvacancies($vacancyName:String!) {
+        searchVacancy (vacancyName:$vacancyName){
+          vacancyId
+          vacancyPost
+          noOfOpenings
+          stipend
+          perks
+          duration
+          aboutPost
+          skillsRequired
+          startDate
+          deadlineDate
+        }
+      }
+        `,
+        variables: {
+          vacancyName:this.vacancyName
+        },
+      });
+      console.log(results.data.searchVacancy)
+      if(results.data.searchVacancy.length==0){
+        this.err="No vacancy found"
+      }
+      else
+        this.vacancies=results.data.searchVacancy
     },
     async deletevacancy(id) {
       const result = await this.$apollo.mutate({

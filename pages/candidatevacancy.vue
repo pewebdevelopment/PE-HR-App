@@ -3,6 +3,11 @@
     <div class="header">
       <h1>VACANCIES</h1>
     </div>
+    <v-alert
+          type="error"
+          dense
+          outlined
+        >{{err}}</v-alert>
     <div class="vacancies-list">
       <ul>
         <li v-for="vac in vacancies" :key="vac.id">
@@ -77,6 +82,8 @@ export default {
   name: "candidates",
   data() {
     return {
+      err:"",
+      vacancyName:this.$router.currentRoute.query['vacancyName'],
       vacancID: undefined,
       UpvacancyPost: undefined,
       UpnoOfOpenings: undefined,
@@ -96,7 +103,11 @@ export default {
   },
   mounted() {
     if(localStorage.getItem('access')&&localStorage.getItem('idToken')&&localStorage.getItem('accessToken')&&localStorage.getItem('refreshToken')){
-      
+      if(this.vacancyName!=null){
+        this.searchVacancy(this.vacancyName)
+        console.log(this.vacancyName)
+        console.log('syee')
+      }
     }
     else{
       this.$router.push("/login");
@@ -126,7 +137,36 @@ export default {
     `,
   },
   methods: {
-    
+   async searchVacancy(){
+      const results = await this.$apollo.mutate({
+        mutation: gql`
+          mutation getsearchvacancies($vacancyName:String!) {
+        searchVacancy (vacancyName:$vacancyName){
+          vacancyId
+          vacancyPost
+          noOfOpenings
+          stipend
+          perks
+          duration
+          deadline
+          aboutPost
+          skillsRequired
+          startDate
+          deadlineDate
+        }
+      }
+        `,
+        variables: {
+          vacancyName:this.vacancyName
+        },
+      });
+      console.log(results.data.searchVacancy[0],Date.now())
+     if(results.data.searchVacancy.length==0){
+        this.err="No such vacancy found here are other vacancies"
+      }
+      else
+        this.vacancies=results.data.searchVacancy
+    }, 
    async showResponsePage(id){
      this.$router.push('/applyVacancy?vacancyId='+id)
    }

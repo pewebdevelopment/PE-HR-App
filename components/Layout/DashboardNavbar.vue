@@ -22,6 +22,7 @@
     <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
       <div class="search-bar input-group" @click="searchModalVisible = true">
         <button
+          v-if="flag"
           class="btn btn-link"
           id="search-button"
           data-toggle="modal"
@@ -39,13 +40,20 @@
         :show-close="true"
       >
         <input
-          slot="header"
           v-model="searchQuery"
           type="text"
           class="form-control"
           id="inlineFormInputGroup"
           placeholder="SEARCH"
         />
+        <button
+          class="btn btn-link"
+          id="search-button"
+          @click="getVac"
+        >
+          <i class="tim-icons icon-zoom-split"></i>
+        </button>
+        
       </modal>
       <base-dropdown
         tag="li"
@@ -162,6 +170,12 @@ export default {
   },
    
   methods: {
+    async getVac(){
+      if(localStorage.getItem('access')=='admin'||localStorage.getItem('access')=='super-admin')
+        this.$router.push("/vacancies?vacancyName="+this.searchQuery)
+      else if(localStorage.getItem('access')=='candidate')
+        this.$router.push("/candidatevacancy?vacancyName="+this.searchQuery)
+    },
     async logout(){
       if(localStorage.getItem('access')&&localStorage.getItem('idToken')&&localStorage.getItem('accessToken')&&localStorage.getItem('refreshToken')){
         localStorage.removeItem('reload')
