@@ -338,6 +338,30 @@ const RootMutationType = new GraphQLObjectType({
 
           
       },
+      searchVacancy: {
+        type: new GraphQLList(VacancyType),
+        description: 'Vacancies created by admin',
+        args: {
+          vacancyName:{type:GraphQLNonNull(GraphQLString)}
+        },
+        resolve: (parent, args,req) =>{
+          return new Promise((resolve,reject)=>{
+            if(req.user!=null && req.user.permission=='admin'){
+              resolve(Vacancies.find({userId:req.user.userId,vacancyPost:args.vacancyName}))
+            }
+            else if(req.user!=null && (req.user.permission=='super-admin'||req.user.permission=='candidate')){
+              console.log("ste")
+              resolve(Vacancies.find({vacancyPost:args.vacancyName}))
+            }
+            else{
+              resolve('Invalid Access')
+            }
+          })
+          
+        }
+
+          
+      },
       vacancy: {
         type: VacancyType,
         description: 'A Single Vacancy',
