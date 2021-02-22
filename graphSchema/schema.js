@@ -6,7 +6,7 @@ const verifyToken = require("../verifyToken");
 const config=require('../config/env');
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 const CognitoUserPool = AmazonCognitoIdentity.CognitoUserPool;
-var mailgun = require('mailgun-js')({apiKey: config.mailgun_api_key, domain: config.mailgun_domain});
+var mailgun = require('mailgun-js')({apiKey : config.mailgun_api_key,  domain : config.mailgun_domain});
 
 const bcrypt =require('bcrypt')
 const {GraphQLSchema,
@@ -637,20 +637,25 @@ const RootMutationType = new GraphQLObjectType({
         type:GraphQLInt,
         description:"Sending email to candidates",
         args:{
-          emailList:{type:GraphQLNonNull(new GraphQLList(GraphQLString))},
-          subject:{type:GraphQLNonNull(GraphQLString)},
-          message:{type:GraphQLNonNull(GraphQLString)}
+          emails:{type:GraphQLNonNull(new GraphQLList(GraphQLString))},
+          emailSubject:{type:GraphQLNonNull(GraphQLString)},
+          emailContent:{type:GraphQLNonNull(GraphQLString)}
         },
         resolve:(parent,args,req)=>{
           if(req.user!=null&&(req.user.permission=='admin'||req.user.permission=='super-admin')){
+  
             var data = {
               from: 'Paathshala <paathshala.webdevelopment@gmail.com>',
-              to: 'stephcuriejulie33@gmail.com,stephcuriejuli33@gmail.com',
-              subject: 'Hello',
-              text: 'Testing some Mailgun awesomeness!'
+              to: args.emails.join(),
+              subject: args.emailSubject.toString(),
+              text: args.emailContent.toString()
             };
-            mailgun.messages().send(data, function (error, body) {
-              console.log(error);
+            mailgun.messages().send(data, function (err, body) {
+              if(err){
+                console.log(err)
+              }else{
+                console.log(body);
+              }
             });
           }
           else{

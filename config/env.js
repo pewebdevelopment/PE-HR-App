@@ -9,7 +9,7 @@ config = {
     pool_region :'ap-south-1',
     UserPoolId : "ap-south-1_n75iYQRxh",    
     ClientId : "78hg39ucp4rprhrgp0bes9nuu8",
-    mailgun_api_key : 'c562fcdb085a7745d41414249c0a3167-4d640632-2d59169a',
-    mailgun_domain : 'forums.paathshala.world'
+    mailgun_api_key : '53218b590d94489cd1d707ec2e2be18a-d32d817f-7b38ef39',
+    mailgun_domain : 'sandbox690e2166715b4e99a50ffaaca515d595.mailgun.org'
 }
 module.exports = config
