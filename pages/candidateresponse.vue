@@ -678,6 +678,9 @@ export default {
     showmodal() {
       this.$refs["email"].show();
     },
+    hidemodal() {
+      this.$refs["email"].hide();
+    },
     hidemodal1() {
       this.$refs["showdetails"].hide();
     },
@@ -734,6 +737,7 @@ export default {
             emailSubject:this.emailSubject
           }
         })
+        this.hidemodal()
         }else{
           this.err = "Please select atleast one email to send";
         }
