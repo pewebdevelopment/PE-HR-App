@@ -527,10 +527,12 @@ const RootMutationType = new GraphQLObjectType({
         resolve: (parent, args,req) => {
           if(req.user!=null&&req.user.permission=='admin'){
             Vacancies.deleteOne({_id:args.vacancyId,userId:req.user.userId},(err,docs)=>{
-              if(docs)
-               return 1;
-              else
-                return 0;
+              Response.deleteMany({vacancyId:args.vacancyId},(err,docs)=>{
+                if(docs)
+                  return 1;
+                else
+                  return 0;
+              })
           })
           }
           else if(req.user!=null&&req.user.permission=='super-admin'){
@@ -605,10 +607,12 @@ const RootMutationType = new GraphQLObjectType({
         },
         resolve: (parent, args,req) => {
           Candidates.deleteOne({$or:[{_id:args.candidateId},{userId:req.user.userId}]},(err,docs)=>{
-            if(docs)
-              return 1;
-            else
-              return 0;
+            Response.deleteMany({candidateId:args.candidateId},(err,docs)=>{
+              if(docs)
+                return 1;
+              else
+                return 0;
+            })
           })
         }
       },
