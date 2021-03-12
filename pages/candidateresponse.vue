@@ -178,7 +178,7 @@
             <b-row class="my-1">
               <b-col sm="3">
                 <label for="input-default">Full Name:</label>
-              </b-col>
+              </b-col> 
               <b-col sm="9">
                 <b-form-input
                   disabled

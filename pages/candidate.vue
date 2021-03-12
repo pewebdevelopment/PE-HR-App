@@ -445,7 +445,7 @@ export default {
       if(result.data.addCandidate==0){
         this.err="Email exists"
       }
-      else if(result.data.addCandidate==null){
+      else if(result.data.addCandidate==3){
         this.err="Email miss match"
       }
       else if(result.data.addCandidate==2){
