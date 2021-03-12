@@ -29,6 +29,7 @@ const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 const VacancyType = new GraphQLObjectType({
     name: 'Vacancy',
     description: 'This represents a Vacancy',
+
     fields: () => ({
       vacancyId:{ type: GraphQLNonNull(GraphQLID) },
       vacancyPost: { type: GraphQLNonNull(GraphQLString) },
@@ -215,7 +216,7 @@ const RootMutationType = new GraphQLObjectType({
           else if(req.user!=null&&req.user.permission=='admin'){
             Vacancies.find({userId:req.user.userId},async (err,docs)=>{
               if(docs.length>0){
-                var vacIds=[];
+                var vacIds=[]; 
                 for(i=0;i<docs.length;i++){
                   vacIds.push(docs[i].vacancyId)
                 }
@@ -576,7 +577,10 @@ const RootMutationType = new GraphQLObjectType({
         },
         resolve: (parent, args,req) => {  
           if(req.user!=null&&req.user.permission=='candidate'){
+            if(req.user.email==args.email){
           Candidates.find({email:req.user.email},(err,docs)=>{
+            console.log(docs)
+            console.log(docs.length)
             if(docs!=undefined && docs.length==0){
               var newCandidate=new Candidates({candidateName:args.candidateName,email:args.email,phoneNo:args.phoneNo,address:args.address,
                 hseSchool:args.hseSchool,hseBoard:args.hseBoard,hseSpecialization:args.hseSpecialization,hseFrom:args.hseFrom,hseTo:args.hseTo,hsePercentage:args.hsePercentage,
@@ -585,14 +589,20 @@ const RootMutationType = new GraphQLObjectType({
               })
               newCandidate.candidateId=newCandidate._id
               newCandidate.save({},(err,docs)=>{
-                //console.log(err)
+                
                 if(docs)
                   return 1;//success
-                
+                 
               });
             }
-            return 0;//email exists
+            else{
+              return 0;//email exists
+            }
           })
+        }
+        else{
+          return 3;
+        }
         }else{
             return 2;//no permission
         }
