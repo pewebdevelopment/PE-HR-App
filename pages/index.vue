@@ -48,7 +48,7 @@
           hide-footer
         >
           <b-row class="my-1">
-            <h3>Edit Candidate</h3>
+            <h3>Show Candidate Details</h3>
           </b-row>
           <h4>Personal Details</h4>
           <b-container fluid>
@@ -343,6 +343,293 @@
 
           <b-button class="mt-9" variant="outline-danger" @click="hidemodal1"
             >Cancel</b-button
+          >
+        </b-modal>
+         <b-modal
+          ref="candidatemodal"
+          scrollable
+          body-bg-variant="dark"
+          hide-header
+          hide-backdrop
+          hide-footer
+        >
+          <b-row class="my-1">
+            <h3>Edit Candidate</h3>
+          </b-row>
+          <h4>Personal Details</h4>
+          <b-container fluid>
+            <label>{{ candidate_Id }}</label>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Full Name:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="Fname"
+                  type="text"
+                  placeholder="Enter your name"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Email:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                 disabled
+                  v-model="email"
+                  type="text"
+                  placeholder="Enter your email"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Mobile:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="mobile"
+                  type="text"
+                  placeholder="Enter your mobile number"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Address:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="address"
+                  type="text"
+                  placeholder="Enter your address"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <hr />
+            <h4>Gradutation</h4>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default"> College:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="college"
+                  type="text"
+                  placeholder="Enter your college name"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default"> Department:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="Department"
+                  type="text"
+                  placeholder="Enter your department name"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Start Date:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="StartDateGra"
+                  type="number"
+                  placeholder="Gradutation start date"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Finish Date:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="FinishDateGra"
+                  type="number"
+                  placeholder="Gradutation complete date"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Percentage:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="percentageGra"
+                  type="number"
+                  placeholder="Enter gradutation percentage"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+
+            <hr />
+
+            <h4>Secondary Education</h4>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">School:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="school"
+                  type="text"
+                  placeholder="Enter your college name"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Board:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="boardSch"
+                  type="text"
+                  placeholder="Enter your board name"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Start Date:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="StartDateSch"
+                  type="number"
+                  placeholder="Gradutation start date"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Finish Date:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="FinishDateSch"
+                  type="number"
+                  placeholder="Gradutation complete date"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Percentage:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="percentageSch"
+                  type="number"
+                  placeholder="Enter gradutation percentage"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+
+            <hr />
+
+            <h4>Higher Secondary Education</h4>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default"> College:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="collegehse"
+                  type="text"
+                  placeholder="Enter your college name"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Board:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="boardhse"
+                  type="text"
+                  placeholder="Enter your board name"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Start Date:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="StartDatehse"
+                  type="number"
+                  placeholder="Gradutation start date"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Finish Date:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="FinishDatehse"
+                  type="number"
+                  placeholder="Gradutation complete date"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Percentage:</label>
+              </b-col>
+              <b-col sm="9">
+                <b-form-input
+                  v-model="percentagehse"
+                  type="number"
+                  placeholder="Enter gradutation percentage"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Department:</label>
+              </b-col>
+              <b-col sm="9">
+                <!-- <h6>{{ sdepartmenthse }}</h6>
+-->
+                <b-form-input
+                  v-model="departmenthse"
+                  type="text"
+                  placeholder="Enter gradutation percentage"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="3">
+                <label for="input-default">Skills:</label>
+              </b-col>
+              <b-col sm="10">
+                <h6 v-for="(items, index) in skills" :key="index">{{ items }}</h6>
+              </b-col>
+            </b-row>
+          </b-container>
+          <hr />
+          <b-row class="my-1">
+            <b-col sm="3"> </b-col>
+          </b-row>
+
+          <b-button class="mt-9" variant="outline-danger" @click="postcandidate"
+            >Edit</b-button
           >
         </b-modal>
         <!-- ------------------------------------------------------------------------------------- -->
