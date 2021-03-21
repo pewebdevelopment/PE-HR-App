@@ -4,7 +4,7 @@ require('dotenv').config()
 
 config = {
     mongodblocal: {
-        connectionString:"mongodb+srv://Admin:Admin@cluster0.zxwa5.mongodb.net/test"
+        connectionString:"mongodb+srv://Admin:admin@cluster0.cxrgl.mongodb.net/test"
     },
     PORT:5000,
     /*pool_region :'us-east-2',
